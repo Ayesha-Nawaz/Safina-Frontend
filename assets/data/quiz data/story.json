@@ -1,0 +1,2032 @@
+[
+    {
+  "id": 3,
+  "name": {
+    "en": "Prophet Stories",
+    "ur": "انبیاء کی کہانیاں"
+  },
+  "quizzes": [
+    {
+      "title": {
+        "en": "Quiz 1",
+        "ur": "کوئز 1"
+      },
+      "syllabus": {
+        "en": ["Nuh (AS) and Great Ark", "Musa(A.S) and the Miracle of Split Sea"],
+        "ur": ["نوح علیہ السلام اور عظیم کشتی", "موسیٰ (علیہ السلام) اور بحیرہ تقسیم کا معجزہ"]
+      },
+      "questions": [
+        {
+          "question": {
+            "en": "Who was Prophet Nuh (A.S.)?",
+            "ur": "حضرت نوح علیہ السلام کون تھے؟"
+          },
+          "options": [
+            {
+              "en": "A king",
+              "ur": "بادشاہ"
+            },
+            {
+              "en": "A prophet of Allah",
+              "ur": "اللہ کے نبی"
+            },
+            {
+              "en": "A farmer",
+              "ur": "کسان"
+            },
+            {
+              "en": "A warrior",
+              "ur": "جنگجو"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A prophet of Allah",
+            "ur": "اللہ کے نبی"
+          }
+        },
+        {
+          "question": {
+            "en": "What did the people of Prophet Nuh (A.S.) start worshiping?",
+            "ur": "حضرت نوح (علیہ السلام) کی قوم نے کس کی عبادت شروع کر دی تھی؟"
+          },
+          "options": [
+            {
+              "en": "The sun",
+              "ur": "سورج"
+            },
+            {
+              "en": "The moon",
+              "ur": "چاند"
+            },
+            {
+              "en": "Idols",
+              "ur": "بت"
+            },
+            {
+              "en": "Trees",
+              "ur": "درخت"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Idols",
+            "ur": "بت"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Allah ask Prophet Nuh (A.S.) to build?",
+            "ur": "اللہ نے حضرت نوح (علیہ السلام) کو کیا بنانے کا حکم دیا؟"
+          },
+          "options": [
+            {
+              "en": "A house",
+              "ur": "گھر"
+            },
+            {
+              "en": "A well",
+              "ur": "کنواں"
+            },
+            {
+              "en": "A big ark",
+              "ur": "ایک بڑی کشتی"
+            },
+            {
+              "en": "A bridge",
+              "ur": "پل"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A big ark",
+            "ur": "ایک بڑی کشتی"
+          }
+        },
+        {
+          "question": {
+            "en": "Who entered the ark with Prophet Nuh (A.S.)?",
+            "ur": "حضرت نوح (علیہ السلام) کے ساتھ کشتی میں کون گیا؟"
+          },
+          "options": [
+            {
+              "en": "Only his family",
+              "ur": "صرف ان کا خاندان"
+            },
+            {
+              "en": "Only the animals",
+              "ur": "صرف جانور"
+            },
+            {
+              "en": "His family, believers, and pairs of animals",
+              "ur": "ان کا خاندان، ایمان والے اور جوڑے کی صورت میں جانور"
+            },
+            {
+              "en": "Everyone in the town",
+              "ur": "پورا گاؤں"
+            }
+          ],
+          "correctAnswer": {
+            "en": "His family, believers, and pairs of animals",
+            "ur": "ان کا خاندان، ایمان والے اور جوڑے کی صورت میں جانور"
+          }
+        },
+        {
+          "question": {
+            "en": "Where did the ark finally rest after the flood?",
+            "ur": "کشتی کہاں جا کر رکی؟"
+          },
+          "options": [
+            {
+              "en": "Mount Everest",
+              "ur": "ماؤنٹ ایورسٹ"
+            },
+            {
+              "en": "Mount Judi",
+              "ur": "جودی پہاڑ"
+            },
+            {
+              "en": "Mount Hira",
+              "ur": "غار حرا"
+            },
+            {
+              "en": "A desert",
+              "ur": "صحرا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Mount Judi",
+            "ur": "جودی پہاڑ"
+          }
+        },
+        {
+          "question": {
+            "en": "What did the bird bring back to Prophet Nuh (A.S.) as a sign of dry land?",
+            "ur": "حضرت نوح (علیہ السلام) کے بھیجے گئے پرندے نے کیا چیز واپس لائی جو زمین کے خشک ہونے کی نشانی تھی؟"
+          },
+          "options": [
+            {
+              "en": "A piece of wood",
+              "ur": "لکڑی کا ٹکڑا"
+            },
+            {
+              "en": "A fish",
+              "ur": "مچھلی"
+            },
+            {
+              "en": "An olive leaf",
+              "ur": "زیتون کا پتہ"
+            },
+            {
+              "en": "A small rock",
+              "ur": "چھوٹا پتھر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "An olive leaf",
+            "ur": "زیتون کا پتہ"
+          }
+        },
+        {
+          "question": {
+            "en": "Why did Allah send the flood?",
+            "ur": "اللہ نے سیلاب کیوں بھیجا؟"
+          },
+          "options": [
+            {
+              "en": "To give water to the land",
+              "ur": "زمین کو پانی دینے کے لیے"
+            },
+            {
+              "en": "As a punishment for those who didn't believe",
+              "ur": "نافرمان لوگوں کو سزا دینے کے لیے"
+            },
+            {
+              "en": "Because Prophet Nuh (A.S.) asked for it",
+              "ur": "کیونکہ حضرت نوح (علیہ السلام) نے دعا کی تھی"
+            },
+            {
+              "en": "To test the believers",
+              "ur": "مومنین کا امتحان لینے کے لیے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "As a punishment for those who didn't believe",
+            "ur": "نافرمان لوگوں کو سزا دینے کے لیے"
+          }
+        },
+        {
+          "question": {
+            "en": "Who was the cruel king ruling over the people of Israel?",
+            "ur": "بنی اسرائیل پر ظلم کرنے والا بادشاہ کون تھا؟"
+          },
+          "options": [
+            {
+              "en": "King Solomon",
+              "ur": "سلیمان"
+            },
+            {
+              "en": "Pharaoh",
+              "ur": "فرعون"
+            },
+            {
+              "en": "King David",
+              "ur": "داؤد"
+            },
+            {
+              "en": "King Herod",
+              "ur": "ہیرودیس"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Pharaoh",
+            "ur": "فرعون"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Allah command Prophet Musa (AS) to do?",
+            "ur": "اللہ نے حضرت موسیٰ علیہ السلام کو کیا حکم دیا؟"
+          },
+          "options": [
+            {
+              "en": "Stay in Egypt",
+              "ur": "مصر میں ہی رہیں"
+            },
+            {
+              "en": "Fight Pharaoh's army",
+              "ur": "فرعون کی فوج سے لڑیں"
+            },
+            {
+              "en": "Take his people away from Egypt",
+              "ur": "اپنی قوم کو مصر سے نکال کر لے جائیں"
+            },
+            {
+              "en": "Build a palace",
+              "ur": "ایک محل بنائیں"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Take his people away from Egypt",
+            "ur": "اپنی قوم کو مصر سے نکال کر لے جائیں"
+          }
+        },
+        {
+          "question": {
+            "en": "What happened when the Israelites reached the Red Sea?",
+            "ur": "جب بنی اسرائیل دریائے قلزم (بحیرہ احمر) کے کنارے پہنچے تو کیا ہوا؟"
+          },
+          "options": [
+            {
+              "en": "They built boats to cross the sea",
+              "ur": "انہوں نے دریا پار کرنے کے لیے کشتیاں بنائیں"
+            },
+            {
+              "en": "They found another way around",
+              "ur": "انہیں دریا کا دوسرا راستہ مل گیا"
+            },
+            {
+              "en": "Pharaoh and his army chased them",
+              "ur": "فرعون اور اس کی فوج نے ان کا پیچھا کیا"
+            },
+            {
+              "en": "The sea dried up on its own",
+              "ur": "دریا خود ہی خشک ہو گیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Pharaoh and his army chased them",
+            "ur": "فرعون اور اس کی فوج نے ان کا پیچھا کیا"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Prophet Musa (AS) split the sea?",
+            "ur": "حضرت موسیٰ علیہ السلام نے دریا کو کیسے دو حصوں میں تقسیم کیا؟"
+          },
+          "options": [
+            {
+              "en": "He prayed to Allah",
+              "ur": "انہوں نے اللہ سے دعا کی"
+            },
+            {
+              "en": "He struck the water with his staff",
+              "ur": "انہوں نے اپنا عصا دریا پر مارا"
+            },
+            {
+              "en": "He shouted at the water",
+              "ur": "انہوں نے پانی پر چیخا"
+            },
+            {
+              "en": "The wind blew the water away",
+              "ur": "تیز ہوا نے پانی ہٹا دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He struck the water with his staff",
+            "ur": "انہوں نے اپنا عصا دریا پر مارا"
+          }
+        },
+        {
+          "question": {
+            "en": "What happened to Pharaoh and his army?",
+            "ur": "فرعون اور اس کی فوج کے ساتھ کیا ہوا؟"
+          },
+          "options": [
+            {
+              "en": "They also crossed safely",
+              "ur": "وہ بھی بحفاظت پار ہو گئے"
+            },
+            {
+              "en": "They returned to Egypt",
+              "ur": "وہ واپس مصر چلے گئے"
+            },
+            {
+              "en": "They were drowned when the sea closed on them",
+              "ur": "دریا دوبارہ مل گیا اور وہ سب ڈوب گئے"
+            },
+            {
+              "en": "They captured the Israelites",
+              "ur": "انہوں نے بنی اسرائیل کو پکڑ لیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "They were drowned when the sea closed on them",
+            "ur": "دریا دوبارہ مل گیا اور وہ سب ڈوب گئے"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Quiz 2",
+        "ur": "کوئز 2"
+      },
+      "syllabus": {
+        "en": ["Yunus and Whale", "Sulaiman and Ant"],
+        "ur": ["یونس اور وہیل", "سلیمان اور چیونٹی"]
+      },
+      "questions": [
+        {
+          "question": {
+            "en": "Where was Prophet Younus (A.S.) sent to guide the people?",
+            "ur": "حضرت یونس (علیہ السلام) کو کس قوم کی ہدایت کے لیے بھیجا گیا تھا؟"
+          },
+          "options": [
+            {
+              "en": "Makkah",
+              "ur": "مکہ"
+            },
+            {
+              "en": "Nineveh",
+              "ur": "نینوا"
+            },
+            {
+              "en": "Madinah",
+              "ur": "مدینہ"
+            },
+            {
+              "en": "Egypt",
+              "ur": "مصر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Nineveh",
+            "ur": "نینوا"
+          }
+        },
+        {
+          "question": {
+            "en": "How did the people of Nineveh behave?",
+            "ur": "نینوا کے لوگ کیسے تھے؟"
+          },
+          "options": [
+            {
+              "en": "They listened to Prophet Younus (A.S.)",
+              "ur": "وہ حضرت یونس (علیہ السلام) کی بات مانتے تھے"
+            },
+            {
+              "en": "They were kind and righteous",
+              "ur": "وہ نیک اور اچھے لوگ تھے"
+            },
+            {
+              "en": "They refused to listen and continued sinning",
+              "ur": "وہ حضرت یونس (علیہ السلام) کی بات نہیں سنتے تھے اور گناہ کرتے تھے"
+            },
+            {
+              "en": "They built a mosque",
+              "ur": "انہوں نے ایک مسجد بنائی"
+            }
+          ],
+          "correctAnswer": {
+            "en": "They refused to listen and continued sinning",
+            "ur": "وہ حضرت یونس (علیہ السلام) کی بات نہیں سنتے تھے اور گناہ کرتے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "Why did Prophet Younus (A.S.) leave Nineveh?",
+            "ur": "حضرت یونس (علیہ السلام) نینوا سے کیوں چلے گئے؟"
+          },
+          "options": [
+            {
+              "en": "He wanted to visit another city",
+              "ur": "وہ کسی اور شہر جانا چاہتے تھے"
+            },
+            {
+              "en": "He was tired and wanted to rest",
+              "ur": "وہ تھک چکے تھے اور آرام کرنا چاہتے تھے"
+            },
+            {
+              "en": "Allah ordered him to leave after the people refused to listen",
+              "ur": "اللہ نے انہیں وہاں سے نکلنے کا حکم دیا کیونکہ لوگ نہیں مان رہے تھے"
+            },
+            {
+              "en": "He wanted to go on a journey",
+              "ur": "وہ سیر کے لیے جانا چاہتے تھے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Allah ordered him to leave after the people refused to listen",
+            "ur": "اللہ نے انہیں وہاں سے نکلنے کا حکم دیا کیونکہ لوگ نہیں مان رہے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "What happened when Prophet Younus (A.S.) was on the ship?",
+            "ur": "جب حضرت یونس (علیہ السلام) کشتی میں سوار تھے، تو کیا ہوا؟"
+          },
+          "options": [
+            {
+              "en": "A great storm arose",
+              "ur": "ایک بڑا طوفان آیا"
+            },
+            {
+              "en": "The ship reached its destination safely",
+              "ur": "کشتی محفوظ طریقے سے منزل تک پہنچ گئی"
+            },
+            {
+              "en": "The ship broke into pieces",
+              "ur": "کشتی ٹکڑوں میں ٹوٹ گئی"
+            },
+            {
+              "en": "The people on the ship celebrated",
+              "ur": "کشتی میں موجود لوگوں نے جشن منایا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A great storm arose",
+            "ur": "ایک بڑا طوفان آیا"
+          }
+        },
+        {
+          "question": {
+            "en": "Why was Prophet Younus (A.S.) thrown into the sea?",
+            "ur": "حضرت یونس (علیہ السلام) کو سمندر میں کیوں پھینکا گیا؟"
+          },
+          "options": [
+            {
+              "en": "He jumped into the sea for fun",
+              "ur": "وہ تفریح کے لیے سمندر میں کودے تھے"
+            },
+            {
+              "en": "The people on the ship cast lots, and his name came up",
+              "ur": "کشتی میں قرعہ ڈالا گیا اور ان کا نام نکلا"
+            },
+            {
+              "en": "He wanted to swim",
+              "ur": "وہ تیرنا چاہتے تھے"
+            },
+            {
+              "en": "A strong wind blew him away",
+              "ur": "ایک تیز ہوا نے انہیں پھینک دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "The people on the ship cast lots, and his name came up",
+            "ur": "کشتی میں قرعہ ڈالا گیا اور ان کا نام نکلا"
+          }
+        },
+        {
+          "question": {
+            "en": "What swallowed Prophet Younus (A.S.)?",
+            "ur": "حضرت یونس (علیہ السلام) کو کس نے نگل لیا؟"
+          },
+          "options": [
+            {
+              "en": "A shark",
+              "ur": "ایک شارک مچھلی"
+            },
+            {
+              "en": "A big crocodile",
+              "ur": "ایک بڑا مگرمچھ"
+            },
+            {
+              "en": "A huge whale",
+              "ur": "ایک بہت بڑی وہیل"
+            },
+            {
+              "en": "A giant fish",
+              "ur": "ایک دیو ہیکل مچھلی"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A huge whale",
+            "ur": "ایک بہت بڑی وہیل"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Younus (A.S.) do inside the whale?",
+            "ur": "حضرت یونس (علیہ السلام) نے مچھلی کے پیٹ میں کیا کیا؟"
+          },
+          "options": [
+            {
+              "en": "Slept for three days",
+              "ur": "تین دن تک سوئے رہے"
+            },
+            {
+              "en": "Prayed to Allah and asked for forgiveness",
+              "ur": "اللہ سے دعا کی اور معافی مانگی"
+            },
+            {
+              "en": "Tried to escape by swimming",
+              "ur": "تیر کر باہر نکلنے کی کوشش کی"
+            },
+            {
+              "en": "Called the people of Nineveh",
+              "ur": "نینوا کے لوگوں کو بلایا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Prayed to Allah and asked for forgiveness",
+            "ur": "اللہ سے دعا کی اور معافی مانگی"
+          }
+        },
+        {
+          "question": {
+            "en": "What words did Prophet Younus (A.S.) say inside the whale?",
+            "ur": "حضرت یونس (علیہ السلام) نے مچھلی کے پیٹ میں کون سی دعا پڑھی؟"
+          },
+          "options": [
+            {
+              "en": "\"Help me, O people of Nineveh!\"",
+              "ur": "\"مدد کرو، اے نینوا کے لوگو!\""
+            },
+            {
+              "en": "\"There is no god but You, Glory be to You. Indeed, I have been among the wrongdoers.\"",
+              "ur": "\"تُو ہی اللہ ہے، تُو پاک ہے، بے شک میں ظالموں میں سے ہوں۔\""
+            },
+            {
+              "en": "\"Please let me out, O whale!\"",
+              "ur": "\"مجھے باہر نکال دو، اے مچھلی!\""
+            },
+            {
+              "en": "\"I will never return to my people.\"",
+              "ur": "\"میں اپنی قوم کے پاس کبھی واپس نہیں جاؤں گا۔\""
+            }
+          ],
+          "correctAnswer": {
+            "en": "\"There is no god but You, Glory be to You. Indeed, I have been among the wrongdoers.\"",
+            "ur": "\"تُو ہی اللہ ہے، تُو پاک ہے، بے شک میں ظالموں میں سے ہوں۔\""
+          }
+        },
+        {
+          "question": {
+            "en": "What did Allah command the whale to do?",
+            "ur": "اللہ نے وہیل کو کیا حکم دیا؟"
+          },
+          "options": [
+            {
+              "en": "Keep Prophet Younus (A.S.) inside forever",
+              "ur": "حضرت یونس (علیہ السلام) کو ہمیشہ کے لیے اندر رکھے"
+            },
+            {
+              "en": "Release him onto a safe shore",
+              "ur": "انہیں ساحل پر نکال دے"
+            },
+            {
+              "en": "Swallow more people",
+              "ur": "اور لوگوں کو بھی نگل لے"
+            },
+            {
+              "en": "Take him back to Nineveh",
+              "ur": "انہیں واپس نینوا لے جائے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Release him onto a safe shore",
+            "ur": "انہیں ساحل پر نکال دے"
+          }
+        },
+        {
+          "question": {
+            "en": "What lesson does the story of Prophet Younus (A.S.) teach us?",
+            "ur": "حضرت یونس (علیہ السلام) کی کہانی ہمیں کیا سکھاتی ہے؟"
+          },
+          "options": [
+            {
+              "en": "Always be patient and trust in Allah",
+              "ur": "ہمیشہ صبر کرنا اور اللہ پر بھروسہ رکھنا چاہیے"
+            },
+            {
+              "en": "Run away from problems",
+              "ur": "مشکلات سے بھاگ جانا چاہیے"
+            },
+            {
+              "en": "Never listen to anyone",
+              "ur": "کسی کی بات نہ سنو"
+            },
+            {
+              "en": "Do not travel on ships",
+              "ur": "کشتی میں سفر نہ کرو"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Always be patient and trust in Allah",
+            "ur": "ہمیشہ صبر کرنا اور اللہ پر بھروسہ رکھنا چاہیے"
+          }
+        },
+        {
+          "question": {
+            "en": "What special ability did Prophet Sulaiman (A.S.) have?",
+            "ur": "حضرت سلیمان (علیہ السلام) کو کون سی خاص صلاحیت دی گئی تھی؟"
+          },
+          "options": [
+            {
+              "en": "He could fly",
+              "ur": "وہ اُڑ سکتے تھے"
+            },
+            {
+              "en": "He could understand the language of animals",
+              "ur": "وہ جانوروں کی زبان سمجھ سکتے تھے"
+            },
+            {
+              "en": "He could turn invisible",
+              "ur": "وہ غائب ہو سکتے تھے"
+            },
+            {
+              "en": "He could control the sea",
+              "ur": "وہ سمندر کو کنٹرول کر سکتے تھے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He could understand the language of animals",
+            "ur": "وہ جانوروں کی زبان سمجھ سکتے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "Who warned the other ants about Prophet Sulaiman (A.S.) and his army?",
+            "ur": "حضرت سلیمان (علیہ السلام) اور ان کے لشکر کے بارے میں دوسرے چیونٹیوں کو کس نے خبردار کیا؟"
+          },
+          "options": [
+            {
+              "en": "A bird",
+              "ur": "ایک پرندے نے"
+            },
+            {
+              "en": "A human",
+              "ur": "ایک انسان نے"
+            },
+            {
+              "en": "An ant",
+              "ur": "ایک چیونٹی نے"
+            },
+            {
+              "en": "A jinn",
+              "ur": "ایک جن نے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "An ant",
+            "ur": "ایک چیونٹی نے"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Sulaiman (A.S.) do when he heard the ant's warning?",
+            "ur": "جب حضرت سلیمان (علیہ السلام) نے چیونٹی کی بات سنی تو انہوں نے کیا کیا؟"
+          },
+          "options": [
+            {
+              "en": "Ignored it",
+              "ur": "نظر انداز کر دیا"
+            },
+            {
+              "en": "Got angry",
+              "ur": "غصہ ہو گئے"
+            },
+            {
+              "en": "Smiled and thanked Allah",
+              "ur": "مسکرا کر اللہ کا شکر ادا کیا"
+            },
+            {
+              "en": "Told his army to crush the ants",
+              "ur": "اپنی فوج کو چیونٹیوں کو کچلنے کا حکم دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Smiled and thanked Allah",
+            "ur": "مسکرا کر اللہ کا شکر ادا کیا"
+          }
+        },
+        {
+          "question": {
+            "en": "What creatures were included in Prophet Sulaiman's (A.S.) army?",
+            "ur": "حضرت سلیمان (علیہ السلام) کے لشکر میں کون شامل تھا؟"
+          },
+          "options": [
+            {
+              "en": "Only humans",
+              "ur": "صرف انسان"
+            },
+            {
+              "en": "Humans and animals",
+              "ur": "انسان اور جانور"
+            },
+            {
+              "en": "Humans, jinn, and birds",
+              "ur": "انسان، جن اور پرندے"
+            },
+            {
+              "en": "Only birds",
+              "ur": "صرف پرندے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Humans, jinn, and birds",
+            "ur": "انسان، جن اور پرندے"
+          }
+        },
+        {
+          "question": {
+            "en": "What did the ant tell the other ants to do?",
+            "ur": "چیونٹی نے باقی چیونٹیوں کو کیا کرنے کو کہا؟"
+          },
+          "options": [
+            {
+              "en": "Fly away",
+              "ur": "اُڑ جانے کو"
+            },
+            {
+              "en": "Enter their homes",
+              "ur": "اپنے گھروں میں داخل ہونے کو"
+            },
+            {
+              "en": "Attack the army",
+              "ur": "فوج پر حملہ کرنے کو"
+            },
+            {
+              "en": "Call for help",
+              "ur": "مدد کے لیے پکارنے کو"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Enter their homes",
+            "ur": "اپنے گھروں میں داخل ہونے کو"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Quiz 3",
+        "ur": "کوئز 3"
+      },
+      "syllabus": {
+        "en": ["The crow guides how to bury the dead.", "Story of Prophet Yusuf (AS)"],
+        "ur": ["کوے نے بتایا کہ مردے کو کیسے دفن کیا جائے۔", "حضرت یوسف (علیہ السلام) کی کہانی"]
+      },
+      "questions": [
+        {
+          "question": {
+            "en": "Who were Habil and Qabil?",
+            "ur": "ہابیل اور قابیل کون تھے؟"
+          },
+          "options": [
+            {
+              "en": "Angels",
+              "ur": "فرشتے"
+            },
+            {
+              "en": "Sons of Prophet Adam (PBUH)",
+              "ur": "حضرت آدم (علیہ السلام) کے بیٹے"
+            },
+            {
+              "en": "Prophets",
+              "ur": "نبی"
+            },
+            {
+              "en": "Two farmers",
+              "ur": "دو کسان"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Sons of Prophet Adam (PBUH)",
+            "ur": "حضرت آدم (علیہ السلام) کے بیٹے"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Habil offer as a sacrifice to Allah?",
+            "ur": "ہابیل نے اللہ کے لیے کیا قربانی دی؟"
+          },
+          "options": [
+            {
+              "en": "Fruits",
+              "ur": "پھل"
+            },
+            {
+              "en": "Gold",
+              "ur": "سونا"
+            },
+            {
+              "en": "The best of his sheep",
+              "ur": "اپنی بہترین بکری"
+            },
+            {
+              "en": "Water",
+              "ur": "پانی"
+            }
+          ],
+          "correctAnswer": {
+            "en": "The best of his sheep",
+            "ur": "اپنی بہترین بکری"
+          }
+        },
+        {
+          "question": {
+            "en": "Why was Qabil's sacrifice not accepted?",
+            "ur": "قابیل کی قربانی کیوں قبول نہیں ہوئی؟"
+          },
+          "options": [
+            {
+              "en": "He didn't pray before offering it",
+              "ur": "اس نے قربانی سے پہلے دعا نہیں کی"
+            },
+            {
+              "en": "He offered the best of his crops",
+              "ur": "اس نے اپنی بہترین فصل دی"
+            },
+            {
+              "en": "He was not sincere",
+              "ur": "اس میں اخلاص نہیں تھا"
+            },
+            {
+              "en": "His brother stopped him",
+              "ur": "اس کے بھائی نے اسے روک دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He was not sincere",
+            "ur": "اس میں اخلاص نہیں تھا"
+          }
+        },
+        {
+          "question": {
+            "en": "What emotion led Qabil to kill his brother?",
+            "ur": "قابیل نے اپنے بھائی کو کس وجہ سے قتل کیا؟"
+          },
+          "options": [
+            {
+              "en": "Happiness",
+              "ur": "خوشی"
+            },
+            {
+              "en": "Jealousy",
+              "ur": "حسد"
+            },
+            {
+              "en": "Fear",
+              "ur": "خوف"
+            },
+            {
+              "en": "Gratitude",
+              "ur": "شکرگزاری"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Jealousy",
+            "ur": "حسد"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Qabil learn to bury his brother's body?",
+            "ur": "قابیل کو اپنے بھائی کی لاش دفن کرنے کا طریقہ کس نے سکھایا؟"
+          },
+          "options": [
+            {
+              "en": "A prophet told him",
+              "ur": "ایک نبی نے"
+            },
+            {
+              "en": "He saw a lion burying another animal",
+              "ur": "اس نے ایک شیر کو ایسا کرتے دیکھا"
+            },
+            {
+              "en": "Allah sent a crow to teach him",
+              "ur": "اللہ نے ایک کوا بھیجا"
+            },
+            {
+              "en": "He read it in a book",
+              "ur": "اس نے کتاب میں پڑھا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Allah sent a crow to teach him",
+            "ur": "اللہ نے ایک کوا بھیجا"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Yusuf (AS) see in his dream?",
+            "ur": "حضرت یوسف (علیہ السلام) نے خواب میں کیا دیکھا؟"
+          },
+          "options": [
+            {
+              "en": "Eleven stars, the sun, and the moon bowing to him",
+              "ur": "گیارہ ستارے، سورج اور چاند انہیں سجدہ کر رہے تھے"
+            },
+            {
+              "en": "A wolf chasing him",
+              "ur": "ایک بھیڑیا ان کا پیچھا کر رہا تھا"
+            },
+            {
+              "en": "A golden palace",
+              "ur": "ایک سنہری محل"
+            },
+            {
+              "en": "A river flowing with milk",
+              "ur": "دودھ کی نہر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Eleven stars, the sun, and the moon bowing to him",
+            "ur": "گیارہ ستارے، سورج اور چاند انہیں سجدہ کر رہے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "Why did Prophet Yaqub (AS) tell Yusuf (AS) not to share his dream with his brothers?",
+            "ur": "حضرت یعقوب (علیہ السلام) نے حضرت یوسف (علیہ السلام) کو اپنا خواب بھائیوں کو بتانے سے کیوں روکا؟"
+          },
+          "options": [
+            {
+              "en": "Because they would be happy for him",
+              "ur": "کیونکہ وہ خوش ہو جاتے"
+            },
+            {
+              "en": "Because they might get jealous",
+              "ur": "کیونکہ وہ حسد کر سکتے تھے"
+            },
+            {
+              "en": "Because they would not understand",
+              "ur": "کیونکہ وہ خواب کو سمجھ نہ پاتے"
+            },
+            {
+              "en": "Because dreams are not real",
+              "ur": "کیونکہ خواب حقیقت نہیں ہوتے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Because they might get jealous",
+            "ur": "کیونکہ وہ حسد کر سکتے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Yusuf's (AS) brothers do to him?",
+            "ur": "حضرت یوسف (علیہ السلام) کے بھائیوں نے ان کے ساتھ کیا کیا؟"
+          },
+          "options": [
+            {
+              "en": "Gave him a gift",
+              "ur": "انہیں تحفہ دیا"
+            },
+            {
+              "en": "Threw him into a well",
+              "ur": "انہیں کنویں میں پھینک دیا"
+            },
+            {
+              "en": "Took him to a palace",
+              "ur": "انہیں محل لے گئے"
+            },
+            {
+              "en": "Sent him to another country",
+              "ur": "انہیں دوسرے ملک بھیج دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Threw him into a well",
+            "ur": "انہیں کنویں میں پھینک دیا"
+          }
+        },
+        {
+          "question": {
+            "en": "Who found Prophet Yusuf (AS) in the well?",
+            "ur": "کنویں میں حضرت یوسف (علیہ السلام) کو کس نے پایا؟"
+          },
+          "options": [
+            {
+              "en": "His father",
+              "ur": "ان کے والد نے"
+            },
+            {
+              "en": "A caravan passing by",
+              "ur": "وہاں سے گزرنے والے قافلے نے"
+            },
+            {
+              "en": "His brothers",
+              "ur": "ان کے بھائیوں نے"
+            },
+            {
+              "en": "The king",
+              "ur": "بادشاہ نے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A caravan passing by",
+            "ur": "وہاں سے گزرنے والے قافلے نے"
+          }
+        },
+        {
+          "question": {
+            "en": "Where was Prophet Yusuf (AS) taken after being found in the well?",
+            "ur": "حضرت یوسف (علیہ السلام) کو کنویں سے نکالنے کے بعد کہاں لے جایا گیا؟"
+          },
+          "options": [
+            {
+              "en": "To Madinah",
+              "ur": "مدینہ"
+            },
+            {
+              "en": "To Egypt",
+              "ur": "مصر"
+            },
+            {
+              "en": "To Makkah",
+              "ur": "مکہ"
+            },
+            {
+              "en": "To Syria",
+              "ur": "شام"
+            }
+          ],
+          "correctAnswer": {
+            "en": "To Egypt",
+            "ur": "مصر"
+          }
+        },
+        {
+          "question": {
+            "en": "Why was Prophet Yusuf (AS) sent to prison?",
+            "ur": "حضرت یوسف (علیہ السلام) کو قید میں کیوں ڈالا گیا؟"
+          },
+          "options": [
+            {
+              "en": "He broke a law",
+              "ur": "انہوں نے قانون توڑا"
+            },
+            {
+              "en": "He was falsely accused",
+              "ur": "ان پر جھوٹا الزام لگایا گیا"
+            },
+            {
+              "en": "He tried to escape",
+              "ur": "وہ بھاگنے کی کوشش کر رہے تھے"
+            },
+            {
+              "en": "He stole something",
+              "ur": "انہوں نے کچھ چرایا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He was falsely accused",
+            "ur": "ان پر جھوٹا الزام لگایا گیا"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Yusuf (AS) do in prison?",
+            "ur": "حضرت یوسف (علیہ السلام) نے قید میں کیا کیا؟"
+          },
+          "options": [
+            {
+              "en": "He became sad",
+              "ur": "وہ اداس ہو گئے"
+            },
+            {
+              "en": "He interpreted dreams",
+              "ur": "قیدیوں کے خوابوں کی تعبیریں بتائیں"
+            },
+            {
+              "en": "He fought with other prisoners",
+              "ur": "دوسرے قیدیوں سے لڑے"
+            },
+            {
+              "en": "He tried to escape",
+              "ur": "بھاگنے کی کوشش کی"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He interpreted dreams",
+            "ur": "قیدیوں کے خوابوں کی تعبیریں بتائیں"
+          }
+        },
+        {
+          "question": {
+            "en": "What was the meaning of the king's dream?",
+            "ur": "بادشاہ کے خواب کی تعبیر کیا تھی؟"
+          },
+          "options": [
+            {
+              "en": "Seven years of war",
+              "ur": "سات سال کی جنگ"
+            },
+            {
+              "en": "Seven years of famine after seven years of good harvest",
+              "ur": "سات سال خوشحالی اور اس کے بعد سات سال قحط"
+            },
+            {
+              "en": "A new kingdom will rise",
+              "ur": "ایک نئی بادشاہت قائم ہوگی"
+            },
+            {
+              "en": "A flood will come",
+              "ur": "ایک بڑا سیلاب آئے گا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Seven years of famine after seven years of good harvest",
+            "ur": "سات سال خوشحالی اور اس کے بعد سات سال قحط"
+          }
+        },
+        {
+          "question": {
+            "en": "What position did Prophet Yusuf (AS) get in Egypt?",
+            "ur": "حضرت یوسف (علیہ السلام) کو مصر میں کیا عہدہ ملا؟"
+          },
+          "options": [
+            {
+              "en": "A soldier",
+              "ur": "سپاہی"
+            },
+            {
+              "en": "A king",
+              "ur": "بادشاہ"
+            },
+            {
+              "en": "A minister",
+              "ur": "وزیر"
+            },
+            {
+              "en": "A trader",
+              "ur": "تاجر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A minister",
+            "ur": "وزیر"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Prophet Yusuf (AS) forgive his brothers?",
+            "ur": "حضرت یوسف (علیہ السلام) نے اپنے بھائیوں کو کیسے معاف کیا؟"
+          },
+          "options": [
+            {
+              "en": "He punished them",
+              "ur": "انہیں سزا دی"
+            },
+            {
+              "en": "He sent them away",
+              "ur": "انہیں بھگا دیا"
+            },
+            {
+              "en": "He forgave them and said, 'There is no blame on you today'",
+              "ur": "فرمایا: 'آج تم پر کوئی ملامت نہیں'"
+            },
+            {
+              "en": "He asked them to pay money",
+              "ur": "ان سے پیسے لینے کو کہا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He forgave them and said, 'There is no blame on you today'",
+            "ur": "فرمایا: 'آج تم پر کوئی ملامت نہیں'"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Quiz 4",
+        "ur": "کوئز 4"
+      },
+      "syllabus": {
+        "en": ["The Sleepers of the Cave", "Little Birds Save Kaba"],
+        "ur": ["اصحاب کہف", "چھوٹے پرندوں نے کعبہ بچایا"]
+      },
+      "questions": [
+        {
+          "question": {
+            "en": "Who was the leader of the army that wanted to destroy the Kaaba?",
+            "ur": "وہ کون تھا جو خانہ کعبہ کو تباہ کرنا چاہتا تھا؟"
+          },
+          "options": [
+            {
+              "en": "Pharaoh",
+              "ur": "فرعون"
+            },
+            {
+              "en": "Abraha",
+              "ur": "ابرہہ"
+            },
+            {
+              "en": "Namrud",
+              "ur": "نمرود"
+            },
+            {
+              "en": "Qarun",
+              "ur": "قارون"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Abraha",
+            "ur": "ابرہہ"
+          }
+        },
+        {
+          "question": {
+            "en": "What was Abraha's goal?",
+            "ur": "ابرہہ کا مقصد کیا تھا؟"
+          },
+          "options": [
+            {
+              "en": "To build a mosque in Makkah",
+              "ur": "مکہ میں ایک مسجد بنانا"
+            },
+            {
+              "en": "To make people visit his church",
+              "ur": "لوگوں کو اپنے چرچ کی طرف راغب کرنا"
+            },
+            {
+              "en": "To spread Islam",
+              "ur": "اسلام کو پھیلانا"
+            },
+            {
+              "en": "To build the Kaaba again",
+              "ur": "خانہ کعبہ کو دوبارہ تعمیر کرنا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "To make people visit his church",
+            "ur": "لوگوں کو اپنے چرچ کی طرف راغب کرنا"
+          }
+        },
+        {
+          "question": {
+            "en": "What animals were part of Abraha's army?",
+            "ur": "ابرہہ کی فوج میں کون سے جانور شامل تھے؟"
+          },
+          "options": [
+            {
+              "en": "Lions",
+              "ur": "شیر"
+            },
+            {
+              "en": "Horses",
+              "ur": "گھوڑے"
+            },
+            {
+              "en": "Elephants",
+              "ur": "ہاتھی"
+            },
+            {
+              "en": "Camels",
+              "ur": "اونٹ"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Elephants",
+            "ur": "ہاتھی"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Allah protect the Kaaba?",
+            "ur": "اللہ نے خانہ کعبہ کی حفاظت کیسے کی؟"
+          },
+          "options": [
+            {
+              "en": "Sent a flood",
+              "ur": "سیلاب بھیج کر"
+            },
+            {
+              "en": "Sent angels",
+              "ur": "فرشتے بھیج کر"
+            },
+            {
+              "en": "Sent a strong wind",
+              "ur": "تیز آندھی بھیج کر"
+            },
+            {
+              "en": "Sent small birds with stones",
+              "ur": "چھوٹے پرندوں کو پتھر دے کر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Sent small birds with stones",
+            "ur": "چھوٹے پرندوں کو پتھر دے کر"
+          }
+        },
+        {
+          "question": {
+            "en": "What was the name of the birds that attacked Abraha's army?",
+            "ur": "ان پرندوں کا نام کیا تھا؟"
+          },
+          "options": [
+            {
+              "en": "Ababeel",
+              "ur": "ابابیل"
+            },
+            {
+              "en": "Hoopoe",
+              "ur": "ہدہد"
+            },
+            {
+              "en": "Pigeons",
+              "ur": "کبوتر"
+            },
+            {
+              "en": "Eagles",
+              "ur": "عقاب"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Ababeel",
+            "ur": "ابابیل"
+          }
+        },
+        {
+          "question": {
+            "en": "Where did the birds drop the stones?",
+            "ur": "پرندوں نے پتھر کہاں گرائے؟"
+          },
+          "options": [
+            {
+              "en": "On the people of Makkah",
+              "ur": "مکہ کے لوگوں پر"
+            },
+            {
+              "en": "On Abraha's army",
+              "ur": "ابرہہ کی فوج پر"
+            },
+            {
+              "en": "Into the sea",
+              "ur": "سمندر میں"
+            },
+            {
+              "en": "On the Kaaba",
+              "ur": "خانہ کعبہ پر"
+            }
+          ],
+          "correctAnswer": {
+            "en": "On Abraha's army",
+            "ur": "ابرہہ کی فوج پر"
+          }
+        },
+        {
+          "question": {
+            "en": "In which surah of the Quran story of Ababeel mentioned?",
+            "ur": "ابابیل کا قصہ قرآن مجید کی کس سورت میں آیا ہے؟"
+          },
+          "options": [
+            {
+              "en": "Surah Al-Fil",
+              "ur": "سورۃ الفیل"
+            },
+            {
+              "en": "Surah Al-Baqarah",
+              "ur": "سورۃ البقرہ"
+            },
+            {
+              "en": "Surah Al-Fatiha",
+              "ur": "سورۃ الفاتحہ"
+            },
+            {
+              "en": "Surah Al-Kahf",
+              "ur": "سورۃ الکہف"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Surah Al-Fil",
+            "ur": "سورۃ الفیل"
+          }
+        },
+        {
+          "question": {
+            "en": "What was the main belief of the young men in the story?",
+            "ur": "ان نوجوانوں کا سب سے اہم عقیدہ کیا تھا؟"
+          },
+          "options": [
+            {
+              "en": "They worshiped idols",
+              "ur": "وہ بتوں کی پوجا کرتے تھے"
+            },
+            {
+              "en": "They believed in one true God",
+              "ur": "وہ ایک سچے خدا پر ایمان رکھتے تھے"
+            },
+            {
+              "en": "They followed the king's orders",
+              "ur": "وہ بادشاہ کے حکم پر چلتے تھے"
+            },
+            {
+              "en": "They had no religion",
+              "ur": "ان کا کوئی مذہب نہیں تھا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "They believed in one true God",
+            "ur": "وہ ایک سچے خدا پر ایمان رکھتے تھے"
+          }
+        },
+        {
+          "question": {
+            "en": "Why did the young men leave the city?",
+            "ur": "نوجوانوں نے شہر کیوں چھوڑا؟"
+          },
+          "options": [
+            {
+              "en": "They wanted to explore new places",
+              "ur": "وہ نئی جگہیں دریافت کرنا چاہتے تھے"
+            },
+            {
+              "en": "The king ordered their arrest",
+              "ur": "بادشاہ نے ان کی گرفتاری کا حکم دیا تھا"
+            },
+            {
+              "en": "They were looking for treasure",
+              "ur": "وہ خزانہ تلاش کر رہے تھے"
+            },
+            {
+              "en": "They wanted to fight the king",
+              "ur": "وہ بادشاہ سے جنگ کرنا چاہتے تھے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "The king ordered their arrest",
+            "ur": "بادشاہ نے ان کی گرفتاری کا حکم دیا تھا"
+          }
+        },
+        {
+          "question": {
+            "en": "Where did the young men take shelter?",
+            "ur": "نوجوانوں نے کہاں پناہ لی؟"
+          },
+          "options": [
+            {
+              "en": "In a castle",
+              "ur": "ایک قلعے میں"
+            },
+            {
+              "en": "In a forest",
+              "ur": "ایک جنگل میں"
+            },
+            {
+              "en": "In a cave",
+              "ur": "ایک غار میں"
+            },
+            {
+              "en": "In a temple",
+              "ur": "ایک مندر میں"
+            }
+          ],
+          "correctAnswer": {
+            "en": "In a cave",
+            "ur": "ایک غار میں"
+          }
+        },
+        {
+          "question": {
+            "en": "How long did the young men sleep in the cave?",
+            "ur": "نوجوان کتنے سال تک غار میں سوتے رہے؟"
+          },
+          "options": [
+            {
+              "en": "3 days",
+              "ur": "3 دن"
+            },
+            {
+              "en": "10 years",
+              "ur": "10 سال"
+            },
+            {
+              "en": "100 years",
+              "ur": "100 سال"
+            },
+            {
+              "en": "300 years",
+              "ur": "300 سال"
+            }
+          ],
+          "correctAnswer": {
+            "en": "300 years",
+            "ur": "300 سال"
+          }
+        },
+        {
+          "question": {
+            "en": "How did the people in the market react when they saw the old coins?",
+            "ur": "جب دکانداروں نے پرانے سکے دیکھے تو کیا کیا؟"
+          },
+          "options": [
+            {
+              "en": "They accepted them happily",
+              "ur": "انہوں نے خوشی سے قبول کر لیا"
+            },
+            {
+              "en": "They got scared and ran away",
+              "ur": "وہ ڈر کر بھاگ گئے"
+            },
+            {
+              "en": "They were surprised and took the young man to the ruler",
+              "ur": "وہ حیران ہو گئے اور نوجوان کو بادشاہ کے پاس لے گئے"
+            },
+            {
+              "en": "They ignored him",
+              "ur": "انہوں نے اسے نظر انداز کر دیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "They were surprised and took the young man to the ruler",
+            "ur": "وہ حیران ہو گئے اور نوجوان کو بادشاہ کے پاس لے گئے"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Quiz 5",
+        "ur": "کوئز 5"
+      },
+      "syllabus": {
+        "en": ["Prophet Adam (AS)", "Sacrifice of Prophet Ismail (AS)"],
+        "ur": ["حضرت آدم علیہ السلام", "حضرت اسماعیل علیہ السلام کی قربانی"]
+      },
+      "questions": [
+        {
+          "question": {
+            "en": "Who was the first human and the first prophet?",
+            "ur": "سب سے پہلے انسان اور نبی کون تھے؟"
+          },
+          "options": [
+            {
+              "en": "Prophet Musa (AS)",
+              "ur": "حضرت موسیٰ علیہ السلام"
+            },
+            {
+              "en": "Prophet Adam (AS)",
+              "ur": "حضرت آدم علیہ السلام"
+            },
+            {
+              "en": "Prophet Ibrahim (AS)",
+              "ur": "حضرت ابراہیم علیہ السلام"
+            },
+            {
+              "en": "Prophet Nuh (AS)",
+              "ur": "حضرت نوح علیہ السلام"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Prophet Adam (AS)",
+            "ur": "حضرت آدم علیہ السلام"
+          }
+        },
+        {
+          "question": {
+            "en": "What was Prophet Adam (AS) made from?",
+            "ur": "حضرت آدم علیہ السلام کو کس چیز سے بنایا گیا؟"
+          },
+          "options": [
+            {
+              "en": "Fire",
+              "ur": "آگ"
+            },
+            {
+              "en": "Water",
+              "ur": "پانی"
+            },
+            {
+              "en": "Clay",
+              "ur": "مٹی"
+            },
+            {
+              "en": "Light",
+              "ur": "روشنی"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Clay",
+            "ur": "مٹی"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Allah command the angels to do for Adam (AS)?",
+            "ur": "اللہ نے فرشتوں کو حضرت آدم علیہ السلام کے لیے کیا کرنے کا حکم دیا؟"
+          },
+          "options": [
+            {
+              "en": "Teach him farming",
+              "ur": "انہیں کھیتی باڑی سکھانے کا"
+            },
+            {
+              "en": "Bow before him",
+              "ur": "ان کے سامنے سجدہ کرنے کا"
+            },
+            {
+              "en": "Give him food",
+              "ur": "ان کو کھانے دینے کا"
+            },
+            {
+              "en": "Build a house for him",
+              "ur": "ان کے لیے ایک گھر بنانے کا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Bow before him",
+            "ur": "ان کے سامنے سجدہ کرنے کا"
+          }
+        },
+        {
+          "question": {
+            "en": "Who refused to bow to Adam (AS) out of arrogance?",
+            "ur": "کون تھا جس نے تکبر کی وجہ سے سجدہ کرنے سے انکار کر دیا؟"
+          },
+          "options": [
+            {
+              "en": "Jibreel (AS)",
+              "ur": "حضرت جبرائیل علیہ السلام"
+            },
+            {
+              "en": "Mikaeel (AS)",
+              "ur": "حضرت میکائیل علیہ السلام"
+            },
+            {
+              "en": "Iblis (Shaitan)",
+              "ur": "ابلیس (شیطان)"
+            },
+            {
+              "en": "Israfeel (AS)",
+              "ur": "حضرت اسرافیل علیہ السلام"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Iblis (Shaitan)",
+            "ur": "ابلیس (شیطان)"
+          }
+        },
+        {
+          "question": {
+            "en": "Why did Iblis refuse to bow?",
+            "ur": "ابلیس نے سجدہ کرنے سے کیوں انکار کیا؟"
+          },
+          "options": [
+            {
+              "en": "He was tired",
+              "ur": "وہ تھکا ہوا تھا"
+            },
+            {
+              "en": "He was made of fire and thought he was better",
+              "ur": "وہ آگ سے بنا تھا اور خود کو بہتر سمجھتا تھا"
+            },
+            {
+              "en": "He did not understand the command",
+              "ur": "وہ حکم کو نہیں سمجھا"
+            },
+            {
+              "en": "He was afraid of Adam (AS)",
+              "ur": "وہ حضرت آدم علیہ السلام سے ڈرتا تھا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He was made of fire and thought he was better",
+            "ur": "وہ آگ سے بنا تھا اور خود کو بہتر سمجھتا تھا"
+          }
+        },
+        {
+          "question": {
+            "en": "Where did Adam (AS) and Hawwa (AS) live in the beginning?",
+            "ur": "حضرت آدم علیہ السلام اور حضرت حوا کہاں رہتے تھے؟"
+          },
+          "options": [
+            {
+              "en": "On Earth",
+              "ur": "زمین پر"
+            },
+            {
+              "en": "In the desert",
+              "ur": "صحرا میں"
+            },
+            {
+              "en": "In Paradise",
+              "ur": "جنت میں"
+            },
+            {
+              "en": "In a cave",
+              "ur": "ایک غار میں"
+            }
+          ],
+          "correctAnswer": {
+            "en": "In Paradise",
+            "ur": "جنت میں"
+          }
+        },
+        {
+          "question": {
+            "en": "What were Adam (AS) and Hawwa (AS) forbidden to do in Paradise?",
+            "ur": "جنت میں حضرت آدم علیہ السلام اور حضرت حوا کو کس چیز سے منع کیا گیا تھا؟"
+          },
+          "options": [
+            {
+              "en": "To drink water",
+              "ur": "پانی پینے سے"
+            },
+            {
+              "en": "To climb mountains",
+              "ur": "پہاڑ پر چڑھنے سے"
+            },
+            {
+              "en": "To eat from a specific tree",
+              "ur": "ایک مخصوص درخت کا پھل کھانے سے"
+            },
+            {
+              "en": "To speak to angels",
+              "ur": "فرشتوں سے بات کرنے سے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "To eat from a specific tree",
+            "ur": "ایک مخصوص درخت کا پھل کھانے سے"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Adam (AS) and Hawwa (AS) eat from the forbidden tree?",
+            "ur": "حضرت آدم علیہ السلام اور حضرت حوا علیہا السلام نے وہ ممنوعہ پھل کیسے کھایا؟"
+          },
+          "options": [
+            {
+              "en": "They forgot the command",
+              "ur": "وہ حکم بھول گئے تھے"
+            },
+            {
+              "en": "They were tricked by Iblis",
+              "ur": "ابلیس نے انہیں دھوکہ دیا"
+            },
+            {
+              "en": "They were forced to eat",
+              "ur": "انہیں زبردستی کھلایا گیا"
+            },
+            {
+              "en": "They were very hungry",
+              "ur": "وہ بہت بھوکے تھے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "They were tricked by Iblis",
+            "ur": "ابلیس نے انہیں دھوکہ دیا"
+          }
+        },
+        {
+          "question": {
+            "en": "What happened after they ate from the forbidden tree?",
+            "ur": "ممنوعہ درخت کا پھل کھانے کے بعد کیا ہوا؟"
+          },
+          "options": [
+            {
+              "en": "Allah sent them to Earth",
+              "ur": "اللہ نے انہیں زمین پر بھیج دیا"
+            },
+            {
+              "en": "They became sick",
+              "ur": "وہ بیمار ہو گئے"
+            },
+            {
+              "en": "The tree disappeared",
+              "ur": "درخت غائب ہو گیا"
+            },
+            {
+              "en": "Angels protected them",
+              "ur": "فرشتوں نے انہیں بچا لیا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Allah sent them to Earth",
+            "ur": "اللہ نے انہیں زمین پر بھیج دیا"
+          }
+        },
+        {
+          "question": {
+            "en": "What does this story teach us?",
+            "ur": "یہ کہانی ہمیں کیا سکھاتی ہے؟"
+          },
+          "options": [
+            {
+              "en": "To always listen to Allah",
+              "ur": "ہمیشہ اللہ کی بات ماننی چاہیے"
+            },
+            {
+              "en": "To be arrogant",
+              "ur": "تکبر کرنا چاہیے"
+            },
+            {
+              "en": "To never ask for forgiveness",
+              "ur": "کبھی معافی نہیں مانگنی چاہیے"
+            },
+            {
+              "en": "To follow Iblis",
+              "ur": "ابلیس کی پیروی کرنی چاہیے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "To always listen to Allah",
+            "ur": "ہمیشہ اللہ کی بات ماننی چاہیے"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Prophet Ibrahim (AS) see in his dream?",
+            "ur": "حضرت ابراہیم علیہ السلام نے خواب میں کیا دیکھا؟"
+          },
+          "options": [
+            {
+              "en": "He was building the Kaaba",
+              "ur": "وہ خانہ کعبہ بنا رہے تھے"
+            },
+            {
+              "en": "Allah commanded him to sacrifice his son",
+              "ur": "اللہ تعالیٰ نے ان سے ان کے بیٹے کی قربانی مانگی"
+            },
+            {
+              "en": "He was traveling to Madinah",
+              "ur": "وہ مدینہ جا رہے تھے"
+            },
+            {
+              "en": "He was meeting Prophet Musa (AS)",
+              "ur": "وہ حضرت موسیٰ علیہ السلام سے ملاقات کر رہے تھے"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Allah commanded him to sacrifice his son",
+            "ur": "اللہ تعالیٰ نے ان سے ان کے بیٹے کی قربانی مانگی"
+          }
+        },
+        {
+          "question": {
+            "en": "How did Prophet Ismail (AS) react when he heard about the dream?",
+            "ur": "حضرت اسماعیل علیہ السلام نے خواب سن کر کیا کہا؟"
+          },
+          "options": [
+            {
+              "en": "He refused to obey",
+              "ur": "انہوں نے انکار کر دیا"
+            },
+            {
+              "en": "He ran away",
+              "ur": "وہ بھاگ گئے"
+            },
+            {
+              "en": "He accepted it with complete submission",
+              "ur": "انہوں نے خوشی سے فرمانبرداری کا اظہار کیا"
+            },
+            {
+              "en": "He asked for more time",
+              "ur": "انہوں نے مزید وقت مانگا"
+            }
+          ],
+          "correctAnswer": {
+            "en": "He accepted it with complete submission",
+            "ur": "انہوں نے خوشی سے فرمانبرداری کا اظہار کیا"
+          }
+        },
+        {
+          "question": {
+            "en": "Where did Prophet Ibrahim (AS) take Prophet Ismail (AS) for the sacrifice?",
+            "ur": "حضرت ابراہیم علیہ السلام حضرت اسماعیل علیہ السلام کو قربانی کے لیے کہاں لے گئے؟"
+          },
+          "options": [
+            {
+              "en": "Makkah",
+              "ur": "مکہ"
+            },
+            {
+              "en": "Mina",
+              "ur": "منیٰ"
+            },
+            {
+              "en": "Madinah",
+              "ur": "مدینہ"
+            },
+            {
+              "en": "Jerusalem",
+              "ur": "بیت المقدس"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Mina",
+            "ur": "منیٰ"
+          }
+        },
+        {
+          "question": {
+            "en": "What did Allah replace Prophet Ismail (AS) with?",
+            "ur": "اللہ تعالیٰ نے حضرت اسماعیل علیہ السلام کی جگہ کیا بھیجا؟"
+          },
+          "options": [
+            {
+              "en": "A goat",
+              "ur": "ایک بکری"
+            },
+            {
+              "en": "A ram",
+              "ur": "ایک دنبہ"
+            },
+            {
+              "en": "A camel",
+              "ur": "ایک اونٹ"
+            },
+            {
+              "en": "A bird",
+              "ur": "ایک پرندہ"
+            }
+          ],
+          "correctAnswer": {
+            "en": "A ram",
+            "ur": "ایک دنبہ"
+          }
+        },
+        {
+          "question": {
+            "en": "What lesson do we learn from this story?",
+            "ur": "اس کہانی سے ہمیں کیا سبق ملتا ہے؟"
+          },
+          "options": [
+            {
+              "en": "We should always question Allah's commands",
+              "ur": "ہمیں ہمیشہ اللہ کے احکام پر سوال کرنا چاہیے"
+            },
+            {
+              "en": "Faith and obedience to Allah are important",
+              "ur": "اللہ کی اطاعت اور ایمان سب سے اہم ہیں"
+            },
+            {
+              "en": "Sacrificing animals is not allowed",
+              "ur": "جانوروں کی قربانی جائز نہیں"
+            },
+            {
+              "en": "Only rich people can do sacrifice",
+              "ur": "صرف امیر لوگ قربانی کر سکتے ہیں"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Faith and obedience to Allah are important",
+            "ur": "اللہ کی اطاعت اور ایمان سب سے اہم ہیں"
+          }
+        },
+        {
+          "question": {
+            "en": "What Islamic event is based on this story?",
+            "ur": "اس واقعے کی یاد میں کون سا اسلامی تہوار منایا جاتا ہے؟"
+          },
+          "options": [
+            {
+              "en": "Eid-ul-Fitr",
+              "ur": "عید الفطر"
+            },
+            {
+              "en": "Eid-ul-Adha",
+              "ur": "عید الاضحی"
+            },
+            {
+              "en": "Hajj",
+              "ur": "حج"
+            },
+            {
+              "en": "Ramadan",
+              "ur": "رمضان"
+            }
+          ],
+          "correctAnswer": {
+            "en": "Eid-ul-Adha",
+            "ur": "عید الاضحی"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+]

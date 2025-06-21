@@ -1,0 +1,17 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/(user)/(zasamulhusna)/index", "backend/schema/sechdule.js", "backend/schema/userschema.ts", "backend/models/UserModel.js", "backend/routes/UserRoute.js"  ]
+}

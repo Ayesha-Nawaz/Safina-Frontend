@@ -1,0 +1,2138 @@
+[
+
+    {
+      "id": 1,
+      "name": {
+        "en": "Daily Duas",
+        "ur": "روزانہ دعائیں"
+      },
+      "quizzes": [
+        {
+          "title": {
+            "en": "Quiz 1",
+            "ur": "کوئز 1"
+          },
+          "syllabus": {
+            "en": ["Eating Duas", "Sleeping Duas", "Wudu Duas"],
+            "ur": ["کھانے کی دعائیں", "سونے کی دعائیں", "وضو کی دعائیں"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What dua do we say before eating?",
+                "ur": "کھانے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "SubhanAllah",
+                  "ur": "سبحان اللہ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismillah",
+                "ur": "بِسْمِ اللہِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua before eating?",
+                "ur": "کھانے سے پہلے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah and blessings be upon Him.",
+                  "ur": "اللہ کے نام سے اور اس پر برکتیں نازل ہوں۔"
+                },
+                {
+                  "en": "Praise be to Allah who has fed us and given us drink.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں کھلایا اور پلایا۔"
+                },
+                {
+                  "en": "All praise is for Allah, Lord of the worlds.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جو تمام جہانوں کا رب ہے۔"
+                },
+                {
+                  "en": "Allah is the greatest.",
+                  "ur": "اللہ سب سے بڑا ہے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In the name of Allah and blessings be upon Him.",
+                "ur": "اللہ کے نام سے اور اس پر برکتیں نازل ہوں۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say after eating?",
+                "ur": "کھانے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdulillahil-lathee ahyana",
+                  "ur": "اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee at'amana wa saqana",
+                  "ur": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Alhamdu lillahil-lathee at'amana wa saqana",
+                "ur": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua after eating?",
+                "ur": "کھانے کے بعد کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "I ask You (Allah) for forgiveness.",
+                  "ur": "میں آپ (اللہ) سے معافی مانگتا ہوں۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "All praise is for Allah who gave us life after having taken it from us.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی۔"
+                },
+                {
+                  "en": "Praise be to Allah who has fed us and given us drink, and made us Muslims.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں کھلایا، پلایا اور ہمیں مسلمان بنایا۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Praise be to Allah who has fed us and given us drink, and made us Muslims.",
+                "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں کھلایا، پلایا اور ہمیں مسلمان بنایا۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say before going to sleep?",
+                "ur": "سونے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Allahummaj-AAalnee minat-tawwabeena",
+                  "ur": "اَللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ"
+                },
+                {
+                  "en": "Allahumma bismikal-lahumma amootu wa-ahya",
+                  "ur": "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee ahyana baAAda ma amatana",
+                  "ur": "اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahumma bismikal-lahumma amootu wa-ahya",
+                "ur": "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua before sleeping?",
+                "ur": "سونے سے پہلے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In Your name O Allah, I live and die.",
+                  "ur": "اے اللہ تیرے نام سے میں جیتا ہوں اور مرتا ہوں۔"
+                },
+                {
+                  "en": "All praise is for Allah who gave us life after having taken it from us.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "O Allah, make me of those who return to You often in repentance.",
+                  "ur": "اے اللہ، مجھے ان لوگوں میں شامل کر جو تیری طرف توبہ کرتے ہیں۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In Your name O Allah, I live and die.",
+                "ur": "اے اللہ تیرے نام سے میں جیتا ہوں اور مرتا ہوں۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say after waking up?",
+                "ur": "بیدار ہونے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdu lillahil-lathee ahyana baAAda ma amatana wa-ilayhin-nushoor",
+                  "ur": "اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Allahumma bismikal-lahumma amootu wa-ahya",
+                  "ur": "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee kasanee hatha",
+                  "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Alhamdu lillahil-lathee ahyana baAAda ma amatana wa-ilayhin-nushoor",
+                "ur": "اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua after waking up?",
+                "ur": "بیدار ہونے کے بعد کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In Your name O Allah, I live and die.",
+                  "ur": "اے اللہ تیرے نام سے میں جیتا ہوں اور مرتا ہوں۔"
+                },
+                {
+                  "en": "All praise is for Allah who gave us life after having taken it from us and unto Him is the resurrection.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی اور اسی کی طرف لوٹنا ہے۔"
+                },
+                {
+                  "en": "All Praise is for Allah who has clothed me with this garment.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے مجھے یہ لباس پہنایا۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "All praise is for Allah who gave us life after having taken it from us and unto Him is the resurrection.",
+                "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی اور اسی کی طرف لوٹنا ہے۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say before performing wudu?",
+                "ur": "وضو کرنے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismillah",
+                "ur": "بِسْمِ اللہِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua before performing wudu?",
+                "ur": "وضو کرنے سے پہلے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allah is the greatest.",
+                  "ur": "اللہ سب سے بڑا ہے۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "All praise is for Allah.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے۔"
+                },
+                {
+                  "en": "I ask You (Allah) for forgiveness.",
+                  "ur": "میں آپ (اللہ) سے معافی مانگتا ہوں۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In the name of Allah.",
+                "ur": "اللہ کے نام سے۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say after completing wudu?",
+                "ur": "وضو مکمل کرنے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allahummaj-AAalnee minat-tawwabeena wajAAalnee minal-mutatahhireen",
+                  "ur": "اَللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahummaj-AAalnee minat-tawwabeena wajAAalnee minal-mutatahhireen",
+                "ur": "اَللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua after completing wudu?",
+                "ur": "وضو مکمل کرنے کے بعد کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "I ask You (Allah) for forgiveness.",
+                  "ur": "میں آپ (اللہ) سے معافی مانگتا ہوں۔"
+                },
+                {
+                  "en": "O Allah, make me of those who return to You often in repentance and make me of those who remain clean and pure.",
+                  "ur": "اے اللہ، مجھے ان لوگوں میں شامل کر جو تیری طرف توبہ کرتے ہیں اور مجھے پاک صاف رہنے والوں میں شامل کر۔"
+                },
+                {
+                  "en": "All praise is for Allah.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "O Allah, make me of those who return to You often in repentance and make me of those who remain clean and pure.",
+                "ur": "اے اللہ، مجھے ان لوگوں میں شامل کر جو تیری طرف توبہ کرتے ہیں اور مجھے پاک صاف رہنے والوں میں شامل کر۔"
+              }
+            },
+            {
+              "question": {
+                "en": "Which dua has the meaning 'I ask You (Allah) for forgiveness'?",
+                "ur": "کس دعا کا مطلب ہے 'میں آپ (اللہ) سے معافی مانگتا ہوں'؟"
+              },
+              "options": [
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللہِ"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "SubhanAllah",
+                  "ur": "سبحان اللہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Ghufranak",
+                "ur": "غُفْرَانَكَ"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Quiz 2",
+            "ur": "کوئز 2"
+          },
+          "syllabus": {
+            "en": ["Travel Duas", "Masjid Duas"],
+            "ur": ["سفر کی دعائیں", "مسجد کی دعائیں"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What dua do we say before starting a journey?",
+                "ur": "سفر شروع کرنے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillahi walajna, wabismil-lahi kharajna",
+                  "ur": "بِسْـمِ اللّهِ وَلَجْنـَا، وَبِسْـمِ اللّهِ خَـرَجْنـَا"
+                },
+                {
+                  "en": "Allahumma innee as-aluka min fadlik",
+                  "ur": "اَللَّهُـمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْـلِكَ"
+                },
+                {
+                  "en": "Subhana-alladhi sakh-khara la-na hadha",
+                  "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+                },
+                {
+                  "en": "Bismil-lah, tawakkaltu AAalal-lah",
+                  "ur": "بِسْمِ اللَّهِ تَوَكَّلْـتُ عَلَى اللَّهِ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Subhana-alladhi sakh-khara la-na hadha",
+                "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua before starting a journey?",
+                "ur": "سفر شروع کرنے سے پہلے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah, I place my trust in Allah.",
+                  "ur": "اللہ کے نام سے، میں اللہ پر بھروسہ کرتا ہوں۔"
+                },
+                {
+                  "en": "Glory unto Him Who created this transportation, for us, though we were unable to create it on our own. And unto our Lord we shall return.",
+                  "ur": "پاک ہے وہ ذات جس نے یہ سواری ہمارے لیے مسخر کی جبکہ ہم اسے خود بنانے سے قاصر تھے، اور ہم اپنے رب کی طرف لوٹنے والے ہیں۔"
+                },
+                {
+                  "en": "In the name of Allah we enter and in the name of Allah we leave.",
+                  "ur": "اللہ کے نام سے ہم داخل ہوتے ہیں اور اللہ کے نام سے ہم نکلتے ہیں۔"
+                },
+                {
+                  "en": "O Allah, I ask You from Your favour.",
+                  "ur": "اے اللہ، میں آپ سے آپ کے فضل کا سوال کرتا ہوں۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Glory unto Him Who created this transportation, for us, though we were unable to create it on our own. And unto our Lord we shall return.",
+                "ur": "پاک ہے وہ ذات جس نے یہ سواری ہمارے لیے مسخر کی جبکہ ہم اسے خود بنانے سے قاصر تھے، اور ہم اپنے رب کی طرف لوٹنے والے ہیں۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say after completing a journey?",
+                "ur": "سفر مکمل کرنے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allahu Akbar, Allahu Akbar, Allahu Akbar",
+                  "ur": "ا للهُ أَكْـبَر، ا للهُ أَكْـبَر، ا للهُ أَكْـبَر"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللّهِ"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "SubhanAllah",
+                  "ur": "سبحان اللہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahu Akbar, Allahu Akbar, Allahu Akbar",
+                "ur": "ا للهُ أَكْـبَر، ا للهُ أَكْـبَر، ا للهُ أَكْـبَر"
+              }
+            },
+            {
+              "question": {
+                "en": "What is included in the complete dua after completing a journey?",
+                "ur": "سفر مکمل کرنے کے بعد کی مکمل دعا میں کیا شامل ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Mentioning that Allah fulfilled His promise and defeated the allies",
+                  "ur": "یہ ذکر کرنا کہ اللہ نے اپنا وعدہ پورا کیا اور اتحادیوں کو شکست دی"
+                },
+                {
+                  "en": "Asking for guidance to a safer path",
+                  "ur": "محفوظ راستے کی ہدایت مانگنا"
+                },
+                {
+                  "en": "Asking for good weather during future journeys",
+                  "ur": "مستقبل کے سفروں میں اچھے موسم کی دعا مانگنا"
+                },
+                {
+                  "en": "Requesting to meet family members safely",
+                  "ur": "خاندان کے افراد سے محفوظ ملاقات کی درخواست کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Mentioning that Allah fulfilled His promise and defeated the allies",
+                "ur": "یہ ذکر کرنا کہ اللہ نے اپنا وعدہ پورا کیا اور اتحادیوں کو شکست دی"
+              }
+            },
+            {
+              "question": {
+                "en": "Which phrase comes after 'Allahu Akbar, Allahu Akbar, Allahu Akbar' in the travel return dua?",
+                "ur": "سفر سے واپسی کی دعا میں 'ا للهُ أَكْـبَر، ا للهُ أَكْـبَر، ا للهُ أَكْـبَر' کے بعد کون سا جملہ آتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Wa laa hawla wa laa quwwata illa billah",
+                  "ur": "وَلاَ حَوْلَ وَلاَ قُـوَّةَ إِلاَّ بِاللَّهِ"
+                },
+                {
+                  "en": "Subhana-alladhi sakh-khara la-na hadha",
+                  "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+                },
+                {
+                  "en": "Laa ilaaha illallaahu wahdahu laa shareeka lahu",
+                  "ur": "لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شريكَ لهُ"
+                },
+                {
+                  "en": "Astaghfirullah",
+                  "ur": "استغفر اللہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Laa ilaaha illallaahu wahdahu laa shareeka lahu",
+                "ur": "لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شريكَ لهُ"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say before entering a masjid?",
+                "ur": "مسجد میں داخل ہونے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah, wassalatu wassalamu AAala rasoolil-lah",
+                  "ur": "بِسْمِ اللّهِ وَالصَّلاَةُ وَالسَّلاَمُ عَلَى رَسُولِ اللّهِ"
+                },
+                {
+                  "en": "aAAoothu billahil-AAatheem wabiwajhihil-kareem wasultanihil-qadeem minash-shaytanir-rajeem",
+                  "ur": "أَعوذُ بِاللّهِ العَظِيـمِ، وَبِوَجْهِـهِ الكَرِيـمِ وَسُلْطـَانِه القَدِيـمِ، مِنَ الشَّيْـطَانِ الرَّجِـيمِ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                },
+                {
+                  "en": "Subhana-alladhi sakh-khara la-na hadha",
+                  "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "aAAoothu billahil-AAatheem wabiwajhihil-kareem wasultanihil-qadeem minash-shaytanir-rajeem",
+                "ur": "أَعوذُ بِاللّهِ العَظِيـمِ، وَبِوَجْهِـهِ الكَرِيـمِ وَسُلْطـَانِه القَدِيـمِ، مِنَ الشَّيْـطَانِ الرَّجِـيمِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What do we ask Allah to open in the dua before entering a masjid?",
+                "ur": "مسجد میں داخل ہوتے وقت ہم اللہ سے کیا کھولنے کی درخواست کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Gates of His mercy",
+                  "ur": "اپنی رحمت کے دروازے"
+                },
+                {
+                  "en": "Gates of His protection",
+                  "ur": "اپنی حفاظت کے دروازے"
+                },
+                {
+                  "en": "Gates of His wealth",
+                  "ur": "اپنی دولت کے دروازے"
+                },
+                {
+                  "en": "Gates of His forgiveness",
+                  "ur": "اپنی مغفرت کے دروازے"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Gates of His mercy",
+                "ur": "اپنی رحمت کے دروازے"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of part of the dua before entering a masjid?",
+                "ur": "مسجد میں داخل ہونے سے پہلے کی دعا کے حصے کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "I take refuge with Allah, The Supreme",
+                  "ur": "میں اللہ، سب سے عظیم کی پناہ میں آتا ہوں"
+                },
+                {
+                  "en": "O Allah, open the gates of Your blessings for me",
+                  "ur": "اے اللہ، میرے لیے اپنی برکتوں کے دروازے کھول دے"
+                },
+                {
+                  "en": "Glory unto Him Who created this masjid for us",
+                  "ur": "پاک ہے وہ ذات جس نے یہ مسجد ہمارے لیے بنائی"
+                },
+                {
+                  "en": "O Allah, forgive me my sins",
+                  "ur": "اے اللہ، میرے گناہوں کو معاف فرما"
+                }
+              ],
+              "correctAnswer": {
+                "en": "I take refuge with Allah, The Supreme",
+                "ur": "میں اللہ، سب سے عظیم کی پناہ میں آتا ہوں"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say when leaving a masjid?",
+                "ur": "مسجد سے نکلتے وقت کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allahumma innee as-aluka min fadlik",
+                  "ur": "اَللَّهُـمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْـلِكَ"
+                },
+                {
+                  "en": "Bismillah wassalatu wassalamu AAala rasoolil-lah",
+                  "ur": "بِسْمِ اللّهِ وَالصَّلاَةُ وَالسَّلاَمُ عَلَى رَسُولِ اللّهِ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                },
+                {
+                  "en": "Subhana-alladhi sakh-khara la-na hadha",
+                  "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismillah wassalatu wassalamu AAala rasoolil-lah",
+                "ur": "بِسْمِ اللّهِ وَالصَّلاَةُ وَالسَّلاَمُ عَلَى رَسُولِ اللّهِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What additional phrase do we say at the end of the dua when leaving a masjid?",
+                "ur": "مسجد سے نکلتے وقت کی دعا کے آخر میں ہم کون سا اضافی جملہ پڑھتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Allahumma iftah lee abwaba rahmatik",
+                  "ur": "اَللَّهُـمَّ افْتَـحْ لِي أَبْوَابَ رَحْمَتـِكَ"
+                },
+                {
+                  "en": "Allahumma iAAsimnee minash-shaytanir-rajeem",
+                  "ur": "اَللَّهُـمَّ اعْصِمْنِـي مِنَ الشَّيْـطَانِ الرَّجِـيمِ"
+                },
+                {
+                  "en": "Allahumma innee as-aluka min fadlik",
+                  "ur": "اَللَّهُـمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْـلِكَ"
+                },
+                {
+                  "en": "Allahumma salli ala Muhammad",
+                  "ur": "اللّٰھم صل علی محمد"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahumma iAAsimnee minash-shaytanir-rajeem",
+                "ur": "اَللَّهُـمَّ اعْصِمْنِـي مِنَ الشَّيْـطَانِ الرَّجِـيمِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua we recite when leaving a masjid?",
+                "ur": "مسجد سے نکلتے وقت پڑھی جانے والی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, I ask You from Your favour. O Allah, guard me from the accursed devil.",
+                  "ur": "اللہ کے نام سے، اور اللہ کے رسول پر درود و سلام ہو۔ اے اللہ میں تجھ سے تیرے فضل کا سوال کرتا ہوں۔ اے اللہ، مجھے شیطان مردود سے محفوظ رکھ۔"
+                },
+                {
+                  "en": "I take refuge with Allah, The Supreme and with His Noble Face, and His eternal authority from the accursed devil.",
+                  "ur": "میں عظیم اللہ کی، اس کے کریم چہرے کی، اور اس کی ابدی اختیار کی پناہ لیتا ہوں مردود شیطان سے۔"
+                },
+                {
+                  "en": "Glory unto Him Who created this masjid for us, though we were unable to create it on our own.",
+                  "ur": "پاک ہے وہ ذات جس نے یہ مسجد ہمارے لیے بنائی، جسے بنانے کی ہم میں طاقت نہیں تھی۔"
+                },
+                {
+                  "en": "O Allah, open the gates of Your mercy for me.",
+                  "ur": "اے اللہ، میرے لیے اپنی رحمت کے دروازے کھول دے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In the name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, I ask You from Your favour. O Allah, guard me from the accursed devil.",
+                "ur": "اللہ کے نام سے، اور اللہ کے رسول پر درود و سلام ہو۔ اے اللہ میں تجھ سے تیرے فضل کا سوال کرتا ہوں۔ اے اللہ، مجھے شیطان مردود سے محفوظ رکھ۔"
+              }
+            },
+            {
+              "question": {
+                "en": "The dua for leaving home ends with which phrase?",
+                "ur": "گھر سے نکلنے کی دعا کس جملے پر ختم ہوتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "wa laa hawla wa laa quwwata illa billah",
+                  "ur": "وَلاَ حَوْلَ وَلاَ قُـوَّةَ إِلاَّ بِاللَّهِ"
+                },
+                {
+                  "en": "wa-ilayhin-nushoor",
+                  "ur": "وَإِلَيْهِ النُّشُورُ"
+                },
+                {
+                  "en": "wa Huwa alaa kulli shay in Qadeer",
+                  "ur": "وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
+                },
+                {
+                  "en": "waAAala rabbina tawakkalna",
+                  "ur": "وَعَلَـى رَبِّنـَا تَوَكّلْـنَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "wa laa hawla wa laa quwwata illa billah",
+                "ur": "وَلاَ حَوْلَ وَلاَ قُـوَّةَ إِلاَّ بِاللَّهِ"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Quiz 3",
+            "ur": "کوئز 3"
+          },
+          "syllabus": {
+            "en": ["Bathroom Duas", "Home Duas"],
+            "ur": ["بیت الخلاء کی دعائیں", "گھر کی دعائیں"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What dua do we say before entering the bathroom?",
+                "ur": "بیت الخلاء میں داخل ہونے سے پہلے کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللَّهِ"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "Allahuma inni a'udhu bika minal-khubthi wal-khaba-ith",
+                  "ur": "اللَّهُـمَّ إِنِّي أَعُـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبَائِثِ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahuma inni a'udhu bika minal-khubthi wal-khaba-ith",
+                "ur": "اللَّهُـمَّ إِنِّي أَعُـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبَائِثِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua before entering the bathroom?",
+                "ur": "بیت الخلاء میں داخل ہونے سے پہلے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "I ask You (Allah) for forgiveness.",
+                  "ur": "میں آپ (اللہ) سے معافی مانگتا ہوں۔"
+                },
+                {
+                  "en": "O Allah, I take refuge with you from all evil and evil-doers.",
+                  "ur": "اے اللہ، میں آپ کی پناہ میں آتا ہوں تمام برائیوں اور برے کرنے والوں سے۔"
+                },
+                {
+                  "en": "All praise is for Allah.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "O Allah, I take refuge with you from all evil and evil-doers.",
+                "ur": "اے اللہ، میں آپ کی پناہ میں آتا ہوں تمام برائیوں اور برے کرنے والوں سے۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What word is added before the bathroom dua?",
+                "ur": "بیت الخلاء کی دعا سے پہلے کون سا لفظ پڑھا جاتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللَّهِ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                },
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "SubhanAllah",
+                  "ur": "سبحان اللہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismillah",
+                "ur": "بِسْمِ اللَّهِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say after leaving the bathroom?",
+                "ur": "بیت الخلاء سے نکلنے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللَّهِ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                },
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Ghufranak",
+                "ur": "غُفْرَانَكَ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua after leaving the bathroom?",
+                "ur": "بیت الخلاء سے نکلنے کے بعد کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "O Allah, I seek your forgiveness.",
+                  "ur": "اے اللہ، میں آپ سے معافی چاہتا ہوں۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "All praise is for Allah.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے۔"
+                },
+                {
+                  "en": "Allah is the greatest.",
+                  "ur": "اللہ سب سے بڑا ہے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "O Allah, I seek your forgiveness.",
+                "ur": "اے اللہ، میں آپ سے معافی چاہتا ہوں۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say when leaving home?",
+                "ur": "گھر سے نکلتے وقت کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillahi walajna, wabismil-lahi kharajna",
+                  "ur": "بِسْـمِ اللّهِ وَلَجْنـَا، وَبِسْـمِ اللّهِ خَـرَجْنـَا"
+                },
+                {
+                  "en": "Allahumma inni a'udhu bika",
+                  "ur": "اللَّهُـمَّ إِنِّي أَعُـوذُ بِـكَ"
+                },
+                {
+                  "en": "Bismil-lah, tawakkaltu AAalal-lah",
+                  "ur": "بِسْمِ اللَّهِ تَوَكَّلْـتُ عَلَى اللَّهِ"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee kasanee hatha",
+                  "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismil-lah, tawakkaltu AAalal-lah",
+                "ur": "بِسْمِ اللَّهِ تَوَكَّلْـتُ عَلَى اللَّهِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What phrase completes the dua for leaving home?",
+                "ur": "گھر سے نکلنے کی دعا کو کون سا جملہ مکمل کرتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "wa laa hawla wa laa quwwata illa billah",
+                  "ur": "وَلاَ حَوْلَ وَلاَ قُـوَّةَ إِلاَّ بِاللَّهِ"
+                },
+                {
+                  "en": "waAAala rabbina tawakkalna",
+                  "ur": "وَعَلَـى رَبِّنـَا تَوَكّلْـنَا"
+                },
+                {
+                  "en": "wa-ilayhin-nushoor",
+                  "ur": "وَإِلَيْهِ النُّشُورُ"
+                },
+                {
+                  "en": "wa Huwa alaa kulli shay in Qadeer",
+                  "ur": "وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "wa laa hawla wa laa quwwata illa billah",
+                "ur": "وَلاَ حَوْلَ وَلاَ قُـوَّةَ إِلاَّ بِاللَّهِ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua for leaving home?",
+                "ur": "گھر سے نکلنے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.",
+                  "ur": "اللہ کے نام سے، میں اللہ پر بھروسہ کرتا ہوں، اور اللہ کے سوا کوئی طاقت اور قوت نہیں۔"
+                },
+                {
+                  "en": "In the name of Allah we enter and in the name of Allah we leave, and upon our Lord we place our trust.",
+                  "ur": "اللہ کے نام سے ہم داخل ہوتے ہیں اور اللہ کے نام سے ہم نکلتے ہیں، اور اپنے رب پر ہمارا بھروسہ ہے۔"
+                },
+                {
+                  "en": "Glory unto Him Who created this transportation, for us, though we were unable to create it on our own.",
+                  "ur": "پاک ہے وہ ذات جس نے یہ سواری ہمارے لیے مسخر کی اور ہم اس کو قابو میں رکھنے کی طاقت نہیں رکھتے تھے۔"
+                },
+                {
+                  "en": "All Praise is for Allah who has clothed me with this garment and provided it for me.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے مجھے یہ لباس پہنایا اور مجھے یہ عطا کیا۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.",
+                "ur": "اللہ کے نام سے، میں اللہ پر بھروسہ کرتا ہوں، اور اللہ کے سوا کوئی طاقت اور قوت نہیں۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say when entering home?",
+                "ur": "گھر میں داخل ہوتے وقت کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillahi walajna, wabismil-lahi kharajna, waAAala rabbina tawakkalna",
+                  "ur": "بِسْـمِ اللّهِ وَلَجْنـَا، وَبِسْـمِ اللّهِ خَـرَجْنـَا، وَعَلَـى رَبِّنـَا تَوَكّلْـنَا"
+                },
+                {
+                  "en": "Allahumma innee as-aluka min fadlik",
+                  "ur": "اَللَّهُـمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْـلِكَ"
+                },
+                {
+                  "en": "Bismil-lah, tawakkaltu AAalal-lah",
+                  "ur": "بِسْمِ اللَّهِ تَوَكَّلْـتُ عَلَى اللَّهِ"
+                },
+                {
+                  "en": "Allahummaj-AAalnee minat-tawwabeena",
+                  "ur": "اَللَّهُـمَّ اجْعَلْنِـي مِنَ التَّـوَّابِينَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Bismillahi walajna, wabismil-lahi kharajna, waAAala rabbina tawakkalna",
+                "ur": "بِسْـمِ اللّهِ وَلَجْنـَا، وَبِسْـمِ اللّهِ خَـرَجْنـَا، وَعَلَـى رَبِّنـَا تَوَكّلْـنَا"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua for entering home?",
+                "ur": "گھر میں داخل ہونے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.",
+                  "ur": "اللہ کے نام سے، میں اللہ پر بھروسہ کرتا ہوں، اور اللہ کے سوا کوئی طاقت اور قوت نہیں۔"
+                },
+                {
+                  "en": "In the name of Allah we enter and in the name of Allah we leave, and upon our Lord we place our trust.",
+                  "ur": "اللہ کے نام سے ہم داخل ہوتے ہیں اور اللہ کے نام سے ہم نکلتے ہیں، اور اپنے رب پر ہمارا بھروسہ ہے۔"
+                },
+                {
+                  "en": "O Allah, I ask You from Your favour.",
+                  "ur": "اے اللہ، میں آپ سے آپ کے فضل کا سوال کرتا ہوں۔"
+                },
+                {
+                  "en": "O Allah, make me of those who return to You often in repentance.",
+                  "ur": "اے اللہ، مجھے ان لوگوں میں شامل کر جو تیری طرف توبہ کرتے ہیں۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "In the name of Allah we enter and in the name of Allah we leave, and upon our Lord we place our trust.",
+                "ur": "اللہ کے نام سے ہم داخل ہوتے ہیں اور اللہ کے نام سے ہم نکلتے ہیں، اور اپنے رب پر ہمارا بھروسہ ہے۔"
+              }
+            },
+            {
+              "question": {
+                "en": "When do we recite the dua 'Alhamdu lillahil-lathee kasanee hatha'?",
+                "ur": "'اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا' کی دعا کب پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "When entering home",
+                  "ur": "گھر میں داخل ہوتے وقت"
+                },
+                {
+                  "en": "When putting on clothes",
+                  "ur": "کپڑے پہنتے وقت"
+                },
+                {
+                  "en": "When leaving home",
+                  "ur": "گھر سے نکلتے وقت"
+                },
+                {
+                  "en": "When entering the bathroom",
+                  "ur": "بیت الخلاء میں داخل ہوتے وقت"
+                }
+              ],
+              "correctAnswer": {
+                "en": "When putting on clothes",
+                "ur": "کپڑے پہنتے وقت"
+              }
+            },
+            {
+              "question": {
+                "en": "Which dua is recited when given a drink?",
+                "ur": "پینے کی چیز ملنے پر کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allahumma at'im man at'amani, wasqi man saqani",
+                  "ur": "اللَّهُمَّ اطْعِمَّ مَنْ اطْعَمَنِي وَاسْقِِِ ِ مَنْ سَقَانِيِ"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee at'amana wa saqana",
+                  "ur": "الْحَمْدُ لِلَّهِ الَّذِى اطْعَمَنَا وَسَقَانَا"
+                },
+                {
+                  "en": "Bismil-lah",
+                  "ur": "بِسْمِ اللّهِ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Allahumma at'im man at'amani, wasqi man saqani",
+                "ur": "اللَّهُمَّ اطْعِمَّ مَنْ اطْعَمَنِي وَاسْقِِِ ِ مَنْ سَقَانِيِ"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Quiz 4",
+            "ur": "کوئز 4"
+          },
+          "syllabus": {
+            "en": ["Salah Duas", "Dressing Duas"],
+            "ur": ["نماز کی دعائیں", "کپڑے پہننے کی دعائیں"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What dua do we say after completing salah?",
+                "ur": "نماز مکمل کرنے کے بعد کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdulillah",
+                  "ur": "الحمد للہ"
+                },
+                {
+                  "en": "La ilaha illal-lahu wahdahu la shareeka lah",
+                  "ur": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ"
+                },
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللّهِ"
+                },
+                {
+                  "en": "Subhana-alladhi sakh-khara la-na hadha",
+                  "ur": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "La ilaha illal-lahu wahdahu la shareeka lah",
+                "ur": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ"
+              }
+            },
+            {
+              "question": {
+                "en": "How many times should the post-salah dua be recited after Maghrib and Fajr prayers?",
+                "ur": "مغرب اور فجر کی نمازوں کے بعد نماز کے بعد کی دعا کتنی بار پڑھی جانی چاہیے؟"
+              },
+              "options": [
+                {
+                  "en": "Once",
+                  "ur": "ایک بار"
+                },
+                {
+                  "en": "Three times",
+                  "ur": "تین بار"
+                },
+                {
+                  "en": "Seven times",
+                  "ur": "سات بار"
+                },
+                {
+                  "en": "Ten times",
+                  "ur": "دس بار"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Ten times",
+                "ur": "دس بار"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua after completing salah?",
+                "ur": "نماز مکمل کرنے کے بعد کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "None has the right to be worshipped except Allah, alone, without partner, to Him belongs all sovereignty and praise, He gives life and causes death and He is over all things omnipotent.",
+                  "ur": "اللہ کے سوا کوئی معبود نہیں، وہ اکیلا ہے، اس کا کوئی شریک نہیں، اسی کے لیے بادشاہی ہے اور تمام تعریفیں اسی کے لیے ہیں، وہی زندگی دیتا ہے اور موت دیتا ہے اور وہ ہر چیز پر قادر ہے۔"
+                },
+                {
+                  "en": "Glory unto Him Who created this transportation, for us, though we were unable to create it on our own.",
+                  "ur": "پاک ہے وہ ذات جس نے یہ سواری ہمارے لیے مسخر کی اور ہم اسے بنانے سے قاصر تھے۔"
+                },
+                {
+                  "en": "In the name of Allah.",
+                  "ur": "اللہ کے نام سے۔"
+                },
+                {
+                  "en": "All praise is for Allah.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "None has the right to be worshipped except Allah, alone, without partner, to Him belongs all sovereignty and praise, He gives life and causes death and He is over all things omnipotent.",
+                "ur": "اللہ کے سوا کوئی معبود نہیں، وہ اکیلا ہے، اس کا کوئی شریک نہیں، اسی کے لیے بادشاہی ہے اور تمام تعریفیں اسی کے لیے ہیں، وہی زندگی دیتا ہے اور موت دیتا ہے اور وہ ہر چیز پر قادر ہے۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What phrases are included in the complete dua after completing salah?",
+                "ur": "نماز مکمل کرنے کے بعد کی مکمل دعا میں کون سے الفاظ شامل ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Mention of death and life",
+                  "ur": "موت اور زندگی کا ذکر"
+                },
+                {
+                  "en": "Seeking refuge from Shaitan",
+                  "ur": "شیطان سے پناہ مانگنا"
+                },
+                {
+                  "en": "Asking for good health",
+                  "ur": "اچھی صحت کی دعا مانگنا"
+                },
+                {
+                  "en": "Mentioning the Day of Judgment",
+                  "ur": "قیامت کے دن کا ذکر"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Mention of death and life",
+                "ur": "موت اور زندگی کا ذکر"
+              }
+            },
+            {
+              "question": {
+                "en": "What phrase in the post-salah dua refers to Allah's power?",
+                "ur": "نماز کے بعد کی دعا میں اللہ کی قدرت کا ذکر کس جملے میں ہے؟"
+              },
+              "options": [
+                {
+                  "en": "la shareeka lah",
+                  "ur": "لَا شَرِيكَ لَهُ"
+                },
+                {
+                  "en": "lahul-mulku walahul-hamd",
+                  "ur": "لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ"
+                },
+                {
+                  "en": "yuhyee wayumeet",
+                  "ur": "يُحْيِي وَيُمِيتُ"
+                },
+                {
+                  "en": "wahuwa AAala kulli shayin qadeer",
+                  "ur": "وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "wahuwa AAala kulli shayin qadeer",
+                "ur": "وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
+              }
+            },
+            {
+              "question": {
+                "en": "What dua do we say when putting on clothes?",
+                "ur": "کپڑے پہنتے وقت کون سی دعا پڑھی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Bismillah",
+                  "ur": "بِسْمِ اللّهِ"
+                },
+                {
+                  "en": "Alhamdu lillahil-lathee kasanee hatha",
+                  "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا"
+                },
+                {
+                  "en": "Allahumma inni a'udhu bika",
+                  "ur": "اللَّهُـمَّ إِنِّي أَعُـوذُ بِـكَ"
+                },
+                {
+                  "en": "Ghufranak",
+                  "ur": "غُفْرَانَكَ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Alhamdu lillahil-lathee kasanee hatha",
+                "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the complete dressing dua in Arabic?",
+                "ur": "کپڑے پہننے کی مکمل دعا عربی میں کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Alhamdu lillahil-lathee kasanee hatha (aththawb) warazaqaneehi min ghayri hawlin minnee wala quwwah",
+                  "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا (الثَّوْبَ) وَرَزَقَنِيهِ مِنْ غَـيـْرِ حَوْلٍ مِنِّي وَلَا قُـوَّةٍ"
+                },
+                {
+                  "en": "Bismillahi walajna, wabismil-lahi kharajna, waAAala rabbina tawakkalna",
+                  "ur": "بِسْـمِ اللّهِ وَلَجْنـَا، وَبِسْـمِ اللّهِ خَـرَجْنـَا، وَعَلَـى رَبِّنـَا تَوَكّلْـنَا"
+                },
+                {
+                  "en": "Allahuma inni a'udhu bika minal-khubthi wal-khaba-ith",
+                  "ur": "اللَّهُـمَّ إِنِّي أَعُـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبَائِثِ"
+                },
+                {
+                  "en": "Allahumma at'im man at'amani, wasqi man saqani",
+                  "ur": "اللَّهُمَّ اطْعِمَّ مَنْ اطْعَمَنِي وَاسْقِِِ ِ مَنْ سَقَانِيِ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Alhamdu lillahil-lathee kasanee hatha (aththawb) warazaqaneehi min ghayri hawlin minnee wala quwwah",
+                "ur": "اَلْحَمْدُ لِلّهِ الَّذِي كَسَانِي هَذَا (الثَّوْبَ) وَرَزَقَنِيهِ مِنْ غَـيـْرِ حَوْلٍ مِنِّي وَلَا قُـوَّةٍ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua for putting on clothes?",
+                "ur": "کپڑے پہننے کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "In the name of Allah we enter and in the name of Allah we leave.",
+                  "ur": "اللہ کے نام سے ہم داخل ہوتے ہیں اور اللہ کے نام سے ہم نکلتے ہیں۔"
+                },
+                {
+                  "en": "I ask You (Allah) for forgiveness.",
+                  "ur": "میں آپ (اللہ) سے معافی مانگتا ہوں۔"
+                },
+                {
+                  "en": "All Praise is for Allah who has clothed me with this garment and provided it for me, with no power or might from myself.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے مجھے یہ لباس پہنایا اور مجھے یہ عطا کیا، میرے اپنے کسی اختیار یا طاقت کے بغیر۔"
+                },
+                {
+                  "en": "O Allah, feed him who fed me and give him drink who gave me to drink.",
+                  "ur": "اے اللہ، اسے کھانا کھلا جس نے مجھے کھلایا اور اسے پانی پلا جس نے مجھے پلایا۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "All Praise is for Allah who has clothed me with this garment and provided it for me, with no power or might from myself.",
+                "ur": "تمام تعریف اللہ کے لیے ہے جس نے مجھے یہ لباس پہنایا اور مجھے یہ عطا کیا، میرے اپنے کسی اختیار یا طاقت کے بغیر۔"
+              }
+            },
+            {
+              "question": {
+                "en": "What word in brackets can be added to the dressing dua?",
+                "ur": "کپڑے پہننے کی دعا میں بریکٹس میں کون سا لفظ شامل کیا جا سکتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "aththawb (the garment)",
+                  "ur": "الثَّوْبَ (لباس)"
+                },
+                {
+                  "en": "al-masjid (the mosque)",
+                  "ur": "المسجد (مسجد)"
+                },
+                {
+                  "en": "al-bayt (the house)",
+                  "ur": "البيت (گھر)"
+                },
+                {
+                  "en": "as-safar (the journey)",
+                  "ur": "السفر (سفر)"
+                }
+              ],
+              "correctAnswer": {
+                "en": "aththawb (the garment)",
+                "ur": "الثَّوْبَ (لباس)"
+              }
+            },
+            {
+              "question": {
+                "en": "What do we acknowledge in the dressing dua about the provision of clothes?",
+                "ur": "کپڑے پہننے کی دعا میں ہم لباس کی فراہمی کے بارے میں کیا تسلیم کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "That we ourselves made the clothes",
+                  "ur": "کہ ہم نے خود کپڑے بنائے"
+                },
+                {
+                  "en": "That we have no power or might to provide them ourselves",
+                  "ur": "کہ ہم میں خود انہیں فراہم کرنے کی کوئی طاقت یا قوت نہیں"
+                },
+                {
+                  "en": "That others gave us the clothes",
+                  "ur": "کہ دوسروں نے ہمیں کپڑے دیے"
+                },
+                {
+                  "en": "That we bought the clothes",
+                  "ur": "کہ ہم نے کپڑے خریدے"
+                }
+              ],
+              "correctAnswer": {
+                "en": "That we have no power or might to provide them ourselves",
+                "ur": "کہ ہم میں خود انہیں فراہم کرنے کی کوئی طاقت یا قوت نہیں"
+              }
+            },
+            {
+              "question": {
+                "en": "When do we recite the dua 'Allahumma at'im man at'amani, wasqi man saqani'?",
+                "ur": "ہم 'اللَّهُمَّ اطْعِمَّ مَنْ اطْعَمَنِي وَاسْقِِِ ِ مَنْ سَقَانِيِ' کی دعا کب پڑھتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "When given a drink",
+                  "ur": "پینے کی چیز ملنے پر"
+                },
+                {
+                  "en": "After finishing salah",
+                  "ur": "نماز مکمل کرنے کے بعد"
+                },
+                {
+                  "en": "When entering a mosque",
+                  "ur": "مسجد میں داخل ہوتے وقت"
+                },
+                {
+                  "en": "When entering home",
+                  "ur": "گھر میں داخل ہوتے وقت"
+                }
+              ],
+              "correctAnswer": {
+                "en": "When given a drink",
+                "ur": "پینے کی چیز ملنے پر"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the English translation of the dua when given a drink?",
+                "ur": "پینے کی چیز ملنے پر کی دعا کا انگریزی ترجمہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "All praise is for Allah who gave us life after having taken it from us.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں موت کے بعد زندگی دی۔"
+                },
+                {
+                  "en": "O Allah, feed him who fed me and give him drink who gave me to drink.",
+                  "ur": "اے اللہ، اسے کھانا کھلا جس نے مجھے کھلایا اور اسے پانی پلا جس نے مجھے پلایا۔"
+                },
+                {
+                  "en": "In the name of Allah, I place my trust in Allah.",
+                  "ur": "اللہ کے نام سے، میں اللہ پر بھروسہ کرتا ہوں۔"
+                },
+                {
+                  "en": "Praise be to Allah who has fed us and given us drink.",
+                  "ur": "تمام تعریف اللہ کے لیے ہے جس نے ہمیں کھلایا اور پلایا۔"
+                }
+              ],
+              "correctAnswer": {
+                "en": "O Allah, feed him who fed me and give him drink who gave me to drink.",
+                "ur": "اے اللہ، اسے کھانا کھلا جس نے مجھے کھلایا اور اسے پانی پلا جس نے مجھے پلایا۔"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Quiz 5",
+            "ur": "کوئز 5"
+          },
+          "syllabus": {
+            "en": ["Travel Duas", "Sleeping Duas", "Masjid Duas"],
+            "ur": ["سفر کی دعائیں", "سونے کی دعائیں", "مسجد کی دعائیں"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What is the significance of reciting travel duas?",
+                "ur": "سفر کی دعائیں پڑھنے کی کیا اہمیت ہے؟"
+              },
+              "options": [
+                {
+                  "en": "To make the journey faster",
+                  "ur": "سفر کو تیز تر بنانے کے لیے"
+                },
+                {
+                  "en": "To seek Allah's protection and acknowledge His favors during travel",
+                  "ur": "سفر کے دوران اللہ کی حفاظت طلب کرنے اور اس کی نعمتوں کا اعتراف کرنے کے لیے"
+                },
+                {
+                  "en": "To make the weather better",
+                  "ur": "موسم کو بہتر بنانے کے لیے"
+                },
+                {
+                  "en": "Only to inform others that we are traveling",
+                  "ur": "صرف دوسروں کو بتانے کے لیے کہ ہم سفر کر رہے ہیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "To seek Allah's protection and acknowledge His favors during travel",
+                "ur": "سفر کے دوران اللہ کی حفاظت طلب کرنے اور اس کی نعمتوں کا اعتراف کرنے کے لیے"
+              }
+            },
+            {
+              "question": {
+                "en": "In the travel dua, what do we acknowledge about the transportation?",
+                "ur": "سفر کی دعا میں، ہم سواری کے بارے میں کیا تسلیم کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "That we bought it with our own money",
+                  "ur": "کہ ہم نے اسے اپنے پیسوں سے خریدا ہے"
+                },
+                {
+                  "en": "That we created it ourselves",
+                  "ur": "کہ ہم نے خود اسے بنایا ہے"
+                },
+                {
+                  "en": "That it was made by other humans",
+                  "ur": "کہ یہ دوسرے انسانوں کے ذریعے بنائی گئی تھی"
+                },
+                {
+                  "en": "That we were unable to create it on our own",
+                  "ur": "کہ ہم اسے خود بنانے سے قاصر تھے"
+                }
+              ],
+              "correctAnswer": {
+                "en": "That we were unable to create it on our own",
+                "ur": "کہ ہم اسے خود بنانے سے قاصر تھے"
+              }
+            },
+            {
+              "question": {
+                "en": "Which part of the after-travel dua mentions our return?",
+                "ur": "سفر کے بعد کی دعا کا کون سا حصہ ہماری واپسی کا ذکر کرتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Allahu Akbar",
+                  "ur": "اللہ اکبر"
+                },
+                {
+                  "en": "aaiboona",
+                  "ur": "آیِبُونَ"
+                },
+                {
+                  "en": "laa shareeka lahu",
+                  "ur": "لَا شَرِيكَ لَهُ"
+                },
+                {
+                  "en": "lahul-mulku",
+                  "ur": "لَهُ الْمُلْكُ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "aaiboona",
+                "ur": "آیِبُونَ"
+              }
+            },
+            {
+              "question": {
+                "en": "What qualities do we attribute to ourselves in the dua after returning from travel?",
+                "ur": "سفر سے واپسی کی دعا میں ہم اپنے آپ کو کن صفات سے منسوب کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Tired and hungry",
+                  "ur": "تھکے ہوئے اور بھوکے"
+                },
+                {
+                  "en": "Returning, repenting, worshipping, and praising our Lord",
+                  "ur": "واپس آنے والے، توبہ کرنے والے، عبادت کرنے والے، اور اپنے رب کی حمد کرنے والے"
+                },
+                {
+                  "en": "Strong and brave",
+                  "ur": "مضبوط اور بہادر"
+                },
+                {
+                  "en": "Lucky and fortunate",
+                  "ur": "خوش قسمت اور خوش نصیب"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Returning, repenting, worshipping, and praising our Lord",
+                "ur": "واپس آنے والے، توبہ کرنے والے، عبادت کرنے والے، اور اپنے رب کی حمد کرنے والے"
+              }
+            },
+            {
+              "question": {
+                "en": "Which Arabic words in the sleep dua express the concept of life and death?",
+                "ur": "سونے کی دعا میں کون سے عربی الفاظ زندگی اور موت کا تصور ظاہر کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "amootu wa-ahya",
+                  "ur": "أَمُوتُ وَأَحْيَا"
+                },
+                {
+                  "en": "wa-ilayhin-nushoor",
+                  "ur": "وَإِلَيْهِ النُّشُورُ"
+                },
+                {
+                  "en": "baAAda ma amatana",
+                  "ur": "بَعْدَ مَا أَمَاتَنَا"
+                },
+                {
+                  "en": "tawakkaltu AAalal-lah",
+                  "ur": "تَوَكَّلْتُ عَلَى اللَّهِ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "amootu wa-ahya",
+                "ur": "أَمُوتُ وَأَحْيَا"
+              }
+            },
+            {
+              "question": {
+                "en": "In the dua after waking up, what important Islamic concept is mentioned at the end?",
+                "ur": "بیدار ہونے کے بعد کی دعا میں، آخر میں کونسا اہم اسلامی تصور بیان کیا گیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Charity (Sadaqah)",
+                  "ur": "صدقہ"
+                },
+                {
+                  "en": "Prayer (Salah)",
+                  "ur": "نماز"
+                },
+                {
+                  "en": "Resurrection (Nushoor)",
+                  "ur": "قیامت/نشور"
+                },
+                {
+                  "en": "Fasting (Sawm)",
+                  "ur": "روزہ"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Resurrection (Nushoor)",
+                "ur": "قیامت/نشور"
+              }
+            },
+            {
+              "question": {
+                "en": "How is sleep described in Islamic teachings, as reflected in the waking dua?",
+                "ur": "نیند کو اسلامی تعلیمات میں کیسے بیان کیا گیا ہے، جیسا کہ بیدار ہونے کی دعا میں ظاہر ہوتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "As a waste of time",
+                  "ur": "وقت کی بربادی کے طور پر"
+                },
+                {
+                  "en": "As a form of punishment",
+                  "ur": "سزا کے طور پر"
+                },
+                {
+                  "en": "As a blessing for rest",
+                  "ur": "آرام کے لیے نعمت کے طور پر"
+                },
+                {
+                  "en": "As a minor death",
+                  "ur": "معمولی موت کے طور پر"
+                }
+              ],
+              "correctAnswer": {
+                "en": "As a minor death",
+                "ur": "معمولی موت کے طور پر"
+              }
+            },
+            {
+              "question": {
+                "en": "What concept is emphasized in the beginning of the dua for entering the masjid?",
+                "ur": "مسجد میں داخل ہونے کی دعا کے شروع میں کس تصور پر زور دیا گیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Seeking refuge with Allah",
+                  "ur": "اللہ کی پناہ طلب کرنا"
+                },
+                {
+                  "en": "Praising Allah's greatness",
+                  "ur": "اللہ کی عظمت کی تعریف کرنا"
+                },
+                {
+                  "en": "Asking for forgiveness",
+                  "ur": "معافی مانگنا"
+                },
+                {
+                  "en": "Giving thanks for blessings",
+                  "ur": "نعمتوں پر شکر ادا کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Seeking refuge with Allah",
+                "ur": "اللہ کی پناہ طلب کرنا"
+              }
+            },
+            {
+              "question": {
+                "en": "What three attributes of Allah are mentioned in the beginning of the masjid entry dua?",
+                "ur": "مسجد میں داخل ہونے کی دعا کے شروع میں اللہ کی کون سی تین صفات کا ذکر کیا گیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "His might, His hearing, and His seeing",
+                  "ur": "اس کی طاقت، اس کا سننا، اور اس کا دیکھنا"
+                },
+                {
+                  "en": "His wisdom, His mercy, and His knowledge",
+                  "ur": "اس کی حکمت، اس کی رحمت، اور اس کا علم"
+                },
+                {
+                  "en": "His greatness, His Noble Face, and His eternal authority",
+                  "ur": "اس کی عظمت، اس کا کریم چہرہ، اور اس کی قدیم سلطنت"
+                },
+                {
+                  "en": "His power, His light, and His guidance",
+                  "ur": "اس کی قدرت، اس کا نور، اور اس کی ہدایت"
+                }
+              ],
+              "correctAnswer": {
+                "en": "His greatness, His Noble Face, and His eternal authority",
+                "ur": "اس کی عظمت، اس کا کریم چہرہ، اور اس کی قدیم سلطنت"
+              }
+            },
+            {
+              "question": {
+                "en": "What do we ask Allah to open when entering the masjid, and what do we ask from when leaving?",
+                "ur": "مسجد میں داخل ہوتے وقت ہم اللہ سے کیا کھولنے کا کہتے ہیں، اور نکلتے وقت کیا مانگتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Gates of mercy when entering, and His favor when leaving",
+                  "ur": "داخل ہوتے وقت رحمت کے دروازے، اور نکلتے وقت اس کا فضل"
+                },
+                {
+                  "en": "Gates of forgiveness when entering, and His blessings when leaving",
+                  "ur": "داخل ہوتے وقت مغفرت کے دروازے، اور نکلتے وقت اس کی برکتیں"
+                },
+                {
+                  "en": "Gates of paradise when entering, and His protection when leaving",
+                  "ur": "داخل ہوتے وقت جنت کے دروازے، اور نکلتے وقت اس کی حفاظت"
+                },
+                {
+                  "en": "Gates of knowledge when entering, and His guidance when leaving",
+                  "ur": "داخل ہوتے وقت علم کے دروازے، اور نکلتے وقت اس کی ہدایت"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Gates of mercy when entering, and His favor when leaving",
+                "ur": "داخل ہوتے وقت رحمت کے دروازے، اور نکلتے وقت اس کا فضل"
+              }
+            },
+            {
+              "question": {
+                "en": "What food-related dua contains a request for Allah to feed someone else?",
+                "ur": "کھانے پینے سے متعلق کون سی دعا میں اللہ سے کسی اور کو کھلانے کی درخواست ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Dua before eating",
+                  "ur": "کھانے سے پہلے کی دعا"
+                },
+                {
+                  "en": "Dua after eating",
+                  "ur": "کھانے کے بعد کی دعا"
+                },
+                {
+                  "en": "Dua when given a drink",
+                  "ur": "پینے کی چیز ملنے پر کی دعا"
+                },
+                {
+                  "en": "Dua when entering home",
+                  "ur": "گھر میں داخل ہونے کی دعا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Dua when given a drink",
+                "ur": "پینے کی چیز ملنے پر کی دعا"
+              }
+            },
+            {
+              "question": {
+                "en": "Which dua specifically mentions 'protection from the accursed devil'?",
+                "ur": "کون سی دعا میں خاص طور پر 'شیطان مردود سے حفاظت' کا ذکر ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Dua after completing wudu",
+                  "ur": "وضو مکمل کرنے کے بعد کی دعا"
+                },
+                {
+                  "en": "Dua when leaving a masjid",
+                  "ur": "مسجد سے نکلتے وقت کی دعا"
+                },
+                {
+                  "en": "Dua before sleeping",
+                  "ur": "سونے سے پہلے کی دعا"
+                },
+                {
+                  "en": "Dua after eating",
+                  "ur": "کھانے کے بعد کی دعا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Dua when leaving a masjid",
+                "ur": "مسجد سے نکلتے وقت کی دعا"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Quiz 6",
+            "ur": "کوئز 6"
+          },
+          "syllabus": {
+            "en": [
+              "Home & Bathroom Duas",
+              "Wudu & Dressing Duas",
+              "Comparison of Duas"
+            ],
+            "ur": [
+              "گھر اور بیت الخلاء کی دعائیں",
+              "وضو اور کپڑے پہننے کی دعائیں",
+              "دعاؤں کا موازنہ"
+            ]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What theme connects the duas for entering and leaving home?",
+                "ur": "گھر میں داخل ہونے اور گھر سے نکلنے کی دعاؤں کو کون سا موضوع جوڑتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Protection from enemies",
+                  "ur": "دشمنوں سے حفاظت"
+                },
+                {
+                  "en": "Trust in Allah (Tawakkul)",
+                  "ur": "اللہ پر بھروسہ (توکل)"
+                },
+                {
+                  "en": "Asking for wealth",
+                  "ur": "دولت کی درخواست"
+                },
+                {
+                  "en": "Protection from natural disasters",
+                  "ur": "قدرتی آفات سے حفاظت"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Trust in Allah (Tawakkul)",
+                "ur": "اللہ پر بھروسہ (توکل)"
+              }
+            },
+            {
+              "question": {
+                "en": "Which daily activity has the shortest dua in Arabic?",
+                "ur": "کس روزمرہ کی سرگرمی کے لیے عربی میں سب سے چھوٹی دعا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Before eating",
+                  "ur": "کھانے سے پہلے"
+                },
+                {
+                  "en": "Before performing wudu",
+                  "ur": "وضو کرنے سے پہلے"
+                },
+                {
+                  "en": "After leaving the bathroom",
+                  "ur": "بیت الخلاء سے نکلنے کے بعد"
+                },
+                {
+                  "en": "Before sleeping",
+                  "ur": "سونے سے پہلے"
+                }
+              ],
+              "correctAnswer": {
+                "en": "After leaving the bathroom",
+                "ur": "بیت الخلاء سے نکلنے کے بعد"
+              }
+            },
+            {
+              "question": {
+                "en": "Which concept is common in both the dua for leaving home and the dua after completing wudu?",
+                "ur": "گھر سے نکلنے کی دعا اور وضو مکمل کرنے کے بعد کی دعا میں کون سا تصور مشترک ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Mention of paradise",
+                  "ur": "جنت کا ذکر"
+                },
+                {
+                  "en": "Asking for knowledge",
+                  "ur": "علم کی درخواست"
+                },
+                {
+                  "en": "Acknowledging there is no power except with Allah",
+                  "ur": "یہ تسلیم کرنا کہ اللہ کے سوا کوئی طاقت نہیں"
+                },
+                {
+                  "en": "Seeking forgiveness",
+                  "ur": "معافی طلب کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Acknowledging there is no power except with Allah",
+                "ur": "یہ تسلیم کرنا کہ اللہ کے سوا کوئی طاقت نہیں"
+              }
+            },
+            {
+              "question": {
+                "en": "Which duas specifically mention protection from Shaitan (Satan)?",
+                "ur": "کون سی دعائیں خاص طور پر شیطان سے حفاظت کا ذکر کرتی ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Duas for entering bathroom and leaving masjid",
+                  "ur": "بیت الخلاء میں داخل ہونے اور مسجد سے نکلنے کی دعائیں"
+                },
+                {
+                  "en": "Duas for before eating and after sleeping",
+                  "ur": "کھانے سے پہلے اور سونے کے بعد کی دعائیں"
+                },
+                {
+                  "en": "Duas for entering home and before travel",
+                  "ur": "گھر میں داخل ہونے اور سفر سے پہلے کی دعائیں"
+                },
+                {
+                  "en": "Duas for after wudu and before dressing",
+                  "ur": "وضو کے بعد اور کپڑے پہننے سے پہلے کی دعائیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Duas for entering bathroom and leaving masjid",
+                "ur": "بیت الخلاء میں داخل ہونے اور مسجد سے نکلنے کی دعائیں"
+              }
+            },
+            {
+              "question": {
+                "en": "In the dua for dressing, what quality of Allah is implied when we acknowledge that we have no power to provide the clothes ourselves?",
+                "ur": "کپڑے پہننے کی دعا میں، جب ہم تسلیم کرتے ہیں کہ ہم خود کپڑے فراہم کرنے کی طاقت نہیں رکھتے، تو اللہ کی کون سی صفت ظاہر ہوتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "His mercy",
+                  "ur": "اس کی رحمت"
+                },
+                {
+                  "en": "His wisdom",
+                  "ur": "اس کی حکمت"
+                },
+                {
+                  "en": "His provision (Ar-Razzaq - The Provider)",
+                  "ur": "اس کا رزق دینا (الرزاق - رزق دینے والا)"
+                },
+                {
+                  "en": "His forgiveness",
+                  "ur": "اس کی معافی"
+                }
+              ],
+              "correctAnswer": {
+                "en": "His provision (Ar-Razzaq - The Provider)",
+                "ur": "اس کا رزق دینا (الرزاق - رزق دینے والا)"
+              }
+            },
+            {
+              "question": {
+                "en": "Which duas contain expressions of gratitude for Allah's blessings?",
+                "ur": "کون سی دعاؤں میں اللہ کی نعمتوں پر شکرگزاری کا اظہار شامل ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Duas before wudu and before entering bathroom",
+                  "ur": "وضو سے پہلے اور بیت الخلاء میں داخل ہونے سے پہلے کی دعائیں"
+                },
+                {
+                  "en": "Duas after eating, after waking up, and when dressing",
+                  "ur": "کھانے کے بعد، بیدار ہونے کے بعد، اور کپڑے پہنتے وقت کی دعائیں"
+                },
+                {
+                  "en": "Duas before travel and before sleeping",
+                  "ur": "سفر سے پہلے اور سونے سے پہلے کی دعائیں"
+                },
+                {
+                  "en": "Duas when entering masjid and entering home",
+                  "ur": "مسجد میں داخل ہونے اور گھر میں داخل ہونے کی دعائیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Duas after eating, after waking up, and when dressing",
+                "ur": "کھانے کے بعد، بیدار ہونے کے بعد، اور کپڑے پہنتے وقت کی دعائیں"
+              }
+            },
+            {
+              "question": {
+                "en": "In which duas do we mention the name of Prophet Muhammad (peace be upon him)?",
+                "ur": "کن دعاؤں میں ہم حضرت محمد ﷺ کا ذکر کرتے ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Duas for entering and leaving the bathroom",
+                  "ur": "بیت الخلاء میں داخل ہونے اور نکلنے کی دعائیں"
+                },
+                {
+                  "en": "Duas for before and after eating",
+                  "ur": "کھانے سے پہلے اور بعد کی دعائیں"
+                },
+                {
+                  "en": "Duas for entering and leaving the masjid",
+                  "ur": "مسجد میں داخل ہونے اور نکلنے کی دعائیں"
+                },
+                {
+                  "en": "Duas for before and after sleeping",
+                  "ur": "سونے سے پہلے اور بعد کی دعائیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Duas for entering and leaving the masjid",
+                "ur": "مسجد میں داخل ہونے اور نکلنے کی دعائیں"
+              }
+            },
+            {
+              "question": {
+                "en": "What common theme can be found in the duas after wudu and after salah?",
+                "ur": "وضو کے بعد اور نماز کے بعد کی دعاؤں میں کون سا مشترکہ موضوع پایا جا سکتا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Mention of Paradise",
+                  "ur": "جنت کا ذکر"
+                },
+                {
+                  "en": "Declaration of Allah's oneness (Tawheed)",
+                  "ur": "اللہ کی وحدانیت کا اعلان (توحید)"
+                },
+                {
+                  "en": "Asking for worldly wealth",
+                  "ur": "دنیاوی دولت کی درخواست"
+                },
+                {
+                  "en": "Mention of previous prophets",
+                  "ur": "پچھلے انبیاء کا ذکر"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Declaration of Allah's oneness (Tawheed)",
+                "ur": "اللہ کی وحدانیت کا اعلان (توحید)"
+              }
+            },
+            {
+              "question": {
+                "en": "Which duas involve seeking Allah's protection from harm?",
+                "ur": "کن دعاؤں میں نقصان سے اللہ کی حفاظت طلب کی جاتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Duas before wudu and after dressing",
+                  "ur": "وضو سے پہلے اور کپڑے پہننے کے بعد کی دعائیں"
+                },
+                {
+                  "en": "Duas before eating and after sleeping",
+                  "ur": "کھانے سے پہلے اور سونے کے بعد کی دعائیں"
+                },
+                {
+                  "en": "Duas for entering bathroom and entering masjid",
+                  "ur": "بیت الخلاء میں داخل ہونے اور مسجد میں داخل ہونے کی دعائیں"
+                },
+                {
+                  "en": "Duas after salah and before travel",
+                  "ur": "نماز کے بعد اور سفر سے پہلے کی دعائیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Duas for entering bathroom and entering masjid",
+                "ur": "بیت الخلاء میں داخل ہونے اور مسجد میں داخل ہونے کی دعائیں"
+              }
+            },
+            {
+              "question": {
+                "en": "What insight does the bathroom dua give us about Islamic beliefs regarding evil?",
+                "ur": "بیت الخلاء کی دعا ہمیں برائی کے بارے میں اسلامی عقائد کے بارے میں کیا بصیرت دیتی ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Evil only exists in our imagination",
+                  "ur": "برائی صرف ہماری تخیل میں موجود ہے"
+                },
+                {
+                  "en": "Evil spaces attract evil beings",
+                  "ur": "برے مقامات برے مخلوقات کو متوجہ کرتے ہیں"
+                },
+                {
+                  "en": "Evil can be defeated through physical means only",
+                  "ur": "برائی صرف جسمانی ذرائع سے شکست دی جا سکتی ہے"
+                },
+                {
+                  "en": "Evil doesn't exist in the physical world",
+                  "ur": "برائی مادی دنیا میں موجود نہیں ہے"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Evil spaces attract evil beings",
+                "ur": "برے مقامات برے مخلوقات کو متوجہ کرتے ہیں"
+              }
+            },
+            {
+              "question": {
+                "en": "Which duas emphasize Allah's role as Al-Muhyi (The Giver of Life) and Al-Mumit (The Causer of Death)?",
+                "ur": "کون سی دعائیں اللہ کے المحیی (زندگی دینے والا) اور الممیت (موت دینے والا) کے کردار پر زور دیتی ہیں؟"
+              },
+              "options": [
+                {
+                  "en": "Duas for entering and leaving home",
+                  "ur": "گھر میں داخل ہونے اور گھر سے نکلنے کی دعائیں"
+                },
+                {
+                  "en": "Duas before and after wudu",
+                  "ur": "وضو سے پہلے اور بعد کی دعائیں"
+                },
+                {
+                  "en": "Duas related to sleep and the dua after salah",
+                  "ur": "نیند سے متعلق دعائیں اور نماز کے بعد کی دعا"
+                },
+                {
+                  "en": "Duas before and after eating",
+                  "ur": "کھانے سے پہلے اور بعد کی دعائیں"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Duas related to sleep and the dua after salah",
+                "ur": "نیند سے متعلق دعائیں اور نماز کے بعد کی دعا"
+              }
+            },
+            {
+              "question": {
+                "en": "Which dua expresses reciprocity (returning a favor to someone who has done something kind for you)?",
+                "ur": "کون سی دعا باہمی تعاون کا اظہار کرتی ہے (کسی ایسے شخص کے ساتھ احسان کرنا جس نے آپ کے ساتھ اچھا سلوک کیا ہو)؟"
+              },
+              "options": [
+                {
+                  "en": "Dua after completing salah",
+                  "ur": "نماز مکمل کرنے کے بعد کی دعا"
+                },
+                {
+                  "en": "Dua when given a drink",
+                  "ur": "پینے کی چیز ملنے پر کی دعا"
+                },
+                {
+                  "en": "Dua before entering bathroom",
+                  "ur": "بیت الخلاء میں داخل ہونے سے پہلے کی دعا"
+                },
+                {
+                  "en": "Dua when putting on clothes",
+                  "ur": "کپڑے پہنتے وقت کی دعا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Dua when given a drink",
+                "ur": "پینے کی چیز ملنے پر کی دعا"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    
+    
+    ]

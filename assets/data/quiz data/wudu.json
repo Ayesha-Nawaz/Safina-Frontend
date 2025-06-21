@@ -1,0 +1,284 @@
+[
+    {
+      "id": 5,
+      "name": {
+        "en": "Wudu",
+        "ur": "وضو"
+      },
+      "quizzes": [
+        {
+          "title": {
+            "en": "The Intention - Niyyah",
+            "ur": "نیت - وضو کا پہلا مرحلہ"
+          },
+          "syllabus": {
+            "en": ["Introduction to Niyyah", "Importance of Niyyah in Wudu"],
+            "ur": ["نیت کا تعارف", "وضو میں نیت کی اہمیت"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "What is the first step of Wudu?",
+                "ur": "وضو کا پہلا مرحلہ کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "Washing Hands",
+                  "ur": "ہاتھ دھونا"
+                },
+                {
+                  "en": "The Intention",
+                  "ur": "نیت"
+                },
+                {
+                  "en": "Rinsing the Mouth",
+                  "ur": "کلی کرنا"
+                },
+                {
+                  "en": "Washing the Face",
+                  "ur": "چہرہ دھونا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "The Intention",
+                "ur": "نیت"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the purpose of making Niyyah in Wudu?",
+                "ur": "وضو میں نیت کرنے کا مقصد کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "To cleanse the body",
+                  "ur": "جسم کو صاف کرنا"
+                },
+                {
+                  "en": "To seek Allah's pleasure",
+                  "ur": "اللہ کی رضا حاصل کرنا"
+                },
+                {
+                  "en": "To follow a tradition",
+                  "ur": "ایک روایت کو اپنانا"
+                },
+                {
+                  "en": "To prepare for Salah",
+                  "ur": "نماز کی تیاری کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "To seek Allah's pleasure",
+                "ur": "اللہ کی رضا حاصل کرنا"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Washing the Hands",
+            "ur": "ہاتھ دھونا"
+          },
+          "syllabus": {
+            "en": ["Introduction to Washing Hands", "Steps to Wash Hands in Wudu"],
+            "ur": ["ہاتھ دھونے کا تعارف", "وضو میں ہاتھ دھونے کے مراحل"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "How many times should you wash your hands in Wudu?",
+                "ur": "وضو میں ہاتھ کتنی بار دھونے چاہئیں؟"
+              },
+              "options": [
+                {
+                  "en": "Once",
+                  "ur": "ایک بار"
+                },
+                {
+                  "en": "Twice",
+                  "ur": "دو بار"
+                },
+                {
+                  "en": "Three times",
+                  "ur": "تین بار"
+                },
+                {
+                  "en": "Four times",
+                  "ur": "چار بار"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Three times",
+                "ur": "تین بار"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the purpose of washing hands in Wudu?",
+                "ur": "وضو میں ہاتھ دھونے کا مقصد کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "To remove dust and dirt",
+                  "ur": "گرد اور میل کو دور کرنا"
+                },
+                {
+                  "en": "To prepare for eating",
+                  "ur": "کھانے کی تیاری کرنا"
+                },
+                {
+                  "en": "To follow a cultural practice",
+                  "ur": "ایک ثقافتی عمل کو اپنانا"
+                },
+                {
+                  "en": "To cool down the body",
+                  "ur": "جسم کو ٹھنڈا کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "To remove dust and dirt",
+                "ur": "گرد اور میل کو دور کرنا"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Rinsing the Mouth",
+            "ur": "کلی کرنا"
+          },
+          "syllabus": {
+            "en": ["Introduction to Rinsing the Mouth", "Steps to Rinse the Mouth in Wudu"],
+            "ur": ["کلی کرنے کا تعارف", "وضو میں کلی کرنے کے مراحل"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "How many times should you rinse your mouth in Wudu?",
+                "ur": "وضو میں کلی کتنی بار کرنی چاہیے؟"
+              },
+              "options": [
+                {
+                  "en": "Once",
+                  "ur": "ایک بار"
+                },
+                {
+                  "en": "Twice",
+                  "ur": "دو بار"
+                },
+                {
+                  "en": "Three times",
+                  "ur": "تین بار"
+                },
+                {
+                  "en": "Four times",
+                  "ur": "چار بار"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Three times",
+                "ur": "تین بار"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the purpose of rinsing the mouth in Wudu?",
+                "ur": "وضو میں کلی کرنے کا مقصد کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "To refresh the mouth",
+                  "ur": "منہ کو تازہ کرنا"
+                },
+                {
+                  "en": "To remove bad breath",
+                  "ur": "بدبو کو دور کرنا"
+                },
+                {
+                  "en": "To prepare for speaking",
+                  "ur": "بولنے کی تیاری کرنا"
+                },
+                {
+                  "en": "To follow a cultural practice",
+                  "ur": "ایک ثقافتی عمل کو اپنانا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "To refresh the mouth",
+                "ur": "منہ کو تازہ کرنا"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Cleaning the Nose",
+            "ur": "ناک صاف کرنا"
+          },
+          "syllabus": {
+            "en": ["Introduction to Cleaning the Nose", "Steps to Clean the Nose in Wudu"],
+            "ur": ["ناک صاف کرنے کا تعارف", "وضو میں ناک صاف کرنے کے مراحل"]
+          },
+          "questions": [
+            {
+              "question": {
+                "en": "How many times should you clean your nose in Wudu?",
+                "ur": "وضو میں ناک کتنی بار صاف کرنی چاہیے؟"
+              },
+              "options": [
+                {
+                  "en": "Once",
+                  "ur": "ایک بار"
+                },
+                {
+                  "en": "Twice",
+                  "ur": "دو بار"
+                },
+                {
+                  "en": "Three times",
+                  "ur": "تین بار"
+                },
+                {
+                  "en": "Four times",
+                  "ur": "چار بار"
+                }
+              ],
+              "correctAnswer": {
+                "en": "Three times",
+                "ur": "تین بار"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the purpose of cleaning the nose in Wudu?",
+                "ur": "وضو میں ناک صاف کرنے کا مقصد کیا ہے؟"
+              },
+              "options": [
+                {
+                  "en": "To remove impurities",
+                  "ur": "ناک کی گندگی کو دور کرنا"
+                },
+                {
+                  "en": "To improve breathing",
+                  "ur": "سانس لینے کو بہتر کرنا"
+                },
+                {
+                  "en": "To follow a cultural practice",
+                  "ur": "ایک ثقافتی عمل کو اپنانا"
+                },
+                {
+                  "en": "To prepare for speaking",
+                  "ur": "بولنے کی تیاری کرنا"
+                }
+              ],
+              "correctAnswer": {
+                "en": "To remove impurities",
+                "ur": "ناک کی گندگی کو دور کرنا"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  
+  ]

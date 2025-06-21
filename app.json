@@ -1,27 +1,85 @@
 {
   "expo": {
-    "name": "Safina",
-    "slug": "Safina",
+    "name": "SafinaApp",
+    "slug": "safina",
+    "owner": "ayesha_nawaz",
+    "projectId": "c41a8215-6a4d-47cd-a395-6385351411a0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/images/appicon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/appstart.png",
+      "resizeMode": "cover"
+    },
+    "notification": {
+      "icon": "./assets/images/appicon.png",
+      "color": "#6A0DAD",
+      "androidMode": "default",
+      "androidCollapsedTitle": "Updates from Safina"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/images/appicon.png",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to find the Qibla direction.",
+        "NSCameraUsageDescription": "We need camera access for profile picture setup.",
+        "NSPhotoLibraryUsageDescription": "We need access to photos to upload images."
+      },
+      "config": {
+        "googleMapsApiKey": "YOUR_IOS_GOOGLE_MAPS_API_KEY"
+      }
     },
     "android": {
+      "package": "com.galaxies.firebase",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "POST_NOTIFICATIONS"
+      ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/appicon.png",
+        "backgroundColor": "#6A0DAD"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_ANDROID_GOOGLE_MAPS_API_KEY"
+        }
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/appicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-build-properties",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/appicon.png",
+          "color": "#6A0DAD"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c41a8215-6a4d-47cd-a395-6385351411a0"
+      }
     }
   }
 }

@@ -1,0 +1,22 @@
+export const fonts = {
+  "Amiri-Bold": require("@/assets/fonts/Amiri-Bold.ttf"),
+  "Amiri-BoldItalic": require("@/assets/fonts/Amiri-BoldItalic.ttf"),
+  "Amiri-Italic": require("@/assets/fonts/Amiri-Italic.ttf"),
+  "Amiri-Regular": require("@/assets/fonts/Amiri-Regular.ttf"),
+  "AmiriQuran": require("@/assets/fonts/AmiriQuran.ttf"),
+  "AmiriQuranColored": require("@/assets/fonts/AmiriQuranColored.ttf"),
+  "Poppins-Black": require("@/assets/fonts/Poppins-Black.ttf"),
+  "Poppins-Bold": require("@/assets/fonts/Poppins-Bold.ttf"),
+  "Poppins-ExtraBold": require("@/assets/fonts/Poppins-ExtraBold.ttf"),
+  "Poppins-ExtraLight": require("@/assets/fonts/Poppins-ExtraLight.ttf"),
+  "Poppins-Light": require("@/assets/fonts/Poppins-Light.ttf"),
+  "Poppins-Medium": require("@/assets/fonts/Poppins-Medium.ttf"),
+  "Poppins-Regular": require("@/assets/fonts/Poppins-Regular.ttf"),
+  "Poppins-SemiBold": require("@/assets/fonts/Poppins-SemiBold.ttf"),
+  "Poppins-Thin": require("@/assets/fonts/Poppins-Thin.ttf"),
+  "NotoNastaliqUrdu-Bold": require("@/assets/fonts/NotoNastaliqUrdu-Bold.ttf"),
+  "NotoNastaliqUrdu-Regular": require("@/assets/fonts/NotoNastaliqUrdu-Regular.ttf"),
+  "NotoNastaliqUrdu-Medium": require("@/assets/fonts/NotoNastaliqUrdu-Medium.ttf"),
+  "Airtravelers": require("@/assets/fonts/Airtravelers.otf"),
+
+};

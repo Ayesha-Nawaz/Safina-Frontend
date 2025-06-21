@@ -1,0 +1,886 @@
+[{
+    "id": 1,
+    "name": {
+      "en": "Six Kalmas",
+      "ur": "چھ کلمے"
+    },
+    "quizzes": [
+      {
+        "title": {
+          "en": "Quiz 1",
+          "ur": "کوئز 1"
+        },
+        "syllabus": {
+          "en": ["First Kalma - Tayyab", "Second Kalma - Shahadat"],
+          "ur": ["پہلا کلمہ - طیب", "دوسرا کلمہ - شہادت"]
+        },
+        "questions": [
+          {
+            "question": {
+              "en": "What is the First Kalma called?",
+              "ur": "پہلے کلمے کو کیا کہتے ہیں؟"
+            },
+            "options": [
+              {
+                "en": "Kalma Shahadat",
+                "ur": "کلمہ شہادت"
+              },
+              {
+                "en": "Kalma Tayyab",
+                "ur": "کلمہ طیب"
+              },
+              {
+                "en": "Kalma Tamjeed",
+                "ur": "کلمہ تمجید"
+              },
+              {
+                "en": "Kalma Tawheed",
+                "ur": "کلمہ توحید"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Kalma Tayyab",
+              "ur": "کلمہ طیب"
+            }
+          },
+          {
+            "question": {
+              "en": "How many times does the name 'Muhammad' appear in the First Kalma?",
+              "ur": "پہلے کلمے میں 'محمد' کا نام کتنی بار آتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Once",
+                "ur": "ایک بار"
+              },
+              {
+                "en": "Twice",
+                "ur": "دو بار"
+              },
+              {
+                "en": "Three times",
+                "ur": "تین بار"
+              },
+              {
+                "en": "Not at all",
+                "ur": "بالکل نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Once",
+              "ur": "ایک بار"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the meaning of the First Kalma in English?",
+              "ur": "پہلے کلمے کا انگریزی میں کیا مطلب ہے؟"
+            },
+            "options": [
+              {
+                "en": "I bear witness that there is no god but Allah",
+                "ur": "میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبود نہیں"
+              },
+              {
+                "en": "There is no god but Allah, and Muhammad is the Messenger of Allah",
+                "ur": "اللہ کے سوا کوئی معبود نہیں، اور محمد اللہ کے رسول ہیں"
+              },
+              {
+                "en": "Glory be to Allah, and all praise is due to Allah",
+                "ur": "اللہ کی پاکیزگی اور اللہ کا شکر"
+              },
+              {
+                "en": "I seek forgiveness from Allah, my Lord",
+                "ur": "میں اپنے رب، اللہ سے معافی مانگتا ہوں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "There is no god but Allah, and Muhammad is the Messenger of Allah",
+              "ur": "اللہ کے سوا کوئی معبود نہیں، اور محمد اللہ کے رسول ہیں"
+            }
+          },
+          {
+            "question": {
+              "en": "Which phrase in Arabic begins the Second Kalma?",
+              "ur": "دوسرے کلمے کا آغاز عربی میں کس جملے سے ہوتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Subhan Allah",
+                "ur": "سبحان اللہ"
+              },
+              {
+                "en": "Bismillah",
+                "ur": "بسم اللہ"
+              },
+              {
+                "en": "Ashhadu",
+                "ur": "اشھد"
+              },
+              {
+                "en": "La ilaha",
+                "ur": "لا الہ"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Ashhadu",
+              "ur": "اشھد"
+            }
+          },
+          {
+            "question": {
+              "en": "What does the Second Kalma (Shahadat) represent?",
+              "ur": "دوسرا کلمہ (شہادت) کیا ظاہر کرتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Praise of Allah",
+                "ur": "اللہ کی تعریف"
+              },
+              {
+                "en": "Declaration of Allah's unity",
+                "ur": "اللہ کی وحدانیت کا اعلان"
+              },
+              {
+                "en": "Bearing witness to faith",
+                "ur": "ایمان کی گواہی دینا"
+              },
+              {
+                "en": "Seeking forgiveness",
+                "ur": "معافی مانگنا"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Bearing witness to faith",
+              "ur": "ایمان کی گواہی دینا"
+            }
+          },
+          {
+            "question": {
+              "en": "How many times is 'Ashhadu' (I bear witness) mentioned in the Second Kalma?",
+              "ur": "دوسرے کلمے میں 'اشھد' (میں گواہی دیتا ہوں) کتنی بار آتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Once",
+                "ur": "ایک بار"
+              },
+              {
+                "en": "Twice",
+                "ur": "دو بار"
+              },
+              {
+                "en": "Three times",
+                "ur": "تین بار"
+              },
+              {
+                "en": "Four times",
+                "ur": "چار بار"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Twice",
+              "ur": "دو بار"
+            }
+          },
+          {
+            "question": {
+              "en": "Which of these accurately describes Muhammad (PBUH) in the Second Kalma?",
+              "ur": "دوسرے کلمے میں محمد ﷺ کو کیسے بیان کیا گیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "The Creator",
+                "ur": "خالق"
+              },
+              {
+                "en": "The Last Prophet",
+                "ur": "آخری نبی"
+              },
+              {
+                "en": "His servant and messenger",
+                "ur": "اس کے بندے اور رسول"
+              },
+              {
+                "en": "The Forgiver",
+                "ur": "معاف کرنے والے"
+              }
+            ],
+            "correctAnswer": {
+              "en": "His servant and messenger",
+              "ur": "اس کے بندے اور رسول"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the common theme between the First and Second Kalma?",
+              "ur": "پہلے اور دوسرے کلمے میں کون سا موضوع مشترک ہے؟"
+            },
+            "options": [
+              {
+                "en": "Both emphasize Allah's mercy",
+                "ur": "دونوں اللہ کی رحمت پر زور دیتے ہیں"
+              },
+              {
+                "en": "Both declare the oneness of Allah",
+                "ur": "دونوں اللہ کی وحدانیت کا اعلان کرتے ہیں"
+              },
+              {
+                "en": "Both seek forgiveness",
+                "ur": "دونوں معافی مانگتے ہیں"
+              },
+              {
+                "en": "Both glorify the Prophet (PBUH)",
+                "ur": "دونوں نبی ﷺ کی تعریف کرتے ہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Both declare the oneness of Allah",
+              "ur": "دونوں اللہ کی وحدانیت کا اعلان کرتے ہیں"
+            }
+          },
+          {
+            "question": {
+              "en": "Which Kalma is shorter in length: First or Second?",
+              "ur": "کون سا کلمہ چھوٹا ہے: پہلا یا دوسرا؟"
+            },
+            "options": [
+              {
+                "en": "First Kalma",
+                "ur": "پہلا کلمہ"
+              },
+              {
+                "en": "Second Kalma",
+                "ur": "دوسرا کلمہ"
+              },
+              {
+                "en": "Both are equal",
+                "ur": "دونوں برابر ہیں"
+              },
+              {
+                "en": "Cannot be determined",
+                "ur": "طے نہیں کیا جا سکتا"
+              }
+            ],
+            "correctAnswer": {
+              "en": "First Kalma",
+              "ur": "پہلا کلمہ"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the key difference between the First and Second Kalma?",
+              "ur": "پہلے اور دوسرے کلمے میں بنیادی فرق کیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "First Kalma is about faith, Second is about forgiveness",
+                "ur": "پہلا کلمہ ایمان کے بارے میں ہے، دوسرا معافی کے بارے میں"
+              },
+              {
+                "en": "First Kalma declares Tawheed, Second declares Shahadat",
+                "ur": "پہلا کلمہ توحید کا اعلان کرتا ہے، دوسرا شہادت کا"
+              },
+              {
+                "en": "First Kalma is in Arabic, Second is in Urdu",
+                "ur": "پہلا کلمہ عربی میں ہے، دوسرا اردو میں"
+              },
+              {
+                "en": "There is no difference",
+                "ur": "کوئی فرق نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "First Kalma declares Tawheed, Second declares Shahadat",
+              "ur": "پہلا کلمہ توحید کا اعلان کرتا ہے، دوسرا شہادت کا"
+            }
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Quiz 2",
+          "ur": "کوئز 2"
+        },
+        "syllabus": {
+          "en": ["Third Kalma - Tamjeed", "Fourth Kalma - Tawheed"],
+          "ur": ["تیسرا کلمہ - تمجید", "چوتھا کلمہ - توحید"]
+        },
+        "questions": [
+          {
+            "question": {
+              "en": "What is the meaning of 'Tamjeed' in the Third Kalma?",
+              "ur": "تیسرے کلمے میں 'تمجید' کا کیا مطلب ہے؟"
+            },
+            "options": [
+              {
+                "en": "Unity",
+                "ur": "وحدت"
+              },
+              {
+                "en": "Glorification",
+                "ur": "بزرگی بیان کرنا"
+              },
+              {
+                "en": "Forgiveness",
+                "ur": "معافی"
+              },
+              {
+                "en": "Testimony",
+                "ur": "گواہی"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Glorification",
+              "ur": "بزرگی بیان کرنا"
+            }
+          },
+          {
+            "question": {
+              "en": "Which of these phrases appears in the Third Kalma (Tamjeed)?",
+              "ur": "ان میں سے کون سا جملہ تیسرے کلمے (تمجید) میں آتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "I bear witness that Muhammad is His servant",
+                "ur": "میں گواہی دیتا ہوں کہ محمد اس کے بندے ہیں"
+              },
+              {
+                "en": "Glory be to Allah, and all praise is due to Allah",
+                "ur": "اللہ کی پاکیزگی اور اللہ کا شکر"
+              },
+              {
+                "en": "I seek forgiveness from Allah",
+                "ur": "میں اللہ سے معافی مانگتا ہوں"
+              },
+              {
+                "en": "There is no might except with Muhammad",
+                "ur": "محمد کے سوا کوئی طاقت نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Glory be to Allah, and all praise is due to Allah",
+              "ur": "اللہ کی پاکیزگی اور اللہ کا شکر"
+            }
+          },
+          {
+            "question": {
+              "en": "Which phrase concludes the Third Kalma (Tamjeed)?",
+              "ur": "تیسرا کلمہ (تمجید) کس جملے پر ختم ہوتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Muhammad is the Messenger of Allah",
+                "ur": "محمد اللہ کے رسول ہیں"
+              },
+              {
+                "en": "There is no god but Allah",
+                "ur": "اللہ کے سوا کوئی معبود نہیں"
+              },
+              {
+                "en": "There is no power or might except with Allah, the Most High, the Great",
+                "ur": "اللہ کی مدد کے بغیر نہ طاقت ہے نہ طاقتور ہونے کا کوئی راستہ"
+              },
+              {
+                "en": "In His hand is all good",
+                "ur": "اسی کے ہاتھ میں سب بھلائی ہے"
+              }
+            ],
+            "correctAnswer": {
+              "en": "There is no power or might except with Allah, the Most High, the Great",
+              "ur": "اللہ کی مدد کے بغیر نہ طاقت ہے نہ طاقتور ہونے کا کوئی راستہ"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the Fourth Kalma called?",
+              "ur": "چوتھا کلمہ کیا کہلاتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Tawheed",
+                "ur": "توحید"
+              },
+              {
+                "en": "Tamjeed",
+                "ur": "تمجید"
+              },
+              {
+                "en": "Astaghfar",
+                "ur": "استغفار"
+              },
+              {
+                "en": "Radde Kufr",
+                "ur": "رد کفر"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Tawheed",
+              "ur": "توحید"
+            }
+          },
+          {
+            "question": {
+              "en": "Which of these attributes of Allah is NOT mentioned in the Fourth Kalma (Tawheed)?",
+              "ur": "ان میں سے اللہ کی کون سی صفت چوتھے کلمے (توحید) میں ذکر نہیں کی گئی؟"
+            },
+            "options": [
+              {
+                "en": "He gives life and causes death",
+                "ur": "وہی زندگی دیتا ہے اور موت دیتا ہے"
+              },
+              {
+                "en": "He is Ever-Living",
+                "ur": "وہ ہمیشہ زندہ ہے"
+              },
+              {
+                "en": "He is the Most Forgiving",
+                "ur": "وہ بہت معاف کرنے والا ہے"
+              },
+              {
+                "en": "He is powerful over everything",
+                "ur": "وہ ہر چیز پر قادر ہے"
+              }
+            ],
+            "correctAnswer": {
+              "en": "He is the Most Forgiving",
+              "ur": "وہ بہت معاف کرنے والا ہے"
+            }
+          },
+          {
+            "question": {
+              "en": "What concept does the Fourth Kalma (Tawheed) emphasize?",
+              "ur": "چوتھا کلمہ (توحید) کس مفہوم پر زور دیتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "The oneness of Allah",
+                "ur": "اللہ کی واحدانیت"
+              },
+              {
+                "en": "Forgiveness of sins",
+                "ur": "گناہوں کی معافی"
+              },
+              {
+                "en": "Rejection of disbelief",
+                "ur": "کفر کا انکار"
+              },
+              {
+                "en": "Testimony of faith",
+                "ur": "ایمان کی گواہی"
+              }
+            ],
+            "correctAnswer": {
+              "en": "The oneness of Allah",
+              "ur": "اللہ کی واحدانیت"
+            }
+          },
+          {
+            "question": {
+              "en": "Which phrase in the Fourth Kalma (Tawheed) describes Allah's eternal nature?",
+              "ur": "چوتھے کلمے (توحید) میں کون سا جملہ اللہ کی ابدی فطرت کا بیان کرتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "He has no partner",
+                "ur": "اس کا کوئی شریک نہیں"
+              },
+              {
+                "en": "He is powerful over everything",
+                "ur": "وہ ہر چیز پر قادر ہے"
+              },
+              {
+                "en": "He will not die, ever",
+                "ur": "وہ کبھی نہیں مرے گا"
+              },
+              {
+                "en": "To Him belongs sovereignty",
+                "ur": "اسی کی بادشاہی ہے"
+              }
+            ],
+            "correctAnswer": {
+              "en": "He will not die, ever",
+              "ur": "وہ کبھی نہیں مرے گا"
+            }
+          },
+          {
+            "question": {
+              "en": "How do the Third and Fourth Kalmas differ in focus?",
+              "ur": "تیسرے اور چوتھے کلمے کا مرکز کس طرح مختلف ہے؟"
+            },
+            "options": [
+              {
+                "en": "Third is about praise, Fourth is about Allah's attributes",
+                "ur": "تیسرا تعریف کے بارے میں ہے، چوتھا اللہ کی صفات کے بارے میں"
+              },
+              {
+                "en": "Third is short, Fourth is long",
+                "ur": "تیسرا چھوٹا ہے، چوتھا لمبا"
+              },
+              {
+                "en": "Third is in Urdu, Fourth is in Arabic",
+                "ur": "تیسرا اردو میں ہے، چوتھا عربی میں"
+              },
+              {
+                "en": "There is no difference",
+                "ur": "کوئی فرق نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Third is about praise, Fourth is about Allah's attributes",
+              "ur": "تیسرا تعریف کے بارے میں ہے، چوتھا اللہ کی صفات کے بارے میں"
+            }
+          },
+          {
+            "question": {
+              "en": "Which Kalma mentions 'Possessor of Majesty and Honor'?",
+              "ur": "کون سا کلمہ 'ذوالجلال والاکرام' کا ذکر کرتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Third Kalma",
+                "ur": "تیسرا کلمہ"
+              },
+              {
+                "en": "Fourth Kalma",
+                "ur": "چوتھا کلمہ"
+              },
+              {
+                "en": "Both",
+                "ur": "دونوں"
+              },
+              {
+                "en": "Neither",
+                "ur": "کوئی نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Fourth Kalma",
+              "ur": "چوتھا کلمہ"
+            }
+          },
+          {
+            "question": {
+              "en": "What is a common theme in both the Third and Fourth Kalmas?",
+              "ur": "تیسرے اور چوتھے کلمے میں کون سا موضوع مشترک ہے؟"
+            },
+            "options": [
+              {
+                "en": "Both seek forgiveness",
+                "ur": "دونوں معافی مانگتے ہیں"
+              },
+              {
+                "en": "Both glorify Allah",
+                "ur": "دونوں اللہ کی تعریف کرتے ہیں"
+              },
+              {
+                "en": "Both mention the Prophet (PBUH)",
+                "ur": "دونوں نبی ﷺ کا ذکر کرتے ہیں"
+              },
+              {
+                "en": "Both are about the Day of Judgment",
+                "ur": "دونوں قیامت کے دن کے بارے میں ہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Both glorify Allah",
+              "ur": "دونوں اللہ کی تعریف کرتے ہیں"
+            }
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Quiz 3",
+          "ur": "کوئز 3"
+        },
+        "syllabus": {
+          "en": ["Fifth Kalma - Astaghfar", "Sixth Kalma - Radde Kufr"],
+          "ur": ["پانچواں کلمہ - استغفار", "چھٹا کلمہ - رد کفر"]
+        },
+        "questions": [
+          {
+            "question": {
+              "en": "What is the main theme of the Fifth Kalma?",
+              "ur": "پانچویں کلمے کا اصل موضوع کیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Declaration of faith",
+                "ur": "ایمان کا اعلان"
+              },
+              {
+                "en": "Glorification of Allah",
+                "ur": "اللہ کی تعظیم"
+              },
+              {
+                "en": "Seeking forgiveness",
+                "ur": "معافی مانگنا"
+              },
+              {
+                "en": "Rejecting disbelief",
+                "ur": "کفر کا انکار"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Seeking forgiveness",
+              "ur": "معافی مانگنا"
+            }
+          },
+          {
+            "question": {
+              "en": "In the Fifth Kalma, what types of sins are specifically mentioned?",
+              "ur": "پانچویں کلمے میں کس قسم کے گناہوں کا خاص طور پر ذکر کیا گیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Only major sins",
+                "ur": "صرف بڑے گناہ"
+              },
+              {
+                "en": "Only minor sins",
+                "ur": "صرف چھوٹے گناہ"
+              },
+              {
+                "en": "Sins done intentionally or mistakenly, secretly or openly",
+                "ur": "جان بوجھ کر یا غلطی سے، چھپ کر یا کھلے عام کیے گئے گناہ"
+              },
+              {
+                "en": "Only sins against other people",
+                "ur": "صرف دوسرے لوگوں کے خلاف گناہ"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Sins done intentionally or mistakenly, secretly or openly",
+              "ur": "جان بوجھ کر یا غلطی سے، چھپ کر یا کھلے عام کیے گئے گناہ"
+            }
+          },
+          {
+            "question": {
+              "en": "Which Divine attributes of Allah are mentioned in the Fifth Kalma?",
+              "ur": "پانچویں کلمے میں اللہ کی کون سی صفات کا ذکر ہے؟"
+            },
+            "options": [
+              {
+                "en": "The Creator, The Sustainer, The Provider",
+                "ur": "خالق، رازق، پالنے والا"
+              },
+              {
+                "en": "The Knower of the unseen, The Concealer of faults, The Forgiver of sins",
+                "ur": "پوشیدہ چیزوں کو جاننے والا، گناہوں کو چھپانے والا، معاف کرنے والا"
+              },
+              {
+                "en": "The Most Merciful, The Most Compassionate",
+                "ur": "نہایت مہربان، بے حد رحم کرنے والا"
+              },
+              {
+                "en": "The All-Hearing, The All-Seeing",
+                "ur": "سب کچھ سننے والا، سب کچھ دیکھنے والا"
+              }
+            ],
+            "correctAnswer": {
+              "en": "The Knower of the unseen, The Concealer of faults, The Forgiver of sins",
+              "ur": "پوشیدہ چیزوں کو جاننے والا، گناہوں کو چھپانے والا، معاف کرنے والا"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the meaning of 'Radde Kufr' in the Sixth Kalma?",
+              "ur": "چھٹے کلمے میں 'رد کفر' کا کیا مطلب ہے؟"
+            },
+            "options": [
+              {
+                "en": "Praising Allah",
+                "ur": "اللہ کی تعریف کرنا"
+              },
+              {
+                "en": "Rejecting disbelief",
+                "ur": "کفر کا انکار"
+              },
+              {
+                "en": "Seeking knowledge",
+                "ur": "علم طلب کرنا"
+              },
+              {
+                "en": "Declaring oneness",
+                "ur": "توحید کا اعلان"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Rejecting disbelief",
+              "ur": "کفر کا انکار"
+            }
+          },
+          {
+            "question": {
+              "en": "What does a Muslim seek refuge from in the beginning of the Sixth Kalma?",
+              "ur": "چھٹے کلمے کے شروع میں مسلمان کس چیز سے پناہ مانگتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "From evil whispers",
+                "ur": "برے وسوسوں سے"
+              },
+              {
+                "en": "From associating anything with Allah",
+                "ur": "اللہ کے ساتھ کسی کو شریک کرنے سے"
+              },
+              {
+                "en": "From natural disasters",
+                "ur": "قدرتی آفات سے"
+              },
+              {
+                "en": "From poverty",
+                "ur": "غربت سے"
+              }
+            ],
+            "correctAnswer": {
+              "en": "From associating anything with Allah",
+              "ur": "اللہ کے ساتھ کسی کو شریک کرنے سے"
+            }
+          },
+          {
+            "question": {
+              "en": "Which sins are specifically renounced in the Sixth Kalma?",
+              "ur": "چھٹے کلمے میں کن گناہوں سے خاص طور پر براءت کا اظہار کیا گیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Only major sins",
+                "ur": "صرف بڑے گناہ"
+              },
+              {
+                "en": "Disbelief, polytheism, lying, backbiting, innovation, slander, lewdness, and defamation",
+                "ur": "کفر، شرک، جھوٹ، غیبت، بدعت، بہتان، فحش باتیں، اور الزام تراشی"
+              },
+              {
+                "en": "Only sins related to prayer",
+                "ur": "صرف نماز سے متعلق گناہ"
+              },
+              {
+                "en": "Only sins mentioned in the Quran",
+                "ur": "صرف قرآن میں بیان کیے گئے گناہ"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Disbelief, polytheism, lying, backbiting, innovation, slander, lewdness, and defamation",
+              "ur": "کفر، شرک، جھوٹ، غیبت، بدعت، بہتان، فحش باتیں، اور الزام تراشی"
+            }
+          },
+          {
+            "question": {
+              "en": "How does the Sixth Kalma conclude?",
+              "ur": "چھٹا کلمہ کیسے ختم ہوتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "With a prayer for guidance",
+                "ur": "ہدایت کی دعا کے ساتھ"
+              },
+              {
+                "en": "With the declaration of faith (Shahada)",
+                "ur": "کلمہ شہادت کے ساتھ"
+              },
+              {
+                "en": "With seeking forgiveness",
+                "ur": "معافی مانگنے کے ساتھ"
+              },
+              {
+                "en": "With praising Allah",
+                "ur": "اللہ کی تعریف کے ساتھ"
+              }
+            ],
+            "correctAnswer": {
+              "en": "With the declaration of faith (Shahada)",
+              "ur": "کلمہ شہادت کے ساتھ"
+            }
+          },
+          {
+            "question": {
+              "en": "What is the key difference between the Fifth and Sixth Kalmas?",
+              "ur": "پانچویں اور چھٹے کلمے میں بنیادی فرق کیا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Fifth is about forgiveness, Sixth is about rejecting disbelief",
+                "ur": "پانچواں معافی کے بارے میں ہے، چھٹا کفر کے انکار کے بارے میں"
+              },
+              {
+                "en": "Fifth is longer, Sixth is shorter",
+                "ur": "پانچواں لمبا ہے، چھٹا چھوٹا"
+              },
+              {
+                "en": "Fifth is in Arabic, Sixth is in Urdu",
+                "ur": "پانچواں عربی میں ہے، چھٹا اردو میں"
+              },
+              {
+                "en": "There is no difference",
+                "ur": "کوئی فرق نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Fifth is about forgiveness, Sixth is about rejecting disbelief",
+              "ur": "پانچواں معافی کے بارے میں ہے، چھٹا کفر کے انکار کے بارے میں"
+            }
+          },
+          {
+            "question": {
+              "en": "Which Kalma explicitly mentions 'innovations in religion'?",
+              "ur": "کون سا کلمہ واضح طور پر 'دین میں بدعات' کا ذکر کرتا ہے؟"
+            },
+            "options": [
+              {
+                "en": "Fifth Kalma",
+                "ur": "پانچواں کلمہ"
+              },
+              {
+                "en": "Sixth Kalma",
+                "ur": "چھٹا کلمہ"
+              },
+              {
+                "en": "Both",
+                "ur": "دونوں"
+              },
+              {
+                "en": "Neither",
+                "ur": "کوئی نہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Sixth Kalma",
+              "ur": "چھٹا کلمہ"
+            }
+          },
+          {
+            "question": {
+              "en": "What is a common theme in both the Fifth and Sixth Kalmas?",
+              "ur": "پانچویں اور چھٹے کلمے میں کون سا موضوع مشترک ہے؟"
+            },
+            "options": [
+              {
+                "en": "Both mention the Prophet (PBUH)",
+                "ur": "دونوں نبی ﷺ کا ذکر کرتے ہیں"
+              },
+              {
+                "en": "Both are about repentance",
+                "ur": "دونوں توبہ کے بارے میں ہیں"
+              },
+              {
+                "en": "Both glorify Allah",
+                "ur": "دونوں اللہ کی تعریف کرتے ہیں"
+              },
+              {
+                "en": "Both are recited during prayer",
+                "ur": "دونوں نماز میں پڑھے جاتے ہیں"
+              }
+            ],
+            "correctAnswer": {
+              "en": "Both are about repentance",
+              "ur": "دونوں توبہ کے بارے میں ہیں"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  ]

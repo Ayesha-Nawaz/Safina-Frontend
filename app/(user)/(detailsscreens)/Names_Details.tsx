@@ -370,7 +370,7 @@ const NamesDetails = () => {
                   end={{ x: 1, y: 0 }}
                 >
                   <Text style={styles.languageButtonText}>
-                    {language === "en" ? "✨ اردو ✨" : "✨ English ✨"}
+                    {language === "en" ? "Urdu" : "English"}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -489,6 +489,7 @@ const NamesDetails = () => {
 };
 
 // Styles remain the same
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,
@@ -502,7 +503,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.7)",
   },
   loadingText: {
     marginTop: 10,
@@ -573,13 +573,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   numberText: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#FF6B6B",
     fontFamily: "Poppins-Bold",
   },
   audioButtonContainer: {
     alignItems: "center",
-    marginVertical: 5,
+    marginVertical: 2,
   },
   audioButton: {
     marginVertical: 2,
@@ -627,7 +627,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   arabicText: {
-    fontSize: 40,
+    fontSize: 35,
     color: "#FF6B6B",
     textAlign: "center",
     fontFamily: "AmiriQuranColored",
@@ -653,7 +653,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionTitle: {
-    fontSize: 22,
+    fontSize: 20,
     color: "#FF6B6B",
     textAlign: "center",
     fontFamily: "Poppins-Bold",
@@ -661,11 +661,11 @@ const styles = StyleSheet.create({
   },
   urduSectionTitle: {
     fontFamily: "NotoNastaliqUrdu-Bold",
-    fontSize: 26,
+    fontSize: 20,
     lineHeight: 40,
   },
   meaningText: {
-    fontSize: 17,
+    fontSize: 16,
     color: "#444",
     textAlign: "center",
     fontFamily: "Poppins-Regular",
@@ -682,7 +682,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
   urduText: {
-    fontSize: 22,
+    fontSize: 20,
     color: "#666",
     textAlign: "center",
     fontFamily: "NotoNastaliqUrdu-Regular",
@@ -691,13 +691,13 @@ const styles = StyleSheet.create({
   },
   urduMeaningText: {
     fontFamily: "NotoNastaliqUrdu-Regular",
-    fontSize: 19,
+    fontSize: 16,
     lineHeight: 40,
     textAlign: "center",
   },
   urduExplanationText: {
     fontFamily: "NotoNastaliqUrdu-Regular",
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 40,
     textAlign: "center",
   },

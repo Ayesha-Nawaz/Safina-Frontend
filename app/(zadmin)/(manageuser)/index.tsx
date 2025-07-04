@@ -132,23 +132,6 @@ export default function ManageUsers() {
             )}
           </View>
 
-          {/* Additional Stats Row */}
-          <View style={styles.statsContainer}>
-            
-            {renderStatCard(
-              'Growth Rate', 
-              `${dashboardStats.newUsersThisMonth > 0 ? '+' : ''}${dashboardStats.newUsersThisMonth}`, 
-              'trending-up',
-              '#8B5CF6'
-            )}
-            {renderStatCard(
-              'User Activity', 
-              `${Math.round((dashboardStats.activeUsers / dashboardStats.totalUsers) * 100) || 0}%`, 
-              'chart-line',
-              '#06B6D4'
-            )}
-          </View>
-
           {/* User List */}
           <View style={styles.tableContainer}>
             <View style={styles.tableHeader}>

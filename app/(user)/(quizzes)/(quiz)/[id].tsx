@@ -92,6 +92,9 @@ const QuizQuestionsScreen = ({ language }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
+  // Use a ref to track the current score for immediate access
+  const currentScoreRef = useRef(0);
+
   // Animation values
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -242,158 +245,175 @@ const QuizQuestionsScreen = ({ language }) => {
     }
   };
 
- const submitQuizScore = async () => {
-  if (submitting) return;
+  const submitQuizScore = async (finalScore = null) => {
+    if (submitting) return;
 
-  setSubmitting(true);
-  console.log("🔄 Starting quiz score submission...");
+    setSubmitting(true);
+    console.log("🔄 Starting quiz score submission...");
 
-  try {
-    // Validate user data
-    const userId = user?.user?._id || user?._id;
-    if (!userId) {
-      throw new Error("User ID is missing. Please log in again.");
-    }
+    // Use the passed finalScore or the current score from ref
+    const scoreToSubmit = finalScore !== null ? finalScore : currentScoreRef.current;
 
-    // Validate quiz data
-    if (!id || !quizData) {
-      throw new Error("Quiz data is missing");
-    }
-
-    console.log("📋 User ID:", userId);
-    console.log("📋 Quiz ID:", id);
-    console.log("📋 Selected Answers:", selectedAnswers);
-
-    // Prepare score data with validation
-    const scoreData = {
-      userId: userId.toString(),
-      scores: [
-        {
-          quizId: id.toString(),
-          category: quizData?.category || "General Knowledge",
-          selectedAnswers: selectedAnswers.map((ans) => ({
-            questionId: ans.questionId.toString(),
-            selectedOption: ans.selectedOption.toString(),
-            isCorrect: ans.isCorrect || false,
-          })),
-          score: score,
-          totalQuestions: 5,
-          date: new Date().toISOString(),
-        },
-      ],
-    };
-
-    console.log("📤 Submitting score data:", JSON.stringify(scoreData, null, 2));
-
-    // Submit to server
-    const response = await fetch(`${BASE_URL}/quiz/submitscore`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify(scoreData),
-    });
-
-    console.log("📡 Response status:", response.status);
-    console.log(
-      "📡 Response headers:",
-      Object.fromEntries(response.headers.entries())
-    );
-
-    // Get response text first
-    const responseText = await response.text();
-    console.log("📡 Raw response:", responseText);
-
-    // Check if response is HTML (error page)
-    if (
-      responseText.trim().startsWith("<!DOCTYPE html>") ||
-      responseText.includes("<html")
-    ) {
-      throw new Error(
-        `Server returned HTML error page. This usually means the API route is not properly configured. Response: ${responseText.substring(
-          0,
-          200
-        )}...`
-      );
-    }
-
-    // Check if response is JSON
-    let responseData;
     try {
-      responseData = JSON.parse(responseText);
-    } catch (parseError) {
-      throw new Error(
-        `Server returned invalid JSON: ${responseText.substring(0, 200)}...`
+      // Validate user data
+      const userId = user?.user?._id || user?._id;
+      if (!userId) {
+        throw new Error("User ID is missing. Please log in again.");
+      }
+
+      // Validate quiz data
+      if (!id || !quizData) {
+        throw new Error("Quiz data is missing");
+      }
+
+      // Validate score
+      if (scoreToSubmit < 0 || scoreToSubmit > 10) {
+        throw new Error("Invalid score detected");
+      }
+
+      console.log("📋 User ID:", userId);
+      console.log("📋 Quiz ID:", id);
+      console.log("📋 Selected Answers:", selectedAnswers);
+      console.log("📋 Score to submit:", scoreToSubmit);
+
+      // Prepare score data
+      const scoreData = {
+        userId: userId.toString(),
+        scores: [
+          {
+            quizId: id.toString(),
+            category: quizData?.category || "General Knowledge",
+            selectedAnswers: selectedAnswers.map((ans) => ({
+              questionId: ans.questionId.toString(),
+              selectedOption: ans.selectedOption.toString(),
+              isCorrect: ans.isCorrect || false,
+            })),
+            score: scoreToSubmit,
+            totalQuestions: 5,
+            date: new Date().toISOString(),
+          },
+        ],
+      };
+
+      console.log("📤 Submitting score data:", JSON.stringify(scoreData, null, 2));
+
+      // Submit to server
+      const response = await fetch(`${BASE_URL}/quiz/submitscore`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify(scoreData),
+      });
+
+      console.log("📡 Response status:", response.status);
+      console.log(
+        "📡 Response headers:",
+        Object.fromEntries(response.headers.entries())
       );
+
+      // Get response text first
+      const responseText = await response.text();
+      console.log("📡 Raw response:", responseText);
+
+      // Check if response is HTML (error page)
+      if (
+        responseText.trim().startsWith("<!DOCTYPE html>") ||
+        responseText.includes("<html")
+      ) {
+        throw new Error(
+          `Server returned HTML error page. This usually means the API route is not properly configured. Response: ${responseText.substring(
+            0,
+            200
+          )}...`
+        );
+      }
+
+      // Check if response is JSON
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (parseError) {
+        throw new Error(
+          `Server returned invalid JSON: ${responseText.substring(0, 200)}...`
+        );
+      }
+
+      // Check response status
+      if (!response.ok) {
+        console.error("❌ Server error response:", responseData);
+        throw new Error(
+          responseData.message ||
+            responseData.error ||
+            `HTTP error ${response.status}`
+        );
+      }
+
+      console.log("✅ Score submission successful:", responseData);
+
+      // Show success alert for score saved
+      const maxPossibleScore = 5 * 2;
+      const scorePercentage = (scoreToSubmit / maxPossibleScore) * 100;
+      setShowFeedback(true);
+      setFeedback({
+        title: "Score Saved Successfully! 🎉",
+        message: `Your score of ${scoreToSubmit} out of ${maxPossibleScore} points (${scorePercentage.toFixed(
+          1
+        )}%) has been saved to your profile.`,
+        type: "success",
+        confirmText: "Awesome!",
+      });
+    } catch (error) {
+      console.error("❌ Error submitting quiz score:", error);
+
+      // Show user-friendly error message using CustomAlert
+      let errorMessage = "Failed to save your score. ";
+
+      if (error.message.includes("HTML error page")) {
+        errorMessage += "The server is not properly configured. Please contact support.";
+      } else if (error.message.includes("User ID is missing")) {
+        errorMessage += "Please log in again and try again.";
+      } else if (error.message.includes("Network")) {
+        errorMessage += "Please check your internet connection and try again.";
+      } else {
+        errorMessage += error.message || "Please try again later.";
+      }
+
+      setShowFeedback(true);
+      setFeedback({
+        title: "Error Saving Score",
+        message: errorMessage,
+        type: "error",
+        confirmText: "OK",
+        showCancel: true,
+        cancelText: "Try Again",
+        onCancel: () => submitQuizScore(scoreToSubmit),
+      });
+    } finally {
+      setSubmitting(false);
     }
+  };
 
-    // Check response status
-    if (!response.ok) {
-      console.error("❌ Server error response:", responseData);
-      throw new Error(
-        responseData.message ||
-          responseData.error ||
-          `HTTP error ${response.status}`
-      );
-    }
-
-    console.log("✅ Score submission successful:", responseData);
-
-    // Show total score in alert instead of success message
-    const maxPossibleScore = 5 * 2;
-    const scorePercentage = (score / maxPossibleScore) * 100;
-    setShowFeedback(true);
-    setFeedback({
-      title: "Quiz Completed! 🎉",
-      message: `Your total score is ${score} out of ${maxPossibleScore} points (${scorePercentage.toFixed(
-        1
-      )}%)`,
-      type: "success",
-      confirmText: "Great!",
-    });
-  } catch (error) {
-    console.error("❌ Error submitting quiz score:", error);
-
-    // Show user-friendly error message using CustomAlert
-    let errorMessage = "Failed to save your score. ";
-
-    if (error.message.includes("HTML error page")) {
-      errorMessage += "The server is not properly configured. Please contact support.";
-    } else if (error.message.includes("User ID is missing")) {
-      errorMessage += "Please log in again and try again.";
-    } else if (error.message.includes("Network")) {
-      errorMessage += "Please check your internet connection and try again.";
-    } else {
-      errorMessage += error.message || "Please try again later.";
-    }
-
-    setShowFeedback(true);
-    setFeedback({
-      title: "Error Saving Score",
-      message: errorMessage,
-      type: "error",
-      confirmText: "OK",
-      showCancel: true,
-      cancelText: "Try Again",
-      onCancel: () => submitQuizScore(),
-    });
-  } finally {
-    setSubmitting(false);
-  }
-};
   const handleAnswerSelection = (option) => {
     const currentQuestion = quizData.questions[currentQuestionIndex];
     const isCorrect =
       option[language] === currentQuestion.correctAnswer[language];
 
+    // Calculate the new score immediately
+    let newScore = currentScoreRef.current;
     if (isCorrect) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      setScore((prev) => prev + 2);
+      newScore = currentScoreRef.current + 2;
     } else {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     }
 
+    // Update both the ref and state
+    currentScoreRef.current = newScore;
+    setScore(newScore);
+
+    // Update state
     setSelectedOption(option[language]);
     setIsAnswerCorrect(isCorrect);
 
@@ -433,16 +453,18 @@ const QuizQuestionsScreen = ({ language }) => {
       ]).start();
     }
 
-    // Show feedback using CustomAlert
+    // Show feedback using CustomAlert with the correct new score
     setShowFeedback(true);
     setFeedback({
       title: isCorrect ? "Correct!" : "Incorrect",
-      message: isCorrect ? "🌟 Wonderful! +2 points! 🌟" : "💪 Try again! 💪",
+      message: isCorrect
+        ? `🌟 Wonderful! +2 points! Your score: ${newScore}`
+        : `💪 Keep trying! The correct answer was: ${currentQuestion.correctAnswer[language]}`,
       type: isCorrect ? "success" : "warning",
-      confirmText: "OK",
+      confirmText: "Continue",
     });
 
-    // Auto-dismiss alert after 2 seconds and proceed
+    // Auto-dismiss alert after 3 seconds and proceed
     setTimeout(() => {
       setShowFeedback(false);
       Animated.timing(fadeAnim, {
@@ -460,16 +482,16 @@ const QuizQuestionsScreen = ({ language }) => {
               return prevIndex + 1;
             } else {
               setShowResult(true);
-              // Submit score after showing result
+              // Submit score after showing result with the final score
               setTimeout(() => {
-                submitQuizScore();
-              }, 1000);
+                submitQuizScore(currentScoreRef.current);
+              }, 1500);
               return prevIndex;
             }
           });
-        }, 1000);
+        }, 500);
       });
-    }, 2000);
+    }, 3000);
   };
 
   const handleQuit = () => {
@@ -684,7 +706,8 @@ const QuizQuestionsScreen = ({ language }) => {
 
   if (showResult) {
     const maxPossibleScore = 5 * 2;
-    const scorePercentage = (score / maxPossibleScore) * 100;
+    const finalScore = currentScoreRef.current; // Use ref for final score
+    const scorePercentage = (finalScore / maxPossibleScore) * 100;
     const isHighScore = scorePercentage >= 80;
     return (
       <ImageBackground
@@ -723,7 +746,7 @@ const QuizQuestionsScreen = ({ language }) => {
               {isHighScore ? "Outstanding Achievement!" : "Keep Learning!"}
             </Text>
             <Text style={styles.finalScore}>
-              Score: {score} out of {maxPossibleScore} points
+              Score: {finalScore} out of {maxPossibleScore} points
               {"\n"}({scorePercentage.toFixed(1)}%)
             </Text>
             <Text style={styles.encouragementText}>
@@ -732,7 +755,10 @@ const QuizQuestionsScreen = ({ language }) => {
                 : "You're making progress! Keep practicing to reach that trophy! 💪"}
             </Text>
             {submitting && (
-              <ActivityIndicator style={styles.submitSpinner} color="#614385" />
+              <View style={styles.submitContainer}>
+                <ActivityIndicator style={styles.submitSpinner} color="#614385" />
+                <Text style={styles.submitText}>Saving your score...</Text>
+              </View>
             )}
             <TouchableOpacity
               style={[
@@ -794,27 +820,6 @@ const QuizQuestionsScreen = ({ language }) => {
             <Text style={styles.questionText}>
               {currentQuestion.question[language]}
             </Text>
-
-            <Animated.View
-              style={{
-                backgroundColor: "#614385",
-                paddingHorizontal: 15,
-                paddingVertical: 8,
-                borderRadius: 20,
-                transform: [
-                  {
-                    scale: bounceAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [1, 1.1],
-                    }),
-                  },
-                ],
-              }}
-            >
-              <Text style={[styles.scoreText, { color: "#fff" }]}>
-                Score: {score}
-              </Text>
-            </Animated.View>
           </Animated.View>
 
           {currentQuestion.options.map((option, index) =>
@@ -846,7 +851,6 @@ const QuizQuestionsScreen = ({ language }) => {
     </ImageBackground>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

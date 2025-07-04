@@ -17,32 +17,43 @@ const HomeScreenComp = () => {
   const scaleValues = useRef(Array(7).fill(0).map(() => new Animated.Value(1))).current;
   const bounceValues = useRef(Array(7).fill(0).map(() => new Animated.Value(0))).current;
 
-  useEffect(() => {
-    // Create continuous bouncing animation
-    const startBounceAnimation = () => {
-      bounceValues.forEach((value, index) => {
-        Animated.loop(
-          Animated.sequence([
-            Animated.delay(index * 150),
-            Animated.spring(value, {
-              toValue: -10,
-              friction: 3,
-              tension: 40,
-              useNativeDriver: true,
-            }),
-            Animated.spring(value, {
-              toValue: 0,
-              friction: 3,
-              tension: 40,
-              useNativeDriver: true,
-            }),
-          ])
-        ).start();
-      });
-    };
+  const startBounceAnimation = () => {
+    bounceValues.forEach((value, index) => {
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(index * 150),
+          Animated.spring(value, {
+            toValue: -10,
+            friction: 3,
+            tension: 40,
+            useNativeDriver: true,
+          }),
+          Animated.spring(value, {
+            toValue: 0,
+            friction: 3,
+            tension: 40,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    });
+  };
 
+  useEffect(() => {
+    // Start animations when component mounts
     startBounceAnimation();
-  }, []);
+
+    // Listen for navigation focus event to restart animations
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Reset bounce values to initial state
+      bounceValues.forEach((value) => value.setValue(0));
+      // Restart animations
+      startBounceAnimation();
+    });
+
+    // Clean up the listener on unmount
+    return () => unsubscribe;
+  }, [navigation]);
 
   const handlePressIn = (index) => {
     Animated.spring(scaleValues[index], {
@@ -154,11 +165,6 @@ const HomeScreenComp = () => {
           image={require("@/assets/images/name-muhammad.jpg")}
           text="AsmaulNabi"
         />
-        {/* <MenuCard
-          index={6}
-          onPress={() => navigation.navigate("(icons)")}
-          text="ICONS"
-        />  */}
       </View>
     </ScrollView>
   );

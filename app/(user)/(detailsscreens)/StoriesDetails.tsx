@@ -53,10 +53,9 @@ const StoryDetail = () => {
 
   const bounceAnim = useRef(new Animated.Value(1)).current;
   const floatAnim = useRef(new Animated.Value(0)).current;
-  const sparkleAnim = useRef(new Animated.Value(0)).current;
-  const [showStars, setShowStars] = useState(false);
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current; // For language slider
 
   // State for CustomAlert
   const [alertProps, setAlertProps] = useState({
@@ -112,6 +111,15 @@ const StoryDetail = () => {
         useNativeDriver: true,
       }),
     ]).start();
+  };
+
+  // Animation for language slider
+  const startSlideAnimation = (toValue) => {
+    Animated.timing(slideAnim, {
+      toValue,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
   };
 
   // Fetch story data when component mounts
@@ -260,9 +268,8 @@ const StoryDetail = () => {
     }
   }, [isUrdu]);
 
-  // Enhanced bounce animation
+  // Bounce animation for image and message box
   const triggerBounce = () => {
-    setShowStars(true);
     Animated.sequence([
       Animated.spring(bounceAnim, {
         toValue: 1.4,
@@ -276,9 +283,7 @@ const StoryDetail = () => {
         tension: 40,
         useNativeDriver: true,
       }),
-    ]).start(() => {
-      setTimeout(() => setShowStars(false), 1000);
-    });
+    ]).start();
   };
 
   // Audio toggle function
@@ -331,173 +336,172 @@ const StoryDetail = () => {
   };
 
   const handleAddBookmark = async () => {
-  if (isBookmarked) {
-    showAlert({
-      title: "Bookmark Info",
-      message: "This story is already bookmarked",
-      type: "info",
-    });
-    return;
-  }
-
-  if (!user?.user?._id) {
-    showAlert({
-      title: "Login Required",
-      message: "Please log in to bookmark stories.",
-      type: "warning",
-    });
-    return;
-  }
-
-  if (!id) {
-    showAlert({
-      title: "Error",
-      message: "No story available to bookmark.",
-      type: "error",
-    });
-    return;
-  }
-
-  setBookmarkLoading(true);
-
-  try {
-    const token = await AsyncStorage.getItem("userToken");
-    if (!token) throw new Error("Authentication token not found");
-
-    console.log("Bookmark Request:", {
-      url: `${BASE_URL}/bookmarks/add`,
-      payload: {
-        userId: user.user._id,
-        contentId: id,
-        contentType: "Story",
-      },
-      token: token.substring(0, 10) + "...", // Log partial token for safety
-    });
-
-    const response = await axios.post(
-      `${BASE_URL}/bookmarks/add`,
-      {
-        userId: user.user._id,
-        contentId: id,
-        contentType: "Story",
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    console.log("Bookmark Response:", response.data);
-
-    setIsBookmarked(true);
-    startRotateAnimation();
-    showAlert({
-      title: "Success",
-      message: "Story bookmarked successfully",
-      type: "success",
-    });
-  } catch (error) {
-    console.error("Bookmark Error:", {
-      message: error.message,
-      isAxiosError: axios.isAxiosError(error),
-      response: error.response ? {
-        status: error.response.status,
-        data: error.response.data,
-        headers: error.response.headers,
-      } : null,
-      request: error.request ? "No response received" : null,
-    });
-
-    if (axios.isAxiosError(error) && error.response?.status === 409) {
-      setIsBookmarked(true);
+    if (isBookmarked) {
       showAlert({
         title: "Bookmark Info",
         message: "This story is already bookmarked",
         type: "info",
       });
-    } else {
-      showAlert({
-        title: "Bookmark Error",
-        message: error.response?.data?.message || "Failed to add bookmark. Please try again.",
-        type: "error",
-      });
+      return;
     }
-  } finally {
-    setBookmarkLoading(false);
-  }
-};
 
-  // Mark as read function
-  const markAsRead = async () => {
-  try {
     if (!user?.user?._id) {
       showAlert({
         title: "Login Required",
-        message: "User not logged in.",
+        message: "Please log in to bookmark stories.",
         type: "warning",
       });
       return;
     }
-    const token = await AsyncStorage.getItem("userToken");
-    if (!token) {
+
+    if (!id) {
       showAlert({
-        title: "Authentication Error",
-        message: "Authentication token not found.",
+        title: "Error",
+        message: "No story available to bookmark.",
         type: "error",
       });
       return;
     }
 
-    const storyResponse = await axios.post(
-      `${BASE_URL}/progress/storyprogress`,
-      {
-        userId: user.user._id,
-        storyId: id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    setBookmarkLoading(true);
 
-    if (storyResponse.data.message === "Story already marked as read") {
-      setIsRead(true); // Ensure state is updated
-      showAlert({
-        title: "Already Read",
-        message: "This story has already been marked as read.",
-        type: "info",
+    try {
+      const token = await AsyncStorage.getItem("userToken");
+      if (!token) throw new Error("Authentication token not found");
+
+      console.log("Bookmark Request:", {
+        url: `${BASE_URL}/bookmarks/add`,
+        payload: {
+          userId: user.user._id,
+          contentId: id,
+          contentType: "Story",
+        },
+        token: token.substring(0, 10) + "...",
       });
-    } else {
-      setIsRead(true);
+
+      const response = await axios.post(
+        `${BASE_URL}/bookmarks/add`,
+        {
+          userId: user.user._id,
+          contentId: id,
+          contentType: "Story",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Bookmark Response:", response.data);
+
+      setIsBookmarked(true);
+      startRotateAnimation();
       showAlert({
         title: "Success",
-        message: "Story marked as read successfully.",
+        message: "Story bookmarked successfully",
         type: "success",
       });
-    }
-  } catch (error) {
-    console.error("Error marking story as read: ", {
-      errorResponse: error.response?.data,
-      errorMessage: error.message,
-    });
+    } catch (error) {
+      console.error("Bookmark Error:", {
+        message: error.message,
+        isAxiosError: axios.isAxiosError(error),
+        response: error.response ? {
+          status: error.response.status,
+          data: error.response.data,
+          headers: error.response.headers,
+        } : null,
+        request: error.request ? "No response received" : null,
+      });
 
-    showAlert({
-      title: error.response?.data?.message === "Story already marked as read" ? "Already Read" : "Error",
-      message:
-        error.response?.data?.message === "Story already marked as read"
-          ? "This story has already been marked as read."
-          : error.response?.data?.message || "An error occurred while marking the story as read.",
-      type: error.response?.data?.message === "Story already marked as read" ? "info" : "error",
-    });
-
-    if (error.response?.data?.message === "Story already marked as read") {
-      setIsRead(true); // Update state for already read case
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        setIsBookmarked(true);
+        showAlert({
+          title: "Bookmark Info",
+          message: "This story is already bookmarked",
+          type: "info",
+        });
+      } else {
+        showAlert({
+          title: "Bookmark Error",
+          message: error.response?.data?.message || "Failed to add bookmark. Please try again.",
+          type: "error",
+        });
+      }
+    } finally {
+      setBookmarkLoading(false);
     }
-  }
-};
-  // Spin interpolation for bookmark animation
+  };
+
+  const markAsRead = async () => {
+    try {
+      if (!user?.user?._id) {
+        showAlert({
+          title: "Login Required",
+          message: "User not logged in.",
+          type: "warning",
+        });
+        return;
+      }
+      const token = await AsyncStorage.getItem("userToken");
+      if (!token) {
+        showAlert({
+          title: "Authentication Error",
+          message: "Authentication token not found.",
+          type: "error",
+        });
+        return;
+      }
+
+      const storyResponse = await axios.post(
+        `${BASE_URL}/progress/storyprogress`,
+        {
+          userId: user.user._id,
+          storyId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (storyResponse.data.message === "Story already marked as read") {
+        setIsRead(true);
+        showAlert({
+          title: "Already Read",
+          message: "This story has already been marked as read.",
+          type: "info",
+        });
+      } else {
+        setIsRead(true);
+        showAlert({
+          title: "Success",
+          message: "Story marked as read successfully.",
+          type: "success",
+        });
+      }
+    } catch (error) {
+      console.error("Error marking story as read: ", {
+        errorResponse: error.response?.data,
+        errorMessage: error.message,
+      });
+
+      showAlert({
+        title: error.response?.data?.message === "Story already marked as read" ? "Already Read" : "Error",
+        message:
+          error.response?.data?.message === "Story already marked as read"
+            ? "This story has already been marked as read."
+            : error.response?.data?.message || "An error occurred while marking the story as read.",
+        type: error.response?.data?.message === "Story already marked as read" ? "info" : "error",
+      });
+
+      if (error.response?.data?.message === "Story already marked as read") {
+        setIsRead(true);
+      }
+    }
+  };
+
   const spin = rotateAnim.interpolate({
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
@@ -512,61 +516,83 @@ const StoryDetail = () => {
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
-        {/* Language Selector */}
+        {/* Language Slider */}
         <View style={styles.languageSelector}>
-          {["English", "Urdu"].map((lang, index) => (
-            <TouchableOpacity
-              key={lang}
+          <View style={styles.sliderTrack}>
+            <Animated.View
               style={[
-                styles.languageButton,
-                (lang === "English" ? !isUrdu : isUrdu) &&
-                  styles.selectedButton,
+                styles.sliderThumb,
                 {
                   transform: [
                     {
-                      scale: (lang === "English" ? !isUrdu : isUrdu) ? 1.05 : 1,
+                      translateX: slideAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 140],
+                      }),
                     },
                   ],
                 },
               ]}
-              onPress={() => {
-                if ((lang === "Urdu") !== isUrdu) {
-                  if (sound) {
-                    sound
-                      .stopAsync()
-                      .then(() => sound.unloadAsync())
-                      .catch((err) =>
-                        console.log("Error stopping audio:", err)
-                      );
+            />
+            <View style={styles.sliderOptions}>
+              <TouchableOpacity
+                style={styles.sliderOption}
+                onPress={() => {
+                  if (isUrdu) {
+                    if (sound) {
+                      sound
+                        .stopAsync()
+                        .then(() => sound.unloadAsync())
+                        .catch((err) => console.log("Error stopping audio:", err));
+                    }
+                    setIsUrdu(false);
+                    setSound(null);
+                    setIsPlaying(false);
+                    startSlideAnimation(0);
+                    triggerBounce();
                   }
-                  setIsUrdu(lang === "Urdu");
-                  setSound(null);
-                  setIsPlaying(false);
-                  triggerBounce();
-                }
-              }}
-            >
-              <Text
-                style={[
-                  styles.languageText,
-                  (lang === "English" ? !isUrdu : isUrdu) &&
-                    styles.selectedText,
-                ]}
+                }}
               >
-                {lang === "English" ? " English" : " اردو"}
-              </Text>
-              {showStars && (lang === "English" ? !isUrdu : isUrdu) && (
-                <View style={styles.starBurst}>
-                  {[...Array(5)].map((_, i) => (
-                    <Text key={i} style={styles.starEmoji}>
-                      ✨
-                    </Text>
-                  ))}
-                </View>
-              )}
-            </TouchableOpacity>
-          ))}
+                <Text
+                  style={[
+                    styles.languageText,
+                    !isUrdu && styles.selectedText,
+                  ]}
+                >
+                  English
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sliderOption}
+                onPress={() => {
+                  if (!isUrdu) {
+                    if (sound) {
+                      sound
+                        .stopAsync()
+                        .then(() => sound.unloadAsync())
+                        .catch((err) => console.log("Error stopping audio:", err));
+                    }
+                    setIsUrdu(true);
+                    setSound(null);
+                    setIsPlaying(false);
+                    startSlideAnimation(1);
+                    triggerBounce();
+                  }
+                }}
+              >
+                <Text
+                  style={[
+                    styles.languageText,
+                    isUrdu && styles.selectedText,
+                  ]}
+                >
+                  Urdu
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
+
         {/* Image Container with Bookmark Button */}
         <Animated.View
           style={[
@@ -619,23 +645,15 @@ const StoryDetail = () => {
               )}
             </Animated.View>
           </TouchableOpacity>
-          <Animated.Text
+
+          <Text
             style={[
               styles.title,
-              {
-                transform: [
-                  {
-                    scale: sparkleAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [1, 1.1],
-                    }),
-                  },
-                ],
-              },
+              isUrdu && styles.urduFont,
             ]}
           >
             {isUrdu ? storyData?.titleUrdu : storyData?.title}
-          </Animated.Text>
+          </Text>
 
           {/* Play Audio Button */}
           {storyData?.audio && (
@@ -671,23 +689,14 @@ const StoryDetail = () => {
           </View>
 
           {/* Message Section */}
-          <Animated.Text
+          <Text
             style={[
               styles.messageHeading,
-              {
-                transform: [
-                  {
-                    scale: sparkleAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [1, 1.1],
-                    }),
-                  },
-                ],
-              },
+              isUrdu && styles.urduFont,
             ]}
           >
-            {isUrdu ? "✨ کہانی سے سبق ✨" : "✨ Lesson from Story ✨"}
-          </Animated.Text>
+            {isUrdu ? "کہانی سے سبق" : "Lesson from Story"}
+          </Text>
 
           {storyData?.message && (
             <Animated.View
@@ -706,12 +715,13 @@ const StoryDetail = () => {
                 },
               ]}
             >
-              <Text style={styles.message}>
+              <Text style={[styles.message, isUrdu && styles.messageUrdu]}>
                 {isUrdu ? storyData?.messageUrdu : storyData?.message}
               </Text>
             </Animated.View>
           )}
         </View>
+
         {/* Mark as Read button */}
         <TouchableOpacity
           style={[
@@ -749,7 +759,6 @@ const StoryDetail = () => {
   );
 };
 
-// Styles remain the same
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
@@ -785,57 +794,60 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.border,
   },
   languageSelector: {
-    flexDirection: "row",
     backgroundColor: COLORS.card,
     borderRadius: 30,
-    padding: 15,
+    padding: 5,
     marginVertical: 20,
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 12,
+    width: 300,
   },
-  languageButton: {
-    paddingVertical: 5,
-    paddingHorizontal: 15,
+  sliderTrack: {
+    flexDirection: "row",
     backgroundColor: COLORS.background,
-    borderRadius: 30,
-    marginHorizontal: 8,
-    minWidth: 140,
-    alignItems: "center",
-    borderWidth: 3,
-    borderColor: COLORS.border,
-    borderStyle: "dotted",
+    borderRadius: 25,
+    overflow: "hidden",
+    position: "relative",
   },
-  selectedButton: {
+  sliderThumb: {
+    position: "absolute",
+    width: 140,
+    height: "100%",
     backgroundColor: COLORS.primary,
-    borderStyle: "solid",
+    borderRadius: 25,
+    borderWidth: 2,
     borderColor: COLORS.secondary,
-    shadowColor: COLORS.shadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+  },
+  sliderOptions: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  sliderOption: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   languageText: {
     fontSize: 18,
+    fontFamily: "Poppins-Medium",
     color: COLORS.primary,
-    fontFamily: "Poppins-SemiBold",
   },
   selectedText: {
     color: COLORS.card,
+    fontFamily: "Poppins-SemiBold",
   },
-  starBurst: {
-    position: "absolute",
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "100%",
-    top: -25,
-  },
-  starEmoji: {
+  urduFont: {
+    fontFamily: "NotoNastaliqUrdu-Bold",
     fontSize: 20,
-    marginHorizontal: 2,
+  },
+  messageUrdu: {
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    fontSize: 15,
+    textAlign: "center",
   },
   imageContainer: {
     backgroundColor: COLORS.card,
@@ -885,7 +897,7 @@ const styles = StyleSheet.create({
   },
   audioButton: {
     borderRadius: 25,
-    marginVertical: 20,
+    marginVertical: 1,
     alignItems: "center",
   },
   audioIconContainer: {
@@ -913,7 +925,7 @@ const styles = StyleSheet.create({
   urduContent: {
     fontFamily: "NotoNastaliqUrdu-Regular",
     lineHeight: 42,
-    fontSize: 17,
+    fontSize: 16,
   },
   rainbowDivider: {
     flexDirection: "column",
@@ -950,10 +962,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   message: {
-    fontSize: 18,
-    fontFamily: "Poppins-SemiBold",
+    fontSize: 17,
+    fontFamily: "Poppins-Medium",
     color: COLORS.primary,
-    textAlign: "center",
+    textAlign: "justify",
   },
   markAsReadButton: {
     backgroundColor: COLORS.secondary,

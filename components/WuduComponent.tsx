@@ -227,7 +227,7 @@ const WuzuComponent = () => {
     setIsEnglish(!isEnglish);
   };
 
-  const backgroundImage = require("@/assets/images/wudu.jpg");
+  const backgroundImage = require("@/assets/images/wudu.png");
 
   if (loading) {
     return (

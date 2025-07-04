@@ -569,7 +569,7 @@ const KalmaDetail: React.FC = () => {
                     { transform: [{ scale: scaleAnim }] },
                   ]}
                 >
-                  {lang === "urdu" ? "اردو" : "English"}
+                  {lang === "urdu" ? "Urdu" : "English"}
                 </Animated.Text>
               </TouchableOpacity>
             ))}
@@ -741,11 +741,11 @@ const styles = StyleSheet.create({
   languageText: {
     fontSize: 16,
     color: "#666",
-    fontFamily: "Poppins-SemiBold",
+    fontFamily: "Poppins-Medium",
   },
   activeLanguageText: {
     color: "#FFF",
-    fontWeight: "bold",
+    fontFamily: "Poppins-SemiBold",
   },
   contentContainer: {
     width: "100%",
@@ -770,11 +770,11 @@ const styles = StyleSheet.create({
     borderColor: "#FFB7B2",
   },
   arabicText: {
-    fontSize: 28,
+    fontSize: 26,
     fontFamily: "AmiriQuranColored",
     color: "#4CAF50",
     marginBottom: 15,
-    textAlign: "justify",
+    textAlign: "center",
     lineHeight: 55,
     textShadowColor: "rgba(76, 175, 80, 0.2)",
     textShadowOffset: { width: 1, height: 1 },
@@ -813,28 +813,28 @@ const styles = StyleSheet.create({
     borderColor: "#FFB7B2",
   },
   urduTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: "NotoNastaliqUrdu-Bold",
     color: "#FF7043",
-    marginBottom: 10,
+    marginBottom: 1,
     textAlign: "center",
     textShadowColor: "rgba(255, 112, 67, 0.2)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
   },
   urduContent: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#FF8A65",
     textAlign: "center",
     fontFamily: "NotoNastaliqUrdu-Regular",
     lineHeight: 38,
   },
   englishTitle: {
-    fontSize: 22,
-    fontFamily: "Poppins-Bold",
+    fontSize: 21,
+    fontFamily: "Poppins-SemiBold",
     color: "#FF7043",
     marginBottom: 10,
-    textAlign: "center",
+    textAlign: "justify",
     textShadowColor: "rgba(255, 112, 67, 0.2)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
@@ -842,9 +842,9 @@ const styles = StyleSheet.create({
   englishContent: {
     fontSize: 17,
     color: "#FF8A65",
-    textAlign: "center",
+    textAlign: "justify",
     fontFamily: "Poppins-Regular",
-    lineHeight: 26,
+    lineHeight: 27,
   },
   audioButton: {
     marginTop: 10,

@@ -6,12 +6,12 @@ import {
   Text,
   View,
   RefreshControl,
-  TouchableOpacity, // Add TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { useNavigation } from "@react-navigation/native";
 
 import Loader from "@/components/Loader";
 import { UserContext } from "@/context/UserContext";
@@ -24,7 +24,7 @@ const Quiz_Progress = () => {
   const [totalAttempted, setTotalAttempted] = useState(0);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const navigation = useNavigation(); // Initialize navigation hook
+  const navigation = useNavigation();
 
   const fetchQuizProgress = async () => {
     try {
@@ -80,12 +80,39 @@ const Quiz_Progress = () => {
     setRefreshing(false);
   };
 
-  // Handle navigation to ScoreScreen
+  // Calculate quiz completion percentage
+  const calculateQuizPercentage = (attemptedQuizzes, totalQuizzes) => {
+    if (!totalQuizzes || totalQuizzes === 0) return 0;
+    return Math.round((attemptedQuizzes / totalQuizzes) * 100);
+  };
+
+  // Handle navigation to ScoreScreen with proper error handling
   const handleCategoryPress = (category) => {
-    navigation.navigate("QuizScoreProgress", {
-      category,
-      userId: user?.user?._id || null,
-    });
+    try {
+      const userId = user?.user?._id || null;
+      
+      console.log("Quiz_Progress - Navigating with params:", {
+        category,
+        userId
+      });
+
+      if (!category) {
+        console.error("Quiz_Progress - No category provided for navigation");
+        return;
+      }
+
+      // Ensure we're passing the exact category value
+      const navigationParams = {
+        category: category,
+        userId: userId,
+      };
+
+      console.log("Quiz_Progress - Final navigation params:", navigationParams);
+
+      navigation.navigate("QuizScoreProgress", navigationParams);
+    } catch (error) {
+      console.error("Quiz_Progress - Navigation error:", error);
+    }
   };
 
   return (
@@ -118,29 +145,43 @@ const Quiz_Progress = () => {
             {quizProgress.length === 0 ? (
               <Text style={styles.noDataText}>No quiz progress found.</Text>
             ) : (
-              quizProgress.map((item, index) => (
-                <View
-                  key={index}
-                  style={styles.categoryBox}
-                  onPress={() => handleCategoryPress(item.category)} // Add onPress handler
-                >
-                  <Text style={styles.categoryName}>{item.category}</Text>
-                  <Text style={styles.progressText}>
-                    {item.attemptedQuizzes} / {item.totalQuizzes} Quizzes Attempted
-                  </Text>
-                  <View style={styles.progressBarBackground}>
-                    <View
-                      style={[
-                        styles.progressBarFill,
-                        { width: `${item.questionCompletionPercentage || 0}%` },
-                      ]}
-                    />
-                  </View>
-                  <Text style={styles.percentageText}>
-                    {item.questionCompletionPercentage || 0}% Questions Completed
-                  </Text>
-                </View>
-              ))
+              quizProgress.map((item, index) => {
+                const quizCompletionPercentage = calculateQuizPercentage(
+                  item.attemptedQuizzes || 0,
+                  item.totalQuizzes || 0
+                );
+                
+                return (
+                  <TouchableOpacity
+                    key={`${item.category || 'category'}-${index}`}
+                    style={styles.categoryBox}
+                    onPress={() => {
+                      console.log("Quiz_Progress - TouchableOpacity pressed with category:", item.category);
+                      handleCategoryPress(item.category);
+                    }}
+                    disabled={!item.category} // Disable if no category
+                  >
+                    <View style={styles.categoryHeader}>
+                      <Text style={styles.categoryName}>{item.category || "Unknown Category"}</Text>
+                     
+                    </View>
+                    <Text style={styles.progressText}>
+                      {item.attemptedQuizzes || 0} / {item.totalQuizzes || 0} Quizzes Attempted
+                    </Text>
+                    <View style={styles.progressBarBackground}>
+                      <View
+                        style={[
+                          styles.progressBarFill,
+                          { width: `${Math.min(quizCompletionPercentage, 100)}%` },
+                        ]}
+                      />
+                    </View>
+                    <Text style={styles.percentageText}>
+                      {quizCompletionPercentage}% Quizzes Completed
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })
             )}
           </View>
         )}
@@ -196,10 +237,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     elevation: 2,
   },
+  categoryHeader: {
+    marginBottom: 8,
+  },
   categoryName: {
     fontSize: 18,
     fontFamily: "Poppins-Bold",
-    marginBottom: 8,
     color: "#68007e",
   },
   progressText: {
@@ -230,6 +273,12 @@ const styles = StyleSheet.create({
     color: "#666",
     marginTop: 20,
     fontFamily: "Poppins-Regular",
+  },
+  debugText: {
+    fontSize: 10,
+    color: "#999",
+    fontFamily: "Poppins-Regular",
+    marginTop: 2,
   },
 });
 

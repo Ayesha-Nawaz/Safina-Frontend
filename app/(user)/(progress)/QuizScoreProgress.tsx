@@ -1,137 +1,209 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  Animated,
-  ActivityIndicator,
-  SafeAreaView,
+  RefreshControl,
 } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-import Loader from "@/components/Loader";
-import CustomAlert from "@/components/CustomAlert";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
+import Loader from "@/components/Loader";
 
-const QuizScoreProgress = () => {
-  const route = useRoute();
+const QuizScoreProgress = ({ route: routeProp }) => {
+  const routeHook = useRoute();
   const navigation = useNavigation();
-  const { category, userId, quizId } = route.params; // Added quizId
-  const [quizScore, setQuizScore] = useState(null);
+  
+  const route = routeProp || routeHook;
+  console.log("QuizScoreProgress - routeProp:", routeProp);
+  console.log("QuizScoreProgress - routeHook:", routeHook);
+  console.log("QuizScoreProgress - Final route object:", route);
+  console.log("QuizScoreProgress - Route params:", route?.params);
+  
+  const category = route?.params?.category;
+  const userId = route?.params?.userId;
+  
+  console.log("QuizScoreProgress - Extracted category:", category);
+  console.log("QuizScoreProgress - Extracted userId:", userId);
+  
+  const [scores, setScores] = useState([]);
+  const [totalQuizzesTaken, setTotalQuizzesTaken] = useState(0);
+  const [averageScore, setAverageScore] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [feedback, setFeedback] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
-  // Animation values
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const scaleAnim = useRef(new Animated.Value(0.8)).current;
-
-  useEffect(() => {
-    fetchQuizScore();
-  }, [category, userId, quizId]);
-
-  useEffect(() => {
-    if (!loading) {
-      animateEntrance();
-    }
-  }, [loading]);
-
-  const animateEntrance = () => {
-    Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        friction: 8,
-        tension: 40,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
-
-  const fetchQuizScore = async () => {
+  const fetchQuizScores = async () => {
     try {
       setLoading(true);
-      if (!userId || !category || !quizId) {
-        setFeedback({
-          title: "Error",
-          message: "User ID, category, or quiz ID missing. Please try again.",
-          type: "error",
-          confirmText: "OK",
-          onConfirm: () => navigation.goBack(),
-        });
-        setShowFeedback(true);
+      
+      console.log("fetchQuizScores - Starting with category:", category);
+      
+      if (!category) {
+        console.error("fetchQuizScores - No category provided, category value:", category);
+        setLoading(false);
+        return;
+      }
+      
+      let id = userId;
+      if (!id) {
+        id = await AsyncStorage.getItem("userId");
+        console.log("fetchQuizScores - Got userId from AsyncStorage:", id);
+      }
+      
+      if (!id) {
+        console.error("fetchQuizScores - No user ID found");
+        setLoading(false);
         return;
       }
 
-      const token = await AsyncStorage.getItem("userToken");
-      if (!token) {
-        setFeedback({
-          title: "Error",
-          message: "Authentication token not found. Please log in again.",
-          type: "error",
-          confirmText: "OK",
-          onConfirm: () => navigation.goBack(),
+      // Fetch quiz scores
+      console.log("fetchQuizScores - Making API call with userId:", id);
+      const scoreResponse = await axios.get(`${BASE_URL}/quiz/scores/${id}`);
+      const scoreData = scoreResponse.data;
+
+      console.log("Quiz Scores Data:", JSON.stringify(scoreData, null, 2));
+      console.log("Filtering for category:", category);
+
+      // Filter scores by the selected category
+      let filteredScores = scoreData.scores?.filter(
+        (score) => score.category === category
+      ) || [];
+
+      // Fetch all quizzes to map quizId to title
+      const quizResponse = await axios.get(`${BASE_URL}/quiz/quizzes`);
+      const quizzes = quizResponse.data;
+
+      console.log("Quiz Data:", JSON.stringify(quizzes, null, 2));
+
+      // Create a map of quizId to normalized quiz title
+      const quizTitleMap = {};
+      let quizIndex = 1; // Fallback index for titles without a number
+      quizzes.forEach((quizDoc) => {
+        quizDoc.quizzes.forEach((subQuiz) => {
+          const title = subQuiz.title?.en || subQuiz.title?.ur || "";
+          // Extract number from title (e.g., "Part 1", "Quiz 1", "Syllabus 3")
+          const match = title.match(/(\d+)/); // Match any number in the title
+          const quizNumber = match ? parseInt(match[0], 10) : quizIndex++;
+          quizTitleMap[subQuiz._id.toString()] = `Quiz ${quizNumber}`;
         });
-        setShowFeedback(true);
-        return;
-      }
-
-      const response = await axios.get(
-        `${BASE_URL}/quiz/scores/${userId}/${quizId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      const data = response.data;
-      setQuizScore(data);
-    } catch (error) {
-      console.error("Error fetching quiz score:", error);
-      setFeedback({
-        title: "Error",
-        message:
-          error.response?.data?.message || "Failed to load quiz score.",
-        type: "error",
-        confirmText: "OK",
-        showCancel: true,
-        cancelText: "Retry",
-        onCancel: () => fetchQuizScore(),
       });
-      setShowFeedback(true);
+
+      // Enrich scores with normalized quiz titles
+      filteredScores = filteredScores.map((score) => ({
+        ...score,
+        quizTitle: quizTitleMap[score.quizId.toString()] || `Quiz ${score.quizId}`,
+        quizNumber: parseInt(quizTitleMap[score.quizId.toString()]?.match(/(\d+)/)?.[1] || Infinity),
+      }));
+
+      // Sort by quizNumber
+      filteredScores.sort((a, b) => a.quizNumber - b.quizNumber);
+
+      console.log("Filtered and sorted scores:", filteredScores);
+
+      setScores(filteredScores);
+      
+      // Calculate statistics
+      const categoryQuizCount = filteredScores.length;
+      const categoryAverageScore = categoryQuizCount > 0 
+        ? Math.round(filteredScores.reduce((sum, score) => sum + (score.percentage || 0), 0) / categoryQuizCount)
+        : 0;
+
+      setTotalQuizzesTaken(categoryQuizCount);
+      setAverageScore(categoryAverageScore);
+
+      console.log("Category stats:", {
+        totalQuizzesTaken: categoryQuizCount,
+        averageScore: categoryAverageScore
+      });
+
+    } catch (error) {
+      console.error("Error fetching quiz scores:", error);
+      if (error.response) {
+        console.log("Response status:", error.response.status);
+        console.log("Response data:", error.response.data);
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleRetry = () => {
-    if (quizId) {
-      navigation.navigate("Quiz", { id: quizId });
-    } else {
-      navigation.navigate("QuizProgress");
-      setFeedback({
-        title: "No Quiz Available",
-        message: "No quiz ID provided. Returning to progress screen.",
-        type: "info",
-        confirmText: "OK",
-        onConfirm: () => setShowFeedback(false),
+  useEffect(() => {
+    console.log("useEffect triggered with category:", category, "userId:", userId);
+    fetchQuizScores();
+  }, [category, userId]);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchQuizScores();
+    setRefreshing(false);
+  };
+
+  const formatDate = (dateString) => {
+    try {
+      if (!dateString) return "No Date";
+      
+      // Handle different date formats
+      let date;
+      
+      // Try parsing as ISO string first
+      if (typeof dateString === 'string') {
+        // Handle ISO format (2024-01-15T10:30:00Z)
+        if (dateString.includes('T') || dateString.includes('Z')) {
+          date = new Date(dateString);
+        }
+        // Handle DD/MM/YYYY format
+        else if (dateString.includes('/')) {
+          const parts = dateString.split('/');
+          if (parts.length === 3) {
+            // Assuming DD/MM/YYYY format
+            date = new Date(parts[2], parts[1] - 1, parts[0]);
+          }
+        }
+        // Handle DD-MM-YYYY format
+        else if (dateString.includes('-') && dateString.split('-').length === 3) {
+          const parts = dateString.split('-');
+          // Check if it's DD-MM-YYYY or YYYY-MM-DD
+          if (parts[0].length === 4) {
+            // YYYY-MM-DD format
+            date = new Date(dateString);
+          } else {
+            // DD-MM-YYYY format
+            date = new Date(parts[2], parts[1] - 1, parts[0]);
+          }
+        }
+        // Try direct parsing as fallback
+        else {
+          date = new Date(dateString);
+        }
+      } else {
+        date = new Date(dateString);
+      }
+      
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        console.log("Invalid date string:", dateString);
+        return "Invalid Date";
+      }
+      
+      // Format the date
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
       });
-      setShowFeedback(true);
+    } catch (error) {
+      console.error("Error formatting date:", error, "Input:", dateString);
+      return "Invalid Date";
     }
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  const getQuizTitle = (score) => {
+    return score.quizTitle || `Quiz ${score.quizId}`;
+  };
 
   return (
     <ImageBackground
@@ -139,100 +211,85 @@ const QuizScoreProgress = () => {
       style={styles.background}
       imageStyle={styles.backgroundImage}
     >
-      <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <LinearGradient
-            colors={["rgba(104, 0, 126, 0.8)", "rgba(104, 0, 126, 0.4)"]}
-            style={styles.headerGradient}
-          >
-            <Text style={styles.pageTitle}>{category} Quiz Score</Text>
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={() => navigation.goBack()}
-            >
-              <Text style={styles.backButtonText}>Back to Progress</Text>
-            </TouchableOpacity>
-          </LinearGradient>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <LinearGradient
+          colors={["rgba(104, 0, 126, 0.8)", "rgba(104, 0, 126, 0.4)"]}
+          style={styles.headerGradient}
+        >
+          <Text style={styles.pageTitle}>{category || "Quiz"} Scores</Text>
+          <Text style={styles.overallProgress}>
+            Total Quizzes Taken: {totalQuizzesTaken}
+          </Text>
+          <Text style={styles.overallProgress}>
+            Average Score: {averageScore}%
+          </Text>
+        </LinearGradient>
 
-          <Animated.View
-            style={{
-              opacity: fadeAnim,
-              transform: [{ scale: scaleAnim }],
-            }}
-          >
-            <View style={styles.scoresContainer}>
-              {quizScore ? (
-                <View style={styles.quizBox}>
-                  <Text style={styles.quizName}>
-                    Quiz (Taken on{" "}
-                    {new Date(quizScore.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                    )
+        {loading ? (
+          <Loader />
+        ) : (
+          <View style={styles.scoresContainer}>
+            {!category ? (
+              <View style={styles.noDataContainer}>
+                <Text style={styles.noDataText}>
+                  No category selected.
+                </Text>
+                <Text style={styles.noDataSubText}>
+                  Please navigate from the Quiz Progress screen.
+                </Text>
+                <Text style={styles.debugText}>
+                  Debug: Category = {JSON.stringify(category)}
+                </Text>
+                <Text style={styles.debugText}>
+                  Debug: Route prop = {JSON.stringify(routeProp)}
+                </Text>
+                <Text style={styles.debugText}>
+                  Debug: Route hook = {JSON.stringify(routeHook?.params)}
+                </Text>
+                <Text style={styles.debugText}>
+                  Debug: Final route params = {JSON.stringify(route?.params)}
+                </Text>
+              </View>
+            ) : scores.length === 0 ? (
+              <View style={styles.noDataContainer}>
+                <Text style={styles.noDataText}>
+                  No scores found for {category}.
+                </Text>
+              </View>
+            ) : (
+              scores.map((score, index) => (
+                <View key={`${score.quizId || index}-${index}`} style={styles.scoreBox}>
+                  <Text style={styles.scoreTitle}>{getQuizTitle(score)}</Text>
+                  <Text style={styles.scoreText}>
+                    Score: {score.score || 0} / {(score.totalQuestions || 0) * 2}
                   </Text>
                   <Text style={styles.scoreText}>
-                    Score: {quizScore.percentage}% ({quizScore.score}/
-                    {quizScore.totalQuestions * 2})
+                    Percentage: {score.percentage || 0}%
+                  </Text>
+                  
+                  <Text style={styles.scoreText}>
+                    Questions Answered: {score.totalQuestions || 0}
                   </Text>
                   <View style={styles.progressBarBackground}>
                     <View
-                      style={[
-                        styles.progressBarFill,
-                        { width: `${quizScore.percentage}%` },
-                      ]}
+                      style={{
+                        ...styles.progressBarFill,
+                        width: `${Math.min(score.percentage || 0, 100)}%`,
+                      }}
                     />
                   </View>
                 </View>
-              ) : (
-                <View style={styles.emptyState}>
-                  <MaterialCommunityIcons
-                    name="alert-circle"
-                    size={40}
-                    color="#7b4e91"
-                  />
-                  <Text style={styles.noDataText}>
-                    No score found for this quiz in {category}.
-                  </Text>
-                  <Text style={styles.emptyStateSubtext}>
-                    Take the quiz to track your score here!
-                  </Text>
-                </View>
-              )}
-            </View>
-
-            <TouchableOpacity
-              style={styles.retryButton}
-              onPress={handleRetry}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.retryButtonText}>
-                {quizScore ? "Retry Quiz" : "Select a Quiz"}
-              </Text>
-              <MaterialCommunityIcons
-                name="refresh"
-                size={20}
-                color="#fff"
-                style={styles.buttonIcon}
-              />
-            </TouchableOpacity>
-          </Animated.View>
-
-          <CustomAlert
-            visible={showFeedback}
-            title={feedback?.title || ""}
-            message={feedback?.message || ""}
-            type={feedback?.type || "info"}
-            confirmText={feedback?.confirmText || "OK"}
-            showCancel={feedback?.showCancel || false}
-            cancelText={feedback?.cancelText || "Cancel"}
-            onConfirm={feedback?.onConfirm}
-            onCancel={feedback?.onCancel}
-            onClose={() => setShowFeedback(false)}
-          />
-        </ScrollView>
-      </SafeAreaView>
+              ))
+            )}
+          </View>
+        )}
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -248,8 +305,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    padding: 20,
-    paddingBottom: 40,
+    paddingBottom: 30,
   },
   headerGradient: {
     paddingVertical: 20,
@@ -268,36 +324,24 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 4,
   },
-  backButton: {
-    marginTop: 10,
-    alignSelf: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: "#6a1b9a",
-    borderRadius: 20,
-  },
-  backButtonText: {
-    fontSize: 14,
+  overallProgress: {
+    fontSize: 16,
     fontFamily: "Poppins-SemiBold",
-    color: "#fff",
+    color: "#ffe6ff",
+    textAlign: "center",
+    marginTop: 5,
   },
   scoresContainer: {
     paddingHorizontal: 16,
   },
-  quizBox: {
+  scoreBox: {
     backgroundColor: "rgba(255,255,255,0.9)",
     padding: 16,
     borderRadius: 16,
     marginBottom: 15,
-    borderLeftWidth: 4,
-    borderLeftColor: "#614385",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    elevation: 2,
   },
-  quizName: {
+  scoreTitle: {
     fontSize: 18,
     fontFamily: "Poppins-Bold",
     marginBottom: 8,
@@ -314,57 +358,37 @@ const styles = StyleSheet.create({
     backgroundColor: "#e0e0e0",
     borderRadius: 5,
     overflow: "hidden",
+    marginTop: 5,
   },
   progressBarFill: {
     height: 10,
     backgroundColor: "#6a1b9a",
   },
+  noDataContainer: {
+    alignItems: "center",
+    paddingVertical: 20,
+  },
   noDataText: {
-    fontSize: 16,
-    fontFamily: "Poppins-SemiBold",
-    color: "#68007e",
-    marginTop: 8,
     textAlign: "center",
-  },
-  emptyState: {
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "rgba(255,255,255,0.9)",
-    borderRadius: 16,
-    marginBottom: 20,
-  },
-  emptyStateSubtext: {
-    fontSize: 14,
+    fontSize: 16,
+    color: "#666",
+    marginTop: 20,
     fontFamily: "Poppins-Regular",
-    color: "#7b4e91",
-    marginTop: 4,
+  },
+  noDataSubText: {
     textAlign: "center",
+    fontSize: 14,
+    color: "#888",
+    marginTop: 10,
+    fontFamily: "Poppins-Regular",
+    fontStyle: "italic",
   },
-  retryButton: {
-    backgroundColor: "#614385",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center",
-    width: "100%",
-    maxWidth: 300,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  retryButtonText: {
-    fontSize: 16,
-    fontFamily: "Poppins-SemiBold",
-    color: "#fff",
-    marginRight: 8,
-  },
-  buttonIcon: {
-    marginLeft: 4,
+  debugText: {
+    textAlign: "center",
+    fontSize: 12,
+    color: "#999",
+    marginTop: 5,
+    fontFamily: "Poppins-Regular",
   },
 });
 

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SafinaApp",
-    "slug": "safina",
+    "slug": "safinaapp",
     "owner": "ayesha_nawaz",
     "projectId": "c41a8215-6a4d-47cd-a395-6385351411a0",
     "version": "1.0.0",
@@ -9,6 +9,7 @@
     "icon": "./assets/images/appicon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/images/appstart.png",
       "resizeMode": "cover"
@@ -21,24 +22,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "icon": "./assets/images/appicon.png",
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "We need your location to find the Qibla direction.",
-        "NSCameraUsageDescription": "We need camera access for profile picture setup.",
-        "NSPhotoLibraryUsageDescription": "We need access to photos to upload images."
-      },
-      "config": {
-        "googleMapsApiKey": "YOUR_IOS_GOOGLE_MAPS_API_KEY"
-      }
+      "icon": "./assets/images/appicon.png"
     },
     "android": {
-      "package": "com.galaxies.firebase",
+      "package": "com.safina.app",
+      "compileSdkVersion": 34,
+      "targetSdkVersion": 34,
+      "buildToolsVersion": "34.0.0",
       "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION",
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
         "POST_NOTIFICATIONS"
@@ -46,11 +37,6 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/appicon.png",
         "backgroundColor": "#6A0DAD"
-      },
-      "config": {
-        "googleMaps": {
-          "apiKey": "YOUR_ANDROID_GOOGLE_MAPS_API_KEY"
-        }
       }
     },
     "web": {
@@ -61,7 +47,17 @@
     "plugins": [
       "expo-router",
       "expo-font",
-      "expo-build-properties",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0",
+            "minSdkVersion": 23
+          }
+        }
+      ],
       [
         "expo-notifications",
         {

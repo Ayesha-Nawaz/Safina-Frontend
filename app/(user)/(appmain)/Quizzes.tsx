@@ -272,7 +272,6 @@ const Quizzes = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -306,15 +305,14 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     color: "white",
     textAlign: "center",
-    textShadowColor: "#551184", // Shadow color
-    textShadowOffset: { width: 2, height: 2 }, // Horizontal and vertical shadow offset
-    textShadowRadius: 3, // How blurry the shadow is
-  },  
+    textShadowColor: "#551184",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 3,
+  },
   urduHeading: {
-    fontFamily: "NotoNastaliqUrdu-Bold", // Urdu bold font
+    fontFamily: "NotoNastaliqUrdu-Bold",
     fontSize: 22,
   },
-  
   listContainer: {
     paddingBottom: 20,
   },
@@ -354,7 +352,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 3,
   },
   urduTitle: {
-    fontFamily: "NotoNastaliqUrdu-Regular", // Urdu medium font
+    fontFamily: "NotoNastaliqUrdu-Regular",
     fontSize: 16,
     lineHeight: 30,
   },
@@ -372,12 +370,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   startButtonText: {
-    color: "white", // Ensuring button text is white
+    color: "white",
     fontSize: 13,
     fontFamily: "Poppins-SemiBold",
   },
   urduButtonText: {
-    fontFamily: "NotoNastaliqUrdu-Medium", // Urdu medium font for button
+    fontFamily: "NotoNastaliqUrdu-Medium",
     fontSize: 12,
   },
   arrowIcon: {
@@ -407,7 +405,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   urduLanguageButtonText: {
-    fontFamily: "NotoNastaliqUrdu-Medium", // Urdu semi-bold font
+    fontFamily: "NotoNastaliqUrdu-Medium",
     fontSize: 14,
   },
   translateIcon: {

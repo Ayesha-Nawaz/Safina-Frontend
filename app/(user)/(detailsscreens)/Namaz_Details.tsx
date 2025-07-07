@@ -18,57 +18,63 @@ import {
   ImageBackground,
   ScrollView,
   BackHandler,
+  Platform,
 } from "react-native";
 import { Audio } from "expo-av";
 import axios from "axios";
-import { BASE_URL } from "@/Ipconfig/ipconfig";
-import { UserContext } from "@/context/UserContext";
+import { BASE_URL } from "@/Ipconfig/ipconfig"; // Ensure this path is correct
+import { UserContext } from "@/context/UserContext"; // Ensure this path is correct
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   Ionicons,
   MaterialCommunityIcons,
+  FontAwesome5,
 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSpring,
-  withSequence,
-  withDelay,
-  Easing,
   FadeIn,
-  SlideInRight,
-  SlideInLeft,
+  ZoomIn,
+  BounceInRight,
+  BounceInLeft,
 } from "react-native-reanimated";
-import CustomAlert from "@/components/CustomAlert";
+import * as Haptics from "expo-haptics";
+import { BlurView } from "expo-blur";
+import CustomAlert from "@/components/CustomAlert"; // Ensure this path is correct
 
 const { width, height } = Dimensions.get("window");
 
-const colorThemes = [
-  {
-    primary: "#4A90E2",
-    secondary: "#F7B731",
-    accent: "#FF6F61",
-    text: "#333333",
-    background: ["#E6F0FA", "#F0F8FF"],
-  },
-  {
-    primary: "#50C878",
-    secondary: "#FF9F43",
-    accent: "#FF6F61",
-    text: "#333333",
-    background: ["#E6FFE6", "#F0FFF0"],
-  },
-  {
-    primary: "#FF6F61",
-    secondary: "#4A90E2",
-    accent: "#50C878",
-    text: "#333333",
-    background: ["#FFE6E6", "#FFF0F0"],
-  },
+// Kid-friendly, vibrant gradient palette - Updated for more aesthetic appeal
+const gradientPalettes = [
+  ["#FFE5F1", "#FF9EC7"], // Soft Rose to Pink Blossom
+  ["#E8F4FD", "#7DD3FC"], // Light Sky to Bright Sky Blue
+  ["#F0FDF4", "#86EFAC"], // Mint Cream to Light Green
+  ["#FEF3C7", "#FDE047"], // Cream to Sunny Yellow
+  ["#F3E8FF", "#C084FC"], // Lavender Mist to Soft Purple
+  ["#FFF1F2", "#FDA4AF"], // Rose Tint to Coral Pink
+  ["#F0F9FF", "#7DD3FC"], // Ice Blue to Sky Blue
+  ["#F7FEE7", "#BEF264"], // Light Mint to Fresh Lime
+  ["#FEF7FF", "#E879F9"], // Fairy Pink to Bright Magenta
+  ["#FFFBEB", "#FBBF24"], // Cream to Warm Amber
+  ["#F0FDFA", "#67E8F9"], // Aqua Mist to Cyan
+  ["#EFF6FF", "#93C5FD"], // Powder Blue to Periwinkle
 ];
+
+// Accent colors for UI elements
+const accentColors = {
+  primary: "#FF4C8B", // Bright Pink
+  secondary: "#FFD700", // Golden Yellow
+  text: "#2D3047", // Deep Blue
+  light: "#FFFFFF",
+  lightText: "#8C9BBD",
+  success: "#00D68F", // Bright Green
+  highlight: "#FF9F43", // Tangerine
+  arabicText: "#4CAF50", // Green color for Arabic text
+};
+
+const getRandomGradient = () => {
+  return gradientPalettes[Math.floor(Math.random() * gradientPalettes.length)];
+};
 
 const NamazDetailScreen = () => {
   const router = useRouter();
@@ -84,17 +90,10 @@ const NamazDetailScreen = () => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState(colorThemes[0]);
-
-  // Animation values
-  const arabicTextScale = useSharedValue(1);
-  const arabicOpacity = useSharedValue(0);
-  const cardScale = useSharedValue(0.9);
-  const cardOpacity = useSharedValue(0);
-  const buttonScale = useSharedValue(1);
-  const titleScale = useSharedValue(1);
-  const starRotation = useSharedValue(0);
-  const starScale = useSharedValue(1);
+  const [currentGradient, setCurrentGradient] = useState(getRandomGradient());
+  const [navigationDirection, setNavigationDirection] = useState<
+    "next" | "prev" | null
+  >(null);
 
   const [alert, setAlert] = useState({
     visible: false,
@@ -106,62 +105,34 @@ const NamazDetailScreen = () => {
     onCancel: () => {},
   });
 
-  // Animated styles
-  const arabicTextStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: arabicTextScale.value }],
-    opacity: arabicOpacity.value,
-  }));
-
-  const cardStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: cardScale.value }],
-    opacity: cardOpacity.value,
-  }));
-
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: buttonScale.value }],
-  }));
-
-  const titleAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: titleScale.value }],
-  }));
-
-  const starStyle = useAnimatedStyle(() => ({
-    transform: [
-      { rotate: `${starRotation.value}deg` },
-      { scale: starScale.value },
-    ],
-  }));
-
+  // Fetch data
   useEffect(() => {
-    // Initial animations
-    cardScale.value = withTiming(1, {
-      duration: 600,
-      easing: Easing.out(Easing.ease),
-    });
-    cardOpacity.value = withTiming(1, { duration: 600 });
-    arabicOpacity.value = withDelay(300, withTiming(1, { duration: 600 }));
-    titleScale.value = withSequence(
-      withTiming(1.1, { duration: 400 }),
-      withSpring(1, { damping: 12, stiffness: 120 })
-    );
-
-    // Fetch data
     const fetchData = async () => {
       try {
+        const token = await AsyncStorage.getItem("userToken");
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
         const [namazResponse, progressResponse] = await Promise.all([
-          axios.get(`${BASE_URL}/namaz/namaz`),
+          axios.get(`${BASE_URL}/namaz/namaz`, { headers }).catch((error) => {
+            throw new Error(
+              `Namaz API error: ${error.response?.status || error.message}`
+            );
+          }),
           user?.user?._id
-            ? axios.get(`${BASE_URL}/progress/namazprogress/${user.user._id}`, {
-                headers: {
-                  Authorization: `Bearer ${await AsyncStorage.getItem(
-                    "userToken"
-                  )}`,
-                },
-              })
+            ? axios
+                .get(`${BASE_URL}/progress/namazprogress/${user.user._id}`, {
+                  headers,
+                })
+                .catch((error) => {
+                  throw new Error(
+                    `Progress API error: ${
+                      error.response?.status || error.message
+                    }`
+                  );
+                })
             : Promise.resolve({ data: null }),
         ]);
 
-        // Filter and sort duas by id in ascending order
         setDuas(
           namazResponse.data
             .filter(
@@ -178,11 +149,12 @@ const NamazDetailScreen = () => {
           setLearnedItems(learnedMap);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error.message);
         setAlert({
           visible: true,
-          title: "Error",
-          message: "Failed to load data",
+          title: "Connection Error",
+          message:
+            "Unable to fetch data. Please check your internet connection or try again later.",
           type: "error",
           showCancel: false,
           onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
@@ -201,15 +173,10 @@ const NamazDetailScreen = () => {
     };
   }, [category, user]);
 
+  // Update gradient on index change
   useEffect(() => {
-    setCurrentTheme(colorThemes[currentIndex % colorThemes.length]);
-
-    if (currentIndex > 0) {
-      arabicTextScale.value = withSequence(
-        withTiming(0.9, { duration: 100 }),
-        withSpring(1, { damping: 14, stiffness: 120 })
-      );
-    }
+    setCurrentGradient(getRandomGradient());
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   }, [currentIndex]);
 
   const markAsLearned = async (namazId: string, dua: string) => {
@@ -228,20 +195,6 @@ const NamazDetailScreen = () => {
 
       const token = await AsyncStorage.getItem("userToken");
       if (!token) throw new Error("Authentication token not found");
-
-      buttonScale.value = withSequence(
-        withTiming(0.8, { duration: 100 }),
-        withSpring(1.2, { damping: 8, stiffness: 200 }),
-        withSpring(1)
-      );
-      starRotation.value = withSequence(
-        withTiming(0, { duration: 0 }),
-        withTiming(360, { duration: 800 })
-      );
-      starScale.value = withSequence(
-        withTiming(1.3, { duration: 150 }),
-        withSpring(1, { damping: 12, stiffness: 120 })
-      );
 
       const response = await axios.post(
         `${BASE_URL}/progress/namazprogress`,
@@ -265,6 +218,7 @@ const NamazDetailScreen = () => {
         });
       } else {
         setLearnedItems((prev) => ({ ...prev, [namazId]: true }));
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       }
     } catch (error) {
       console.error("Error marking as learned:", error);
@@ -312,6 +266,7 @@ const NamazDetailScreen = () => {
 
       setCurrentSound(sound);
       setIsPlaying(true);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     } catch (error) {
       console.error("Error playing audio:", error);
       setAlert({
@@ -354,8 +309,10 @@ const NamazDetailScreen = () => {
           index: 0,
           animated: true,
         });
+        setNavigationDirection(null);
       },
     });
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   };
 
   const navigateDua = async (direction: "prev" | "next") => {
@@ -363,6 +320,8 @@ const NamazDetailScreen = () => {
       await currentSound.stopAsync();
       setIsPlaying(false);
     }
+
+    setNavigationDirection(direction);
 
     if (direction === "next" && currentIndex < duas.length) {
       setCurrentIndex((prev) => {
@@ -396,28 +355,43 @@ const NamazDetailScreen = () => {
   };
 
   const handleBackPress = async () => {
-  if (currentSound) {
-    await currentSound.stopAsync();
-    setIsPlaying(false);
-  }
-  router.back();
-};
-
-useEffect(() => {
-  // Handle hardware back button press
-  const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-    handleBackPress();
-    return true; // Prevent default behavior (exit app or navigate back)
-  });
-
-  // Cleanup on component unmount
-  return () => {
-    backHandler.remove(); // Remove the back button listener
     if (currentSound) {
-      currentSound.unloadAsync();
+      await currentSound.stopAsync();
+      setIsPlaying(false);
     }
+    router.back();
   };
-}, [currentSound]); // Add currentSound as a dependency to ensure it’s available
+
+  const handleHomePress = async () => {
+    if (currentSound) {
+      await currentSound.stopAsync();
+      setIsPlaying(false);
+    }
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setCurrentIndex(0);
+    flatListRef.current?.scrollToIndex({
+      index: 0,
+      animated: true,
+    });
+    setNavigationDirection(null);
+  };
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        handleBackPress();
+        return true;
+      }
+    );
+
+    return () => {
+      backHandler.remove();
+      if (currentSound) {
+        currentSound.unloadAsync();
+      }
+    };
+  }, [currentSound]);
 
   useEffect(() => {
     return () => {
@@ -432,267 +406,336 @@ useEffect(() => {
 
     return (
       <Animated.View
-        style={{ width, padding: 20 }}
-        entering={SlideInRight.duration(600)}
+        style={styles.introContainer}
+        entering={
+          navigationDirection === "next"
+            ? BounceInRight.duration(500)
+            : navigationDirection === "prev"
+            ? BounceInLeft.duration(500)
+            : ZoomIn.duration(500)
+        }
       >
-        <Animated.View
-          style={[
-            styles.duaCard,
-            cardStyle,
-            {
-              backgroundColor: "#FFFFFF",
-              borderColor: currentTheme.primary,
-            },
-          ]}
+        <LinearGradient
+          colors={currentGradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradientBackground}
         >
-          <LinearGradient
-            colors={currentTheme.background}
-            style={styles.cardBackground}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
-
           <View style={styles.headerIntro}>
+            <View style={styles.starsContainer}>
+              {[...Array(5)].map((_, index) => (
+                <FontAwesome5
+                  key={index}
+                  name="star"
+                  size={20}
+                  color={accentColors.secondary}
+                  style={styles.starIcon}
+                />
+              ))}
+            </View>
             <Text
-              style={[
-                styles.categoryHeading,
-                {
-                  color: currentTheme.primary,
-                  textAlign: "center",
-                  fontFamily: "Poppins-Bold",
-                },
-              ]}
+              style={[styles.categoryHeading, { color: accentColors.text }]}
             >
               {category}
             </Text>
           </View>
 
           <View style={styles.content}>
-            <Animated.View style={titleAnimatedStyle}>
-              <Text style={[styles.stepTitle, { color: currentTheme.text }]}>
+            <Animated.View
+              style={styles.titleContainer}
+              entering={FadeIn.duration(600)}
+            >
+              <Text style={[styles.stepTitle, { color: accentColors.text }]}>
                 Step by Step Guide
               </Text>
             </Animated.View>
 
             {firstItemWithImage?.image && (
-              <Animated.Image
-                source={{ uri: firstItemWithImage.image }}
-                style={styles.stepImage}
-                resizeMode="contain"
-                entering={FadeIn.delay(200).duration(600)}
-              />
+              <View style={styles.imageContainer}>
+                <Animated.Image
+                  source={{ uri: firstItemWithImage.image }}
+                  style={styles.stepImage}
+                  resizeMode="contain"
+                  entering={FadeIn.delay(200).duration(600)}
+                />
+                <View style={styles.imageOverlay} />
+              </View>
             )}
 
-            <Animated.View entering={FadeIn.delay(400)}>
+            <Animated.View
+              entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
+            >
               <TouchableOpacity
-                style={[
-                  styles.startButton,
-                  { backgroundColor: currentTheme.primary },
-                ]}
+                style={styles.startButton}
                 onPress={() => navigateDua("next")}
               >
-                <Text style={styles.startButtonText}>
-                  {language === "english"
-                    ? "Start Learning"
-                    : "سیکھنا شروع کریں"}
-                </Text>
-                <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
+                <LinearGradient
+                  colors={[accentColors.primary, "#FF69B4"]}
+                  style={styles.gradientButton}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                >
+                  <FontAwesome5
+                    name="play-circle"
+                    size={22}
+                    color="white"
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text style={styles.startButtonText}>
+                    {language === "english"
+                      ? "Start Learning"
+                      : "سیکھنا شروع کریں"}
+                  </Text>
+                </LinearGradient>
               </TouchableOpacity>
             </Animated.View>
           </View>
-        </Animated.View>
+        </LinearGradient>
       </Animated.View>
     );
-  }, [duas, currentTheme, language, cardStyle, titleAnimatedStyle]);
+  }, [duas, currentGradient, language, navigationDirection]);
 
   const renderDuaItem = useCallback(
     ({ item, index }) => (
       <Animated.View
-        style={{ width, padding: 20 }}
-        entering={currentIndex > index ? SlideInLeft : SlideInRight}
+        style={styles.contentContainer}
+        entering={
+          navigationDirection === "next"
+            ? BounceInRight.duration(500)
+            : navigationDirection === "prev"
+            ? BounceInLeft.duration(500)
+            : FadeIn.duration(500)
+        }
       >
-        <Animated.View
-          style={[
-            styles.duaCard,
-            cardStyle,
-            {
-              backgroundColor: "#FFFFFF",
-              borderColor: currentTheme.primary,
-            },
-          ]}
+        <LinearGradient
+          colors={currentGradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradientBackground}
         >
-          <LinearGradient
-            colors={currentTheme.background}
-            style={styles.cardBackground}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
-
           <View style={styles.header}>
-            <Text
-              style={[styles.categoryHeading, { color: currentTheme.primary }]}
-            >
-              {category}
-            </Text>
-
-            <TouchableOpacity
-              onPress={() =>
-                setLanguage((lang) => (lang === "english" ? "urdu" : "english"))
-              }
-              style={[styles.languageButton, { backgroundColor: "#4A90E2" }]}
-            >
-              <Text style={styles.toggleText}>
-                {language === "english" ? "Urdu" : "English"}
+            <View style={styles.stepProgress}>
+              <View style={styles.progressContainer}>
+                <View
+                  style={[
+                    styles.progressBar,
+                    { width: `${(currentIndex / duas.length) * 100}%` },
+                  ]}
+                />
+              </View>
+              <Text style={styles.progressText}>
+                {index + 1}/{duas.length}
               </Text>
-            </TouchableOpacity>
+            </View>
+            <Animated.View
+              entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  setLanguage((lang) =>
+                    lang === "english" ? "urdu" : "english"
+                  );
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }}
+                style={styles.languageButton}
+              >
+                <LinearGradient
+                  colors={[accentColors.highlight, accentColors.primary]}
+                  style={styles.languageButtonGradient}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                >
+                  <Text style={styles.toggleText}>
+                    {language === "english" ? "Urdu" : "English"}
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Animated.View>
           </View>
 
           <ScrollView
             style={styles.scrollContainer}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContentContainer}
           >
             <View style={styles.contentJustified}>
-              <View style={styles.pageIndicatorContainer}>
-                <Text
-                  style={[styles.pageIndicator, { color: currentTheme.text }]}
+              <Animated.View
+                style={styles.smallStarsContainer}
+                entering={FadeIn.delay(200).duration(600)}
+              >
+                {[...Array(3)].map((_, i) => (
+                  <FontAwesome5
+                    key={i}
+                    name="star"
+                    size={14}
+                    color={accentColors.secondary}
+                    style={styles.smallStarIcon}
+                  />
+                ))}
+              </Animated.View>
+
+              <View style={styles.arabicContainer}>
+                <LinearGradient
+                  colors={["rgba(255,255,255,0.95)", "rgba(255,255,255,0.85)"]}
+                  style={styles.textGradient}
                 >
-                  {index + 1}/{duas.length}
-                </Text>
+                  <Animated.Text
+                    style={[styles.arabic, { color: accentColors.arabicText }]}
+                    entering={FadeIn.delay(600).duration(600)}
+                  >
+                    {item.arabic}
+                  </Animated.Text>
+
+                  <View style={styles.audioControlContainer}>
+                    <Animated.View
+                      style={[
+                        styles.audioButton,
+                        {
+                          transform: [{ scale: 1 }],
+                        },
+                      ]}
+                    >
+                      <View style={styles.audioWaveCircle} />
+                      <TouchableOpacity onPress={handlePlayPress}>
+                        <Ionicons
+                          name={isPlaying ? "pause-circle" : "play-circle"}
+                          size={50}
+                          color={accentColors.arabicText}
+                        />
+                      </TouchableOpacity>
+                    </Animated.View>
+                  </View>
+                </LinearGradient>
               </View>
 
-              <TouchableOpacity
-                style={styles.audioButton}
-                onPress={handlePlayPress}
-              >
-                <Animated.View style={styles.audioIconContainer}>
-                  <Ionicons
-                    name={isPlaying ? "pause-circle" : "play-circle"}
-                    size={40}
-                    color="#50C878"
-                  />
-                </Animated.View>
-              </TouchableOpacity>
-
-              <Animated.View
-                style={[
-                  styles.arabicContainer,
-                  { backgroundColor: `${currentTheme.primary}10` },
-                ]}
-              >
-                <Animated.Text
-                  style={[
-                    styles.arabic,
-                    arabicTextStyle,
-                    { color: currentTheme.text },
-                  ]}
+              <View style={styles.translationContainer}>
+                <LinearGradient
+                  colors={["rgba(255,255,255,0.95)", "rgba(255,255,255,0.85)"]}
+                  style={styles.textGradient}
                 >
-                  {item.arabic}
-                </Animated.Text>
-              </Animated.View>
-
-              <Animated.View
-                style={[
-                  styles.translationContainer,
-                  { backgroundColor: `${currentTheme.secondary}10` },
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.translation,
-                    { color: currentTheme.text },
-                    language === "urdu" && {
-                      fontFamily: "NotoNastaliqUrdu-Medium",
-                      textAlign: "center",
-                      lineHeight: 40
-                    },
-                  ]}
-                >
-                  {language === "english"
-                    ? item.english_translation
-                    : item.urdu_translation}
-                </Text>
-              </Animated.View>
+                  <Animated.Text
+                    style={[
+                      styles.translation,
+                      { color: accentColors.text },
+                      language === "urdu" && {
+                        fontFamily: "NotoNastaliqUrdu-Medium",
+                        textAlign: "right",
+                        lineHeight: 40,
+                      },
+                    ]}
+                    entering={FadeIn.delay(800).duration(600)}
+                  >
+                    {language === "english"
+                      ? item.english_translation
+                      : item.urdu_translation}
+                  </Animated.Text>
+                </LinearGradient>
+              </View>
             </View>
           </ScrollView>
 
-          <Animated.View style={buttonAnimatedStyle}>
-            <TouchableOpacity
-              style={[
-                styles.learnButton,
-                {
-                  backgroundColor: learnedItems[item._id]
-                    ? "#2E7DCE"
-                    : "#4A90E2",
-                },
-              ]}
-              onPress={() => markAsLearned(item._id, item.dua)}
+          <View style={styles.fixedBottomContainer}>
+            <Animated.View
+              entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
             >
-              <Text style={styles.learnButtonText}>
-                {learnedItems[item._id] ? "✓ Learned!" : "Mark as Learned"}
-              </Text>
-              {learnedItems[item._id] && (
-                <Animated.View style={starStyle}>
+              <TouchableOpacity
+                style={[
+                  styles.learnButton,
+                  {
+                    backgroundColor: learnedItems[item._id]
+                      ? accentColors.success
+                      : accentColors.primary,
+                  },
+                ]}
+                onPress={() => markAsLearned(item._id, item.dua)}
+              >
+                <Text style={styles.learnButtonText}>
+                  {learnedItems[item._id] ? "✓ Learned!" : "Mark as Learned"}
+                </Text>
+                {learnedItems[item._id] && (
                   <MaterialCommunityIcons
                     name="star"
                     size={20}
-                    color="#FFD700"
+                    color={accentColors.secondary}
                   />
-                </Animated.View>
-              )}
-            </TouchableOpacity>
-          </Animated.View>
+                )}
+              </TouchableOpacity>
+            </Animated.View>
 
-          <View style={styles.navigation}>
-            <TouchableOpacity
-              style={[
-                styles.navButton,
-                { backgroundColor: currentTheme.primary },
-              ]}
-              onPress={() => navigateDua("prev")}
-            >
-              <Ionicons name="arrow-back" size={18} color="#FFFFFF" />
-              <Text style={styles.navButtonText}>Previous</Text>
-            </TouchableOpacity>
+            <View style={styles.navigation}>
+              <Animated.View
+                entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
+              >
+                <TouchableOpacity
+                  style={[
+                    styles.navButton,
+                    { opacity: currentIndex > 0 ? 1 : 0.5 },
+                  ]}
+                  onPress={() => navigateDua("prev")}
+                  disabled={currentIndex === 0}
+                >
+                  <LinearGradient
+                    colors={["#54A0FF", accentColors.primary]}
+                    style={styles.gradientCircleButton}
+                  >
+                    <Ionicons name="arrow-back" size={26} color="white" />
+                  </LinearGradient>
+                </TouchableOpacity>
+              </Animated.View>
 
-            <TouchableOpacity
-              style={[
-                styles.navButton,
-                {
-                  backgroundColor:
-                    index === duas.length - 1
-                      ? currentTheme.accent
-                      : currentTheme.primary,
-                  opacity: index === duas.length - 1 ? 1 : 0.9,
-                },
-              ]}
-              onPress={() => {
-                if (index === duas.length - 1) {
-                  handleFinishPress();
-                } else {
-                  navigateDua("next");
-                }
-              }}
-            >
-              <Text style={styles.navButtonText}>
-                {index === duas.length - 1 ? "Finish" : "Next"}
-              </Text>
-              <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
-            </TouchableOpacity>
+              <Animated.View
+                entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
+              >
+                <TouchableOpacity
+                  style={styles.homeButton}
+                  onPress={handleHomePress}
+                >
+                  <LinearGradient
+                    colors={[accentColors.highlight, "#FF69B4"]}
+                    style={styles.gradientCircleButton}
+                  >
+                    <Ionicons name="home" size={26} color="white" />
+                  </LinearGradient>
+                </TouchableOpacity>
+              </Animated.View>
+
+              <Animated.View
+                entering={ZoomIn.springify().mass(1).damping(10).stiffness(100)}
+              >
+                <TouchableOpacity
+                  style={[
+                    styles.navButton,
+                    { opacity: index < duas.length - 1 ? 1 : 0.5 },
+                  ]}
+                  onPress={() => {
+                    if (index === duas.length - 1) {
+                      handleFinishPress();
+                    } else {
+                      navigateDua("next");
+                    }
+                  }}
+                  disabled={index === duas.length - 1}
+                >
+                  <LinearGradient
+                    colors={["#FF9F43", "#FF477E"]}
+                    style={styles.gradientCircleButton}
+                  >
+                    <Ionicons name="arrow-forward" size={26} color="white" />
+                  </LinearGradient>
+                </TouchableOpacity>
+              </Animated.View>
+            </View>
           </View>
-        </Animated.View>
+        </LinearGradient>
       </Animated.View>
     ),
     [
-      currentTheme,
+      currentGradient,
       language,
       learnedItems,
       currentIndex,
       isPlaying,
-      arabicTextStyle,
-      buttonAnimatedStyle,
-      starStyle,
-      handleFinishPress,
-      navigateDua,
+      navigationDirection,
     ]
   );
 
@@ -709,21 +752,21 @@ useEffect(() => {
   if (loading) {
     return (
       <ImageBackground
-        source={require("@/assets/images/s5.png")}
+        source={require("@/assets/images/s5.png")} // Ensure this path is correct
         style={styles.loadingContainer}
       >
         <Animated.View
           style={styles.loadingContent}
-          entering={FadeIn.duration(1000)}
+          entering={FadeIn.duration(600)}
         >
           <Animated.Image
-            source={require("@/assets/images/NamazLoading.png")}
+            source={require("@/assets/images/NamazLoading.png")} // Ensure this path is correct
             style={styles.loadingImage}
             resizeMode="contain"
-            entering={FadeIn.delay(300).duration(1000)}
+            entering={FadeIn.delay(200).duration(600)}
           />
           <Text style={styles.loadingText}>Loading your prayers...</Text>
-          <ActivityIndicator size="large" color={colorThemes[0].primary} />
+          <ActivityIndicator size="large" color={accentColors.primary} />
         </Animated.View>
       </ImageBackground>
     );
@@ -732,45 +775,56 @@ useEffect(() => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ImageBackground
-        source={require("@/assets/images/s5.png")}
+        source={require("@/assets/images/s5.png")} // Ensure this path is correct
         style={styles.container}
         imageStyle={styles.backgroundImage}
       >
-        <FlatList
-          ref={flatListRef}
-          data={[{ id: "intro" }, ...duas]}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          scrollEnabled={false}
-          initialScrollIndex={currentIndex}
-          onScrollToIndexFailed={(info) => {
-            flatListRef.current?.scrollToIndex({
-              index: Math.min(info.index, duas.length),
-              animated: true,
-            });
-          }}
-          getItemLayout={(data, index) => ({
-            length: width,
-            offset: width * index,
-            index,
-          })}
-          windowSize={3}
-          maxToRenderPerBatch={3}
-          updateCellsBatchingPeriod={50}
-        />
-        <CustomAlert
-          visible={alert.visible}
-          title={alert.title}
-          message={alert.message}
-          type={alert.type}
-          showCancel={alert.showCancel}
-          onClose={() => setAlert((prev) => ({ ...prev, visible: false }))}
-          onConfirm={alert.onConfirm}
-          onCancel={alert.onCancel}
-        />
+        <View style={styles.blurContainer}>
+          {Platform.OS === "ios" ? (
+            <BlurView
+              intensity={30}
+              style={StyleSheet.absoluteFill}
+              tint="light"
+            />
+          ) : (
+            <View style={[StyleSheet.absoluteFill, styles.androidBlur]} />
+          )}
+          <FlatList
+            ref={flatListRef}
+            data={[{ id: "intro" }, ...duas]}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={false}
+            initialScrollIndex={currentIndex}
+            onScrollToIndexFailed={(info) => {
+              flatListRef.current?.scrollToIndex({
+                index: Math.min(info.index, duas.length),
+                animated: true,
+              });
+            }}
+            getItemLayout={(data, index) => ({
+              length: width,
+              offset: width * index,
+              index,
+            })}
+            windowSize={3}
+            maxToRenderPerBatch={3}
+            updateCellsBatchingPeriod={50}
+          />
+          <CustomAlert
+            visible={alert.visible}
+            title={alert.title}
+            message={alert.message}
+            type={alert.type}
+            showCancel={alert.showCancel}
+            onClose={() => setAlert((prev) => ({ ...prev, visible: false }))}
+            onConfirm={alert.onConfirm}
+            onCancel={alert.onCancel}
+          />
+        </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -782,6 +836,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  blurContainer: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+  androidBlur: {
+    backgroundColor: "rgba(255, 255, 255, 0.09)",
   },
   backgroundImage: {
     opacity: 0.9,
@@ -798,7 +860,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: "center",
     elevation: 10,
-    shadowColor: "#6A0DAD",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
@@ -812,146 +874,232 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Poppins-Bold",
     marginBottom: 20,
-    color: "#6A0DAD",
+    color: accentColors.text,
     textShadowColor: "rgba(0,0,0,0.1)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
-  duaCard: {
-    flex: 1,
-    borderRadius: 20,
+  introContainer: {
+    width,
     padding: 15,
-    backgroundColor: "#FFFFFF",
-    borderWidth: 1,
-    elevation: 3,
+    alignItems: "center",
   },
-  cardBackground: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderRadius: 20,
-    opacity: 0.7,
+  contentContainer: {
+    width,
+    height: "100%",
+    padding: 15,
+    borderRadius: 60,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 12,
+  },
+  gradientBackground: {
+    flex: 1,
+    padding: 15,
+    position: "relative",
+    overflow: "hidden",
+    borderRadius: 24,
+  },
+  headerIntro: {
+    alignItems: "center",
+    marginBottom: 5,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 15,
-  },
-  headerIntro: {
-    alignItems: "center",
-    marginBottom: 15,
+    marginBottom: 7,
+    paddingHorizontal: 10,
   },
   categoryHeading: {
     fontSize: 24,
-    fontFamily: "Poppins-SemiBold",
+    fontFamily: "Poppins-Bold",
+    textAlign: "center",
   },
-  languageButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 12,
+  starsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 10,
   },
-  toggleText: {
-    color: "#FFFFFF",
-    fontFamily: "Poppins-Medium",
-    fontSize: 14,
+  starIcon: {
+    marginHorizontal: 5,
   },
-  scrollContainer: {
-    flex: 1,
+  smallStarsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 8,
+  },
+  smallStarIcon: {
+    marginHorizontal: 3,
   },
   content: {
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
   },
   contentJustified: {
     flex: 1,
     alignItems: "center",
+    paddingTop: 20,
+  },
+  titleContainer: {
+    paddingVertical: 5,
+    paddingHorizontal: 25,
+    borderRadius: 18,
+    marginBottom: 15,
+    backgroundColor: "rgba(255,255,255,0.8)",
   },
   stepTitle: {
     fontSize: 22,
-    fontFamily: "Poppins-SemiBold",
-    color: "#333333",
+    fontFamily: "Poppins-Bold",
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 10,
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 200,
+    overflow: "hidden",
+    borderWidth: 2,
+    borderColor: "rgba(255, 255, 255, 0.7)",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 6,
+    alignSelf: "center",
+    marginBottom: 10,
+  },
+  imageOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    borderRadius: 200,
   },
   stepImage: {
     width: "100%",
-    height: 180,
-    borderRadius: 15,
-    marginVertical: 15,
-    borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.1)",
+    height: "100%",
   },
   startButton: {
+    width: "80%",
+    marginTop: 10,
+    borderRadius: 16,
+    overflow: "hidden",
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  gradientButton: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
+    paddingVertical: 16,
     paddingHorizontal: 20,
-    borderRadius: 15,
-    marginTop: 20,
   },
   startButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontFamily: "Poppins-Medium",
+    color: "#FFF",
+    fontSize: 18,
+    fontFamily: "Poppins-Bold",
     marginRight: 8,
+  },
+  scrollContainer: {
+    flex: 1,
+    height: "70%",
   },
   arabicContainer: {
     width: "100%",
-    borderRadius: 15,
-    padding: 15,
+    borderRadius: 16,
     marginBottom: 10,
+    overflow: "hidden",
   },
   arabic: {
     fontSize: 22,
     textAlign: "center",
     fontFamily: "AmiriQuranColored",
-    lineHeight: 40,
-    color: "#333333",
+    lineHeight: 45,
+    color: "#4CAF50",
   },
   audioButton: {
-    borderRadius: 25,
+    backgroundColor: "#FFF",
+    borderRadius: 40,
+    padding: 3,
+    shadowColor: "#4CAF50",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
+    borderWidth: 3,
+    borderColor: "#B57EDC",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  audioControlContainer: {
+    alignItems: "center",
+    justifyContent: "center",
     marginVertical: 10,
   },
-  audioIconContainer: {
-    backgroundColor: "#FFFFFF",
+  audioWaveCircle: {
+    position: "absolute",
+    width: 50,
+    height: 50,
     borderRadius: 30,
-    padding: 5,
-    borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.1)",
+    borderWidth: 2,
+    borderColor: "#B57EDC",
+    opacity: 0.4,
   },
   translationContainer: {
     width: "100%",
-    borderRadius: 15,
-    padding: 20,
+    borderRadius: 16,
     marginVertical: 10,
+    overflow: "hidden",
+  },
+  textGradient: {
+    padding: 18,
+    borderRadius: 16,
   },
   translation: {
     fontSize: 16,
     textAlign: "justify",
     lineHeight: 24,
     fontFamily: "Poppins-Regular",
-    color: "#333333",
   },
-  pageIndicatorContainer: {
-    backgroundColor: "rgba(255,255,255,0.8)",
-    borderRadius: 12,
-    paddingVertical: 5,
-    paddingHorizontal: 12,
-    marginBottom: 10,
+  stepProgress: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+    marginRight: 10,
   },
-  pageIndicator: {
+  progressContainer: {
+    height: 6,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    borderRadius: 3,
+    overflow: "hidden",
+    flex: 1,
+    marginRight: 10,
+  },
+  progressBar: {
+    height: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    borderRadius: 3,
+  },
+  progressText: {
+    color: "white",
     fontSize: 14,
-    textAlign: "center",
     fontFamily: "Poppins-Medium",
-    color: "#333333",
   },
   learnButton: {
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 15,
     alignItems: "center",
@@ -959,6 +1107,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 7,
     marginTop: 15,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   learnButtonText: {
     color: "#FFFFFF",
@@ -966,23 +1119,63 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Medium",
     marginRight: 8,
   },
+  fixedBottomContainer: {
+    width: "100%",
+    alignItems: "center",
+  },
   navigation: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    alignItems: "center",
+    width: "80%",
+    marginTop: 2,
   },
   navButton: {
+    borderRadius: 30,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+  gradientCircleButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  homeButton: {
+    borderRadius: 30,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+  languageButton: {
+    borderRadius: 20,
+    overflow: "hidden",
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  languageButtonGradient: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 12,
+    borderRadius: 20,
   },
-  navButtonText: {
-    color: "#FFFFFF",
-    marginHorizontal: 6,
-    fontFamily: "Poppins-Medium",
-    fontSize: 14,
+  toggleText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontFamily: "Poppins-Bold",
   },
 });
 

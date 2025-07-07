@@ -29,7 +29,9 @@ const DuaDetails = () => {
   const params = useLocalSearchParams();
   const router = useRouter();
   const [isPlaying, setIsPlaying] = useState<{ [key: number]: boolean }>({});
-  const [sounds, setSounds] = useState<{ [key: number]: Audio.Sound | null }>({});
+  const [sounds, setSounds] = useState<{ [key: number]: Audio.Sound | null }>(
+    {}
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [language, setLanguage] = useState<"eng" | "urdu">("eng");
   const [isLearned, setIsLearned] = useState(false);
@@ -45,9 +47,9 @@ const DuaDetails = () => {
   const [isCategoryBookmarked, setIsCategoryBookmarked] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertConfig, setAlertConfig] = useState({
-    title: '',
-    message: '',
-    type: 'info' as 'success' | 'info' | 'warning' | 'error'
+    title: "",
+    message: "",
+    type: "info" as "success" | "info" | "warning" | "error",
   });
 
   // Animation refs
@@ -414,12 +416,20 @@ const DuaDetails = () => {
 
   const handleAddBookmark = async () => {
     if (!user?.user?._id) {
-      showCustomAlert("Login Required", "Please log in to bookmark.", "warning");
+      showCustomAlert(
+        "Login Required",
+        "Please log in to bookmark.",
+        "warning"
+      );
       return;
     }
 
     if (!params.id) {
-      showCustomAlert("Error", "No dua category available to bookmark.", "error");
+      showCustomAlert(
+        "Error",
+        "No dua category available to bookmark.",
+        "error"
+      );
       return;
     }
 
@@ -463,13 +473,17 @@ const DuaDetails = () => {
           showCustomAlert(
             "Error",
             error.response?.data?.message ||
-            "Failed to add bookmark. Please try again.",
+              "Failed to add bookmark. Please try again.",
             "error"
           );
         }
       } else {
         console.error("Error adding bookmark:", error);
-        showCustomAlert("Error", "Failed to add bookmark. Please try again.", "error");
+        showCustomAlert(
+          "Error",
+          "Failed to add bookmark. Please try again.",
+          "error"
+        );
       }
     } finally {
       setBookmarkLoading(false);
@@ -507,7 +521,11 @@ const DuaDetails = () => {
     outputRange: ["0deg", "360deg"],
   });
 
-  const showCustomAlert = (title: string, message: string, type: 'success' | 'info' | 'warning' | 'error' = 'info') => {
+  const showCustomAlert = (
+    title: string,
+    message: string,
+    type: "success" | "info" | "warning" | "error" = "info"
+  ) => {
     setAlertConfig({ title, message, type });
     setAlertVisible(true);
   };
@@ -526,7 +544,11 @@ const DuaDetails = () => {
       }
 
       if (isLearned) {
-        showCustomAlert("Info", "This Dua has already been marked as learned.", "info");
+        showCustomAlert(
+          "Info",
+          "This Dua has already been marked as learned.",
+          "info"
+        );
         return;
       }
 
@@ -548,7 +570,11 @@ const DuaDetails = () => {
         duaResponse.data.message === "Dua already marked as Learn"
       ) {
         setIsLearned(true);
-        showCustomAlert("Info", "This Dua has already been marked as learned.", "info");
+        showCustomAlert(
+          "Info",
+          "This Dua has already been marked as learned.",
+          "info"
+        );
       } else {
         setIsLearned(true);
         Animated.sequence([
@@ -563,14 +589,18 @@ const DuaDetails = () => {
             useNativeDriver: true,
           }),
         ]).start();
-        showCustomAlert("Success", "Dua marked as learned successfully.", "success");
+        showCustomAlert(
+          "Success",
+          "Dua marked as learned successfully.",
+          "success"
+        );
       }
     } catch (error) {
       console.error("Error marking Dua as learn: ", error);
       showCustomAlert(
         "Error",
         error.response?.data?.message ||
-        "An error occurred while marking the Dua as learn.",
+          "An error occurred while marking the Dua as learn.",
         "error"
       );
     }
@@ -643,18 +673,17 @@ const DuaDetails = () => {
                   }}
                 >
                   <View style={styles.languageButtonContent}>
-                    <Ionicons name="flag-outline" size={18} color="#FFF" />
                     <Text
                       style={[
                         styles.languageButtonText,
                         language === "eng" && styles.activeLanguageButtonText,
+                        { fontFamily: "Poppins-Medium" },
                       ]}
                     >
                       English
                     </Text>
                   </View>
                 </TouchableOpacity>
-
                 <TouchableOpacity
                   style={[
                     styles.languageButton,
@@ -676,24 +705,28 @@ const DuaDetails = () => {
                   }}
                 >
                   <View style={styles.languageButtonContent}>
-                    <Ionicons name="flag-outline" size={18} color="#FFF" />
                     <Text
                       style={[
                         styles.languageButtonTextUrdu,
                         language === "urdu" && styles.activeLanguageButtonText,
+                        { fontFamily: "Poppins-Medium" },
                       ]}
                     >
-                      اردو
+                      Urdu
                     </Text>
                   </View>
                 </TouchableOpacity>
               </View>
             </View>
-            <Text style={styles.duaTitle}>
+
+            <Text
+              style={language === "eng" ? styles.duaTitle : styles.duaTitleUrdu}
+            >
               {language === "eng"
                 ? dua.titleEng || `Dua ${index + 1}`
                 : dua.titleUrdu || `دعا ${index + 1}`}
             </Text>
+
             <Animated.Text
               style={[
                 styles.arabicText,
@@ -775,7 +808,7 @@ const DuaDetails = () => {
                 isLearned && styles.markAsReadTextActive,
               ]}
             >
-              {isLearned ? "✓ Completed!" : "Mark as Learn"}
+              {isLearned ? "✓ Learned!" : "Mark as Learn"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -934,12 +967,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-    fontFamily: "Poppins-Regular",
-    color: "#663399",
-  },
+
   header: {
     height: 140,
     flexDirection: "row",
@@ -976,8 +1004,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   headerTitleUrdu: {
-    fontFamily: "NotoNastaliqUrdu-Medium",
-    fontSize: 16,
+    fontFamily: "NotoNastaliqUrdu-Bold",
+    fontSize: 15,
   },
   gradientBackground: {
     flex: 1,
@@ -987,8 +1015,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 16,
-    marginVertical: 10,
+    paddingHorizontal: 10,
+    marginVertical: 5,
   },
   bookmarkButton: {
     width: 40,
@@ -1022,7 +1050,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   navigationButtonWrapper: {
-    width: 60,
+    width: 70,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -1030,7 +1058,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    paddingHorizontal: 5,
+    paddingHorizontal: 3,
     marginBottom: 10,
   },
   audioControlContainer: {
@@ -1041,7 +1069,7 @@ const styles = StyleSheet.create({
   duaCard: {
     backgroundColor: "white",
     borderRadius: 24,
-    padding: 20,
+    padding: 10,
     marginVertical: 5,
     elevation: 5,
     shadowColor: "#000",
@@ -1068,13 +1096,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
   },
+  duaTitleUrdu: {
+    fontSize: 16,
+    fontFamily: "NotoNastaliqUrdu-Medium",
+    color: "#663399",
+    textAlign: "center",
+    marginBottom: 5,
+    paddingHorizontal: 10,
+    lineHeight: 38,
+  },
   arabicText: {
-    fontSize: 28,
+    fontSize: 25,
     fontFamily: "AmiriQuranColored",
     color: "#4CAF50",
-    textAlign: "justify",
-    lineHeight: 55,
-    marginBottom: 10,
+    textAlign: "center",
+    lineHeight: 50,
+    marginBottom: 5,
     paddingHorizontal: 10,
   },
   translationText: {
@@ -1088,7 +1125,8 @@ const styles = StyleSheet.create({
   translationTextUrdu: {
     fontFamily: "NotoNastaliqUrdu-Regular",
     lineHeight: 38,
-    fontSize: 17,
+    textAlign: "center",
+    fontSize: 16,
   },
   audioButton: {
     backgroundColor: "#FFF",
@@ -1134,9 +1172,11 @@ const styles = StyleSheet.create({
   },
   languageToggleContainer: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "center", // Already centered, ensure no override
     alignItems: "center",
     gap: 12,
+    width: "100%", // Ensure full width for centering
+    alignSelf: "center", // Explicitly center the container
   },
   languageButton: {
     paddingHorizontal: 15,
@@ -1159,7 +1199,6 @@ const styles = StyleSheet.create({
   },
   languageButtonTextUrdu: {
     color: "#FFF",
-    fontFamily: "NotoNastaliqUrdu-Medium",
     lineHeight: 24,
     fontSize: 14,
   },
@@ -1173,9 +1212,9 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   markAsReadButton: {
-    marginBottom: 5,
+    marginBottom: 3,
     paddingHorizontal: 25,
-    paddingVertical: 12,
+    paddingVertical: 8,
     borderRadius: 25,
     backgroundColor: "#B57EDC",
     shadowOffset: {

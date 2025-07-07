@@ -39,8 +39,6 @@ export default function Events_Details() {
     eventCardSlide: useRef(new Animated.Value(50)).current,
     scale: useRef(new Animated.Value(0.9)).current,
     bounce: useRef(new Animated.Value(0)).current,
-    wiggle: useRef(new Animated.Value(0)).current,
-    iconJump: useRef(new Animated.Value(0)).current,
     sections: {
       about: useRef(new Animated.Value(100)).current,
       guidance: useRef(new Animated.Value(100)).current,
@@ -50,12 +48,6 @@ export default function Events_Details() {
 
   // Slide toggle animation
   const slideAnimation = useRef(new Animated.Value(0)).current;
-
-  // Floating bubbles animation values
-  const bubbles = Array.from({ length: 3 }, (_, i) => ({
-    position: useRef(new Animated.Value(-50 - i * 20)).current,
-    opacity: useRef(new Animated.Value(0)).current
-  }));
 
   useEffect(() => {
     if (params.event) {
@@ -82,100 +74,6 @@ export default function Events_Details() {
       useNativeDriver: false,
     }).start();
   }, [language]);
-
-  // Continuous animations
-  useEffect(() => {
-    if (!event) return;
-
-    // Wiggle animation
-    const wiggleAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(animations.wiggle, {
-          toValue: 1,
-          duration: 700,
-          easing: Easing.sine,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animations.wiggle, {
-          toValue: -1,
-          duration: 700,
-          easing: Easing.sine,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animations.wiggle, {
-          toValue: 0,
-          duration: 700,
-          easing: Easing.sine,
-          useNativeDriver: true,
-        }),
-      ])
-    );
-
-    // Icon jump animation
-    const jumpAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(animations.iconJump, {
-          toValue: -15,
-          duration: 600,
-          easing: Easing.out(Easing.sin),
-          useNativeDriver: true,
-        }),
-        Animated.timing(animations.iconJump, {
-          toValue: 0,
-          duration: 400,
-          easing: Easing.bounce,
-          useNativeDriver: true,
-        }),
-        Animated.delay(1000),
-      ])
-    );
-
-    // Bubble animations
-    const bubbleAnimations = bubbles.map((bubble, index) => {
-      const duration = 7000 + index * 1000;
-      const delay = (index + 1) * 1000;
-
-      return Animated.loop(
-        Animated.sequence([
-          Animated.delay(delay),
-          Animated.parallel([
-            Animated.timing(bubble.position, {
-              toValue: -350,
-              duration,
-              useNativeDriver: true,
-            }),
-            Animated.sequence([
-              Animated.timing(bubble.opacity, {
-                toValue: 0.7,
-                duration: 1000,
-                useNativeDriver: true,
-              }),
-              Animated.timing(bubble.opacity, {
-                toValue: 0,
-                duration: duration - 1000,
-                useNativeDriver: true,
-              }),
-            ]),
-          ]),
-          Animated.timing(bubble.position, {
-            toValue: 0,
-            duration: 0,
-            useNativeDriver: true,
-          }),
-        ])
-      );
-    });
-
-    wiggleAnimation.start();
-    jumpAnimation.start();
-    bubbleAnimations.forEach(anim => anim.start());
-
-    return () => {
-      wiggleAnimation.stop();
-      jumpAnimation.stop();
-      bubbleAnimations.forEach(anim => anim.stop());
-    };
-  }, [event]);
 
   // Entry animations
   useEffect(() => {
@@ -308,24 +206,15 @@ export default function Events_Details() {
     }
   };
 
-  const getTextStyle = (baseStyle, isUrdu = false) => {
-    return [
-      baseStyle,
-      isUrdu ? styles.urduFont : styles.englishFont,
-      language === "urdu" && isUrdu ? styles.urduTextAlign : null,
-      language === "urdu" && isUrdu ? styles.urduLineHeight : null
-    ];
-  };
-
   if (!event) {
     return (
       <SafeAreaView style={styles.container}>
         <Animated.View style={[styles.errorContainer, { opacity: animations.fade }]}>
-          <Text style={getTextStyle(styles.errorText, language === "urdu")}>
+          <Text style={language === "english" ? styles.errorTextEnglish : styles.errorTextUrdu}>
             {language === "english" ? "Event details not available" : "تقریب کی تفصیلات دستیاب نہیں ہیں"}
           </Text>
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-            <Text style={getTextStyle(styles.backButtonText, language === "urdu")}>
+            <Text style={language === "english" ? styles.backButtonTextEnglish : styles.backButtonTextUrdu}>
               {language === "english" ? "Go Back" : "واپس جائیں"}
             </Text>
           </TouchableOpacity>
@@ -333,11 +222,6 @@ export default function Events_Details() {
       </SafeAreaView>
     );
   }
-
-  const wiggle = animations.wiggle.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: ['-5deg', '0deg', '5deg']
-  });
 
   const slideTranslateX = slideAnimation.interpolate({
     inputRange: [0, 1],
@@ -412,37 +296,16 @@ export default function Events_Details() {
             },
           ]}
         >
-          {/* Confetti decorations */}
-          {[
-            { emoji: "🎉", style: { transform: [{ rotate: '15deg' }], top: -10, left: 20 } },
-            { emoji: "✨", style: { transform: [{ rotate: '-25deg' }], top: -5, right: 30 } },
-            { emoji: "⭐", style: { transform: [{ rotate: '10deg' }], bottom: 20, right: 15 } },
-          ].map((confetti, index) => (
-            <Animated.View key={index} style={[styles.confetti, confetti.style]}>
-              <Text style={{ fontSize: index === 1 ? 18 : 22 }}>{confetti.emoji}</Text>
-            </Animated.View>
-          ))}
-
-          <Animated.View
-            style={[
-              styles.eventIconContainer,
-              { transform: [{ translateY: animations.iconJump }] }
-            ]}
-          >
+          <View style={styles.eventIconContainer}>
             <Text style={styles.eventIcon}>{getEventIcon(event.name)}</Text>
-          </Animated.View>
+          </View>
 
-          <Animated.Text
-            style={[
-              ...getTextStyle(styles.eventTitle, language === "urdu"),
-              { transform: [{ rotate: wiggle }] }
-            ]}
-          >
+          <Text style={language === "english" ? styles.eventTitleEnglish : styles.eventTitleUrdu}>
             {getEventName()}
-          </Animated.Text>
+          </Text>
 
           {event.date && (
-            <Text style={getTextStyle(styles.eventDate, language === "urdu")}>
+            <Text style={language === "english" ? styles.eventDateEnglish : styles.eventDateUrdu}>
               {formatDate(event.date)}
             </Text>
           )}
@@ -454,7 +317,7 @@ export default function Events_Details() {
               onPress={handleEidAdhaNavigation}
             >
               <MaterialCommunityIcons name="book-open-variant" size={20} color="#fff" />
-              <Text style={getTextStyle(styles.storyButtonText, language === "urdu")}>
+              <Text style={language === "english" ? styles.storyButtonTextEnglish : styles.storyButtonTextUrdu}>
                 {language === "english" ? "Story of Hazrat Ismail" : "حضرت اسماعیل کی کہانی "}
               </Text>
             </TouchableOpacity>
@@ -471,11 +334,11 @@ export default function Events_Details() {
             },
           ]}
         >
-          <Text style={getTextStyle(styles.sectionTitle, language === "urdu")}>
+          <Text style={language === "english" ? styles.sectionTitleEnglish : styles.sectionTitleUrdu}>
             {language === "english" ? commonTranslations.english.aboutThisEvent : commonTranslations.urdu.aboutThisEvent}
           </Text>
           <View style={styles.infoCard}>
-            <Text style={getTextStyle(styles.infoText, language === "urdu")}>
+            <Text style={language === "english" ? styles.infoTextEnglish : styles.infoTextUrdu}>
               {getEventDescription()}
             </Text>
           </View>
@@ -492,7 +355,7 @@ export default function Events_Details() {
               },
             ]}
           >
-            <Text style={getTextStyle(styles.sectionTitle, language === "urdu")}>
+            <Text style={language === "english" ? styles.sectionTitleEnglish : styles.sectionTitleUrdu}>
               {getGuidanceTitle()}
             </Text>
             <View style={styles.guidanceCard}>
@@ -501,50 +364,23 @@ export default function Events_Details() {
                 const bulletEmoji = bulletEmojis[index % bulletEmojis.length];
 
                 return (
-                  <Animated.View
+                  <View
                     key={index}
                     style={[
                       styles.guidancePoint,
-                      {
-                        opacity: animations.fade,
-                        transform: [
-                          {
-                            translateX: animations.fade.interpolate({
-                              inputRange: [0, 1],
-                              outputRange: [30 * (index + 1), 0]
-                            })
-                          },
-                          {
-                            scale: animations.fade.interpolate({
-                              inputRange: [0, 1],
-                              outputRange: [0.5, 1]
-                            })
-                          }
-                        ]
-                      }
+                      language === "urdu" && styles.guidancePointUrdu
                     ]}
                   >
-                    <Animated.View
-                      style={[
-                        styles.bulletPoint,
-                        {
-                          transform: [
-                            {
-                              rotate: animations.wiggle.interpolate({
-                                inputRange: [-1, 0, 1],
-                                outputRange: [(index % 2 === 0 ? '-' : '') + '5deg', '0deg', (index % 2 === 0 ? '' : '-') + '5deg']
-                              })
-                            }
-                          ]
-                        }
-                      ]}
-                    >
+                    <View style={[
+                      styles.bulletPoint,
+                      language === "urdu" && styles.bulletPointUrdu
+                    ]}>
                       <Text style={styles.bulletIcon}>{bulletEmoji}</Text>
-                    </Animated.View>
-                    <Text style={getTextStyle(styles.guidanceText, language === "urdu")}>
+                    </View>
+                    <Text style={language === "english" ? styles.guidanceTextEnglish : styles.guidanceTextUrdu}>
                       {point}
                     </Text>
-                  </Animated.View>
+                  </View>
                 );
               })}
             </View>
@@ -561,11 +397,11 @@ export default function Events_Details() {
             },
           ]}
         >
-          <Text style={getTextStyle(styles.sectionTitle, language === "urdu")}>
+          <Text style={language === "english" ? styles.sectionTitleEnglish : styles.sectionTitleUrdu}>
             {language === "english" ? commonTranslations.english.significance : commonTranslations.urdu.significance}
           </Text>
           <View style={styles.infoCard}>
-            <Text style={getTextStyle(styles.infoText, language === "urdu")}>
+            <Text style={language === "english" ? styles.infoTextEnglish : styles.infoTextUrdu}>
               {language === "english"
                 ? (eventSignificance.english[event.name] || eventSignificance.english.default)
                 : (eventSignificance.urdu[event.name] || eventSignificance.urdu.default)
@@ -584,20 +420,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF7F1",
     overflow: 'hidden',
     paddingTop: 10
-  },
-  // Font styles
-  englishFont: {
-    fontFamily: 'Poppins-Regular',
-  },
-  urduFont: {
-    fontFamily: 'NotoNastaliqUrdu-Regular', // You'll need to add this font to your project
-  },
-  urduTextAlign: {
-    textAlign: 'right',
-    writingDirection: 'rtl',
-  },
-  urduLineHeight: {
-    lineHeight: 32, // Increased line height for Urdu text
   },
   languageToggleContainer: {
     flexDirection: 'row',
@@ -619,9 +441,9 @@ const styles = StyleSheet.create({
   slideIndicator: {
     position: 'absolute',
     top: 4,
-    left: 4,
-    width: 80,
-    height: 32,
+    left: 9,
+    width: 90,
+    height: 45,
     backgroundColor: '#8B5CF6',
     borderRadius: 20,
     shadowColor: "#000",
@@ -646,7 +468,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#8B5CF6',
-    fontFamily: 'Poppins-Regular', // Both options use English font
+    fontFamily: 'Poppins-Regular',
   },
   activeSlideOptionText: {
     color: '#FFFFFF',
@@ -688,10 +510,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     opacity: 0.7,
   },
-  confetti: {
-    position: 'absolute',
-    zIndex: 2,
-  },
   scrollView: {
     flex: 1,
   },
@@ -727,18 +545,54 @@ const styles = StyleSheet.create({
   eventIcon: {
     fontSize: 45,
   },
-  eventTitle: {
+  // Event Title Styles
+  eventTitleEnglish: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: "Poppins-Bold",
     color: "#FF61D2",
     textAlign: "center",
     marginBottom: 8,
   },
-  eventDate: {
+  eventTitleUrdu: {
+    fontSize: 24,
+    fontFamily: "NotoNastaliqUrdu-Bold",
+    color: "#FF61D2",
+    textAlign: "right",
+    marginBottom: 8,
+    writingDirection: 'rtl',
+    lineHeight: 45,
+  },
+  // Event Date Styles
+  eventDateEnglish: {
     fontSize: 14,
+    fontFamily: "Poppins-Regular",
     color: "#64748B",
     textAlign: "center",
     marginBottom: 16,
+  },
+  eventDateUrdu: {
+    fontSize: 14,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    color: "#64748B",
+    textAlign: "right",
+    marginBottom: 16,
+    writingDirection: 'rtl',
+    lineHeight: 32,
+  },
+  // Story Button Text Styles
+  storyButtonTextEnglish: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily: "Poppins-Regular",
+    marginLeft: 8,
+  },
+  storyButtonTextUrdu: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    marginLeft: 8,
+    writingDirection: 'rtl',
+    lineHeight: 32,
   },
   storyButton: {
     flexDirection: 'row',
@@ -754,20 +608,24 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
   },
-  storyButtonText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-    fontSize: 14,
-    marginLeft: 8,
-  },
   section: {
     marginTop: 24,
   },
-  sectionTitle: {
+  // Section Title Styles
+  sectionTitleEnglish: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: "Poppins-Bold",
     color: "#8B5CF6",
     marginBottom: 12,
+  },
+  sectionTitleUrdu: {
+    fontSize: 20,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    color: "#8B5CF6",
+    marginBottom: 12,
+    textAlign: "right",
+    writingDirection: 'rtl',
+    lineHeight: 40,
   },
   infoCard: {
     backgroundColor: "#FFFFFF",
@@ -779,10 +637,20 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
-  infoText: {
+  // Info Text Styles
+  infoTextEnglish: {
     fontSize: 15,
+    fontFamily: "Poppins-Regular",
     color: "#4A5568",
     lineHeight: 24,
+  },
+  infoTextUrdu: {
+    fontSize: 15,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    color: "#4A5568",
+    lineHeight: 32,
+    textAlign: "right",
+    writingDirection: 'rtl',
   },
   guidanceCard: {
     backgroundColor: "#F0FDF4",
@@ -802,20 +670,39 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     alignItems: "flex-start",
   },
+  guidancePointUrdu: {
+    flexDirection: "row-reverse",
+  },
   bulletPoint: {
     width: 30,
     alignItems: "center",
     justifyContent: "center",
     height: 30,
+    marginRight: 8,
+  },
+  bulletPointUrdu: {
+    marginRight: 0,
+    marginLeft: 8,
   },
   bulletIcon: {
     fontSize: 20,
   },
-  guidanceText: {
+  // Guidance Text Styles
+  guidanceTextEnglish: {
     flex: 1,
     fontSize: 15,
+    fontFamily: "Poppins-Regular",
     color: "#1F2937",
     lineHeight: 22,
+  },
+  guidanceTextUrdu: {
+    flex: 1,
+    fontSize: 15,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    color: "#1F2937",
+    lineHeight: 32,
+    textAlign: "right",
+    writingDirection: 'rtl',
   },
   errorContainer: {
     flex: 1,
@@ -823,21 +710,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
-  errorText: {
+  // Error Text Styles
+  errorTextEnglish: {
     fontSize: 18,
+    fontFamily: "Poppins-Regular",
     color: "#EF4444",
     marginBottom: 20,
     textAlign: "center",
   },
-  backButton: {
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: "#F5F3FF",
-    alignItems: "center",
+  errorTextUrdu: {
+    fontSize: 18,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    color: "#EF4444",
+    marginBottom: 20,
+    textAlign: "right",
+    writingDirection: 'rtl',
+    lineHeight: 32,
   },
-  backButtonText: {
+  backButton: {
+    backgroundColor: "#8B5CF6",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 15,
+  },
+  // Back Button Text Styles
+  backButtonTextEnglish: {
+    color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: '600',
-    color: "#8B5CF6",
+    fontFamily: "Poppins-Regular",
+  },
+  backButtonTextUrdu: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontFamily: "NotoNastaliqUrdu-Regular",
+    writingDirection: 'rtl',
+    lineHeight: 32,
   },
 });

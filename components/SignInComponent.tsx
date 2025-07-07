@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   StyleSheet,
@@ -27,24 +27,21 @@ const SignInComponent: React.FC = () => {
 
   const navigation = useNavigation();
 
-  // Function to reset form states
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setEmail("");
     setPassword("");
     setIsPasswordVisible(false);
     setErrorVisible(false);
     setErrorTitle("");
     setErrorMessage("");
-  };
+  }, []);
 
-  // Reset form when screen comes into focus
   useFocusEffect(
     React.useCallback(() => {
       resetForm();
-    }, [])
+    }, [resetForm])
   );
 
-  // Function to show error modal with specific title and message
   const showError = (title: string, message: string) => {
     setErrorTitle(title);
     setErrorMessage(message);
@@ -52,111 +49,178 @@ const SignInComponent: React.FC = () => {
   };
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   };
 
+  const validatePassword = (password: string) => {
+    return password.length >= 8;
+  };
+
   const signIn = async () => {
-    // Form validation
+    // Clear any previous errors
+    setErrorVisible(false);
+    
+    // Form validation with improved error messages
     if (!email && !password) {
-      showError("Missing Information", "Please enter both email and password.");
+      showError("Missing Information", "Please provide both email and password to sign in.");
       return;
     }
-    
+
     if (!email) {
-      showError("Email Required", "Please enter your email address.");
+      showError("Email Required", "Please enter your email address to continue.");
       return;
     }
-    
+
     if (!validateEmail(email)) {
-      showError("Invalid Email", "Please enter a valid email address.");
+      showError("Invalid Email Format", "Please enter a valid email address (e.g., user@example.com).");
       return;
     }
-    
+
     if (!password) {
-      showError("Password Required", "Please enter your password.");
+      showError("Password Required", "Please enter your password to continue.");
       return;
     }
-  
+
+    if (!validatePassword(password)) {
+      showError("Invalid Password", "Password must be at least 8 characters long.");
+      return;
+    }
+
     setLoading(true);
     setIsModalVisible(true);
-  
+
     try {
       const response = await axios.post(
         `${BASE_URL}/user/login`,
         {
-          email,
+          email: email.trim().toLowerCase(),
           password,
+        },
+        {
+          timeout: 15000, // Increased timeout to 15 seconds
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
-  
+
       const { token, userId } = response.data;
-      console.log("Response data:", response.data);
-      console.log("User signed in:", token, userId);
-  
+      
       const adminEmails = [
         "ayeshanawaz211288@gmail.com",
         "avae1856@gmail.com",
         "arhamaleem103@gmail.com",
       ];
-  
-      const isAdmin = adminEmails.includes(email);
+
+      const isAdmin = adminEmails.includes(email.toLowerCase());
       const userRole = isAdmin ? "admin" : "user";
-  
+
       await AsyncStorage.setItem("userToken", token);
       await AsyncStorage.setItem("userId", userId);
       await AsyncStorage.setItem("userRole", userRole);
-  
+
       navigation.navigate(isAdmin ? "(zadmin)" : "(user)");
-  
+
     } catch (error) {
       console.error("Login error:", error);
-      
+
       if (axios.isAxiosError(error)) {
         if (!error.response) {
-          showError(
-            "Connection Error", 
-            "Unable to connect to the server. Please check your internet connection and try again."
-          );
+          // Network errors
+          if (error.code === 'ECONNABORTED') {
+            showError(
+              "Connection Timeout",
+              "The request took too long to complete. Please check your internet connection and try again."
+            );
+          } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+            showError(
+              "Network Error",
+              "Cannot connect to the server. Please check your internet connection and try again."
+            );
+          } else if (error.code === 'NETWORK_ERROR') {
+            showError(
+              "Network Error",
+              "A network error occurred. Please check your internet connection and try again."
+            );
+          } else {
+            showError(
+              "Connection Error",
+              "Unable to connect to the server. Please check your internet connection and try again."
+            );
+          }
         } else {
+          // Server response errors
           const status = error.response.status;
+          const errorData = error.response.data;
           
           switch (status) {
-            case 401:
+            case 400:
               showError(
-                "Authentication Failed", 
-                "Invalid email or password. Please check your credentials and try again."
+                "Invalid Request",
+                errorData?.message || "The request contains invalid information. Please check your input and try again."
               );
               break;
-            case 404:
+            case 401:
               showError(
-                "User Not Found", 
-                "No account found with this email address. Please sign up first."
+                "Invalid Credentials",
+                "The email or password you entered is incorrect. Please double-check your credentials and try again."
               );
               break;
             case 403:
               showError(
-                "Account Locked", 
-                "Your account has been temporarily locked due to multiple failed login attempts. Please try again later."
+                "Account Locked",
+                "Your account has been temporarily locked due to multiple failed login attempts. Please try again later or reset your password."
+              );
+              break;
+            case 404:
+              showError(
+                "Account Not Found",
+                "No account exists with this email address. Please check your email or sign up for a new account."
+              );
+              break;
+            case 422:
+              showError(
+                "Invalid Input",
+                errorData?.message || "The information provided is not valid. Please check your email and password format."
+              );
+              break;
+            case 429:
+              showError(
+                "Too Many Attempts",
+                "Too many login attempts detected. Please wait a few minutes before trying again."
               );
               break;
             case 500:
               showError(
-                "Server Error", 
-                "Our servers are experiencing issues. Please try again later."
+                "Server Error",
+                "Our servers are experiencing technical difficulties. Please try again in a few minutes."
+              );
+              break;
+            case 502:
+              showError(
+                "Service Unavailable",
+                "The service is temporarily unavailable. Please try again later."
+              );
+              break;
+            case 503:
+              showError(
+                "Service Unavailable",
+                "The service is currently under maintenance. Please try again later."
               );
               break;
             default:
               showError(
-                "Login Failed", 
-                "An unexpected error occurred. Please try again later."
+                "Login Failed",
+                errorData?.message || `An error occurred during login (Error ${status}). Please try again.`
               );
           }
         }
       } else {
+        // Non-axios errors
         showError(
-          "Login Failed", 
-          "An unexpected error occurred. Please try again later."
+          "Unexpected Error",
+          "An unexpected error occurred during login. Please try again or contact support if the problem persists."
         );
       }
     } finally {
@@ -193,6 +257,8 @@ const SignInComponent: React.FC = () => {
               value={email}
               onChangeText={setEmail}
               autoCapitalize="none"
+              autoCorrect={false}
+              autoComplete="email"
             />
           </View>
 
@@ -210,6 +276,9 @@ const SignInComponent: React.FC = () => {
               secureTextEntry={!isPasswordVisible}
               value={password}
               onChangeText={setPassword}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoComplete="password"
             />
             <TouchableOpacity
               style={styles.eyeIcon}
@@ -234,7 +303,7 @@ const SignInComponent: React.FC = () => {
 
           <TouchableOpacity
             onPress={signIn}
-            style={styles.button}
+            style={[styles.button, loading && styles.buttonDisabled]}
             disabled={loading}
           >
             <Text style={styles.buttonText}>
@@ -250,7 +319,7 @@ const SignInComponent: React.FC = () => {
             )}
           </TouchableOpacity>
         </View>
-        
+
         <View style={styles.switchTextContainer}>
           <Text style={styles.switchText}>
             Don't have an account?{" "}
@@ -262,7 +331,7 @@ const SignInComponent: React.FC = () => {
             </Text>
           </Text>
         </View>
-        
+
         <Modal
           transparent={true}
           animationType="fade"
@@ -276,7 +345,7 @@ const SignInComponent: React.FC = () => {
             </View>
           </View>
         </Modal>
-        
+
         <Modal
           transparent={true}
           animationType="fade"
@@ -308,7 +377,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     paddingTop: 50,
-    padding: 20
+    padding: 20,
   },
   container: {
     flex: 1,
@@ -359,7 +428,8 @@ const styles = StyleSheet.create({
     color: "#666",
     textAlign: "center",
     marginBottom: 30,
-  },inputContainer: {
+  },
+  inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#F8F9FA",
@@ -368,7 +438,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderWidth: 1,
     borderColor: "#FFB6C1",
-    position: "relative", // Ensures proper alignment
+    position: "relative",
   },
   inputIcon: {
     marginRight: 10,
@@ -382,11 +452,11 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   passwordInput: {
-    paddingRight: 40, // Adds space for the eye icon
+    paddingRight: 40,
   },
   eyeIcon: {
     position: "absolute",
-    right: 15, // Positions it inside the inputContainer at the right
+    right: 15,
     padding: 10,
   },
   button: {
@@ -396,6 +466,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonDisabled: {
+    backgroundColor: "#FFB6C1",
+    opacity: 0.7,
   },
   buttonText: {
     fontSize: 16,
@@ -448,8 +522,6 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     textDecorationLine: "underline",
   },
-  
-  // Error modal styles
   errorModalContent: {
     backgroundColor: "#fff",
     padding: 25,

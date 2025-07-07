@@ -659,7 +659,7 @@ const KalmaDetail: React.FC = () => {
                 isLearned && styles.markAsReadTextActive,
               ]}
             >
-              {isLearned ? "✓ Learned!" : "Mark as Learned"}
+              {isLearned ? "✓ Learned!" : "Mark as Learn"}
             </Text>
           </TouchableOpacity>
         </Animated.View>

@@ -6,7 +6,14 @@ import CustomAlert from "@/components/CustomAlert";
 
 interface User {
   _id: string;
-  // Add other user properties here
+  age?: number;
+  email?: string;
+  gender?: string;
+  isActive?: boolean;
+  role?: string;
+  username?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface UserContextType {
@@ -55,40 +62,42 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setAlertVisible(true);
   };
 
+  const clearUserData = async () => {
+    console.log("Clearing user data completely");
+    setUser(null);
+    await AsyncStorage.multiRemove(["userToken", "userId", "userRole"]);
+  };
+
   const fetchUser = useCallback(async () => {
     try {
       const token = await AsyncStorage.getItem("userToken");
       const storedUserId = await AsyncStorage.getItem("userId");
 
-      console.log("Fetching user with token:", token);
-      console.log("Fetching user with ID:", storedUserId);
-
       if (!token || !storedUserId) {
-        console.log("No token or userId found in storage");
-        setUser(null);
+        console.log("No token or userId found, clearing user data");
+        await clearUserData();
         setLoading(false);
         return;
       }
 
       const response = await axios.get(`${BASE_URL}/user/auser/${storedUserId}`, {
         headers: { Authorization: `Bearer ${token}` },
-        timeout: 5000,
+        timeout: 10000,
       });
-      console.log("API Response:", response.data);
 
       if (response.data) {
+        console.log("Fresh user data fetched for userId:", storedUserId);
         setUser(response.data);
       } else {
-        setUser(null);
+        await clearUserData();
       }
     } catch (error) {
-      console.error("Error fetching user data:", error);
-      // showAlert({
-      //   title: "Error",
-      //   message: error.response?.data?.message || "Failed to fetch user data",
-      //   type: "error",
-      // });
-      setUser(null);
+      console.error("Error fetching user:", error);
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401 || error.response?.status === 404) {
+          await clearUserData();
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -96,70 +105,70 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (userData: User, token: string) => {
     try {
-      // Save token and userId to AsyncStorage
+      setLoading(true);
+      console.log("LOGIN: Clearing all previous user data");
+      await clearUserData();
+
+      // Store new credentials
       await AsyncStorage.setItem("userToken", token);
       await AsyncStorage.setItem("userId", userData._id);
-      
-      // Immediately set the user state
-      setUser(userData);
-      
-      // Fetch the latest user data from the API to ensure consistency
+
+      // Fetch fresh user data
+      console.log("LOGIN: Fetching fresh user data for:", userData._id);
       await fetchUser();
-      
-      console.log("Login successful. User data:", userData);
     } catch (error) {
-      console.error("Error saving auth data:", error);
-      // showAlert({
-      //   title: "Error",
-      //   message: "Failed to save authentication data",
-      //   type: "error",
-      // });
-      setUser(null);
+      console.error("Login failed:", error);
+      showAlert({
+        title: "Login Error",
+        message: "Failed to log in. Please try again.",
+        type: "error",
+      });
+      await clearUserData();
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = async () => {
     try {
-      await AsyncStorage.removeItem("userToken");
-      await AsyncStorage.removeItem("userId");
-      setUser(null);
-      console.log("Logout successful");
-      // showAlert({
-      //   title: "Success",
-      //   message: "Logged out successfully",
-      //   type: "success",
-      // });
+      setLoading(true);
+      console.log("LOGOUT: Clearing all user data");
+      await clearUserData();
+      showAlert({
+        title: "Success",
+        message: "Logged out successfully",
+        type: "success",
+      });
     } catch (error) {
-      console.error("Error during logout:", error);
-      // showAlert({
-      //   title: "Error",
-      //   message: "Failed to logout properly",
-      //   type: "error",
-      // });
+      console.error("Logout error:", error);
+      showAlert({
+        title: "Logout Error",
+        message: "Failed to log out. Please try again.",
+        type: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     const initialize = async () => {
       try {
+        console.log("INIT: Checking stored credentials");
         const token = await AsyncStorage.getItem("userToken");
         const storedUserId = await AsyncStorage.getItem("userId");
 
-        console.log("Initial token:", token);
-        console.log("Initial userId:", storedUserId);
-
         if (token && storedUserId) {
+          console.log("INIT: Found credentials, fetching user data");
           await fetchUser();
         } else {
-          setLoading(false);
+          console.log("INIT: No credentials found");
+          await clearUserData();
         }
       } catch (error) {
-        console.error("Error during initialization:", error);
-        // showAlert({
-        //   title: "Error",
-        //   message: "Failed to initialize user data",
-        //   type: "error",
-        // });
+        console.error("Initialization error:", error);
+        await clearUserData();
+      } finally {
         setLoading(false);
       }
     };

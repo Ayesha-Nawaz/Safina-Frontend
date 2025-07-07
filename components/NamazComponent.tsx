@@ -795,8 +795,7 @@ const styles = StyleSheet.create({
   urduStepName: {
     fontFamily: "NotoNastaliqUrdu-Bold",
     fontSize: 16,
-    textAlign: "right",
-    marginRight: 30,
+    textAlign: "center",
     lineHeight: 40,
   },
   countContainer: {
@@ -859,7 +858,7 @@ const styles = StyleSheet.create({
   },
   urduText: {
     fontFamily: "NotoNastaliqUrdu-Medium",
-    textAlign: "right",
+    textAlign: "center",
   },
   urduTitle: {
     fontFamily: "NotoNastaliqUrdu-Bold",

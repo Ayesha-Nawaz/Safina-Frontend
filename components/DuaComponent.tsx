@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgb(242, 178, 178)',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,
+    lineHeight:45
   },
   shine: {
     position: 'absolute',

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   StyleSheet,
   TextInput,
   Text,
   TouchableOpacity,
-  Alert,
   ScrollView,
   ActivityIndicator,
   Modal,
@@ -15,14 +14,16 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
+import { UserContext } from "@/context/UserContext";
 
-// Define error types for better organization
+// Define error types
 type ErrorType = {
   title: string;
   message: string;
 };
 
 const SignUpComponent: React.FC = () => {
+  const { login } = useContext(UserContext); // Access login from UserContext
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -33,22 +34,16 @@ const SignUpComponent: React.FC = () => {
   const [loadingModalVisible, setLoadingModalVisible] = useState<boolean>(false);
   const [ageModalVisible, setAgeModalVisible] = useState<boolean>(false);
   const [genderModalVisible, setGenderModalVisible] = useState<boolean>(false);
-  
-  // New state for error handling
   const [errorModalVisible, setErrorModalVisible] = useState<boolean>(false);
   const [currentError, setCurrentError] = useState<ErrorType | null>(null);
-  
-  // New state to track field lengths for providing feedback
   const [usernameLength, setUsernameLength] = useState<number>(0);
   const [passwordLength, setPasswordLength] = useState<number>(0);
-  
+
   const navigation = useNavigation();
 
-  // Generate ages from 5 to 12 for the picker
   const ageOptions = Array.from({ length: 8 }, (_, i) => (i + 5).toString());
   const genderOptions = ["Male", "Female"];
 
-  // Display error with proper heading
   const showError = (title: string, message: string) => {
     setCurrentError({ title, message });
     setErrorModalVisible(true);
@@ -59,72 +54,68 @@ const SignUpComponent: React.FC = () => {
     return gmailRegex.test(email);
   };
 
-  // Updated password validation with specific range
   const isValidPassword = (password: string) => {
     return password.length >= 6 && password.length <= 15;
   };
 
-  // Validate inputs before submission
- // Validate inputs before submission
-const validateInputs = () => {
-  // Check for empty fields
-  if (!email) {
-    showError("Empty Field Error", "Email address is required.");
-    return false;
-  }
-  if (!password) {
-    showError("Empty Field Error", "Password is required.");
-    return false;
-  }
-  if (!username) {
-    showError("Empty Field Error", "Username is required.");
-    return false;
-  }
-  if (!age) {
-    showError("Empty Field Error", "Age selection is required.");
-    return false;
-  }
-  if (!gender) {
-    showError("Empty Field Error", "Gender selection is required.");
-    return false;
-  }
+  const isValidUsername = (username: string) => {
+    // Allow alphabets (a-z, A-Z), numbers (0-9), and spaces; disallow other characters
+    const usernameRegex = /^[a-zA-Z0-9 ]+$/;
+    return usernameRegex.test(username);
+  };
 
-  // Email validation
-  if (!isValidGmail(email)) {
-    showError("Email Error", "Only Gmail.com addresses are allowed.");
-    return false;
-  }
+  const validateInputs = () => {
+    if (!email) {
+      showError("Empty Field Error", "Email address is required.");
+      return false;
+    }
+    if (!password) {
+      showError("Empty Field Error", "Password is required.");
+      return false;
+    }
+    if (!username) {
+      showError("Empty Field Error", "Username is required.");
+      return false;
+    }
+    if (!age) {
+      showError("Empty Field Error", "Age selection is required.");
+      return false;
+    }
+    if (!gender) {
+      showError("Empty Field Error", "Gender selection is required.");
+      return false;
+    }
 
-  // Username validation: Only alphabets allowed
-  const usernameRegex = /^[a-zA-Z]+$/;
-  if (!usernameRegex.test(username)) {
-    showError("Username Error", "Username should contain only alphabetic characters (a-z or A-Z).");
-    return false;
-  }
+    if (!isValidGmail(email)) {
+      showError("Email Error", "Only Gmail.com addresses are allowed.");
+      return false;
+    }
 
-  // Username length validation
-  if (username.length > 25) {
-    showError("Username Error", "Username should not exceed 25 characters.");
-    return false;
-  }
+    if (!isValidUsername(username)) {
+      showError("Username Error", "Username can only contain letters (a-z, A-Z), numbers (0-9), and spaces.");
+      return false;
+    }
 
-  // Age validation
-  const ageNumber = parseInt(age);
-  if (isNaN(ageNumber) || ageNumber > 12 || ageNumber < 5) {
-    showError("Age Error", "Age should be a number between 5 and 12.");
-    return false;
-  }
+    if (username.length > 25) {
+      showError("Username Error", "Username should not exceed 25 characters.");
+      return false;
+    }
 
-  // Password validation
-  if (!isValidPassword(password)) {
-    showError("Password Error", "Password must be between 6 and 15 characters long.");
-    return false;
-  }
+    const ageNumber = parseInt(age);
+    if (isNaN(ageNumber) || ageNumber > 12 || ageNumber < 5) {
+      showError("Age Error", "Age should be a number between 5 and 12.");
+      return false;
+    }
 
-  return true;
-};
+    if (!isValidPassword(password)) {
+      showError("Password Error", "Password must be between 6 and 15 characters long.");
+      return false;
+    }
+
+    return true;
+  };
+
   const signUp = async () => {
-    // First validate all inputs
     if (!validateInputs()) {
       return;
     }
@@ -150,10 +141,9 @@ const validateInputs = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("User signed up successfully:", data.message);
-        console.log("Token received:", data.token);
+        console.log("signUp: User signed up successfully:", data.message);
+        console.log("signUp: Token received:", data.token);
 
-        // List of admin emails
         const adminEmails = [
           "ayeshanawaz211288@gmail.com",
           "avae1856@gmail.com",
@@ -164,8 +154,19 @@ const validateInputs = () => {
         const userRole = isAdmin ? "admin" : "user";
 
         if (data.token) {
-          // Store the token and role in AsyncStorage
-          await AsyncStorage.setItem("userToken", data.token);
+          // Call UserContext.login to update user state
+          await login(
+            {
+              _id: data.user?._id || data._id, // Handle potential API response variations
+              email,
+              username,
+              age: parseInt(age),
+              gender,
+              role: userRole,
+            },
+            data.token
+          );
+
           await AsyncStorage.setItem("userRole", userRole);
 
           setLoadingModalVisible(false);
@@ -180,11 +181,9 @@ const validateInputs = () => {
           setLoadingModalVisible(false);
         }
       } else {
-        // Handle specific API error responses
         let errorTitle = "Registration Error";
         let errorMessage = data.message || "An error occurred during sign up.";
-        
-        // Check for specific error cases
+
         if (data.message && data.message.toLowerCase().includes("email already exists")) {
           errorTitle = "Account Error";
           errorMessage = "This email is already registered. Please use a different email or try logging in.";
@@ -192,12 +191,12 @@ const validateInputs = () => {
           errorTitle = "Username Error";
           errorMessage = "This username is already taken. Please choose a different username.";
         }
-        
+
         showError(errorTitle, errorMessage);
         setLoadingModalVisible(false);
       }
     } catch (error) {
-      console.error("Sign-up error:", error);
+      console.error("signUp: Sign-up error:", error);
       showError("Network Error", "Connection failed. Please check your internet connection and try again.");
       setLoadingModalVisible(false);
     } finally {
@@ -205,7 +204,6 @@ const validateInputs = () => {
     }
   };
 
-  // Render item for age selection
   const renderAgeItem = ({ item }: { item: string }) => (
     <TouchableOpacity
       style={[styles.modalItem, age === item && styles.selectedModalItem]}
@@ -233,7 +231,6 @@ const validateInputs = () => {
     </TouchableOpacity>
   );
 
-  // Render item for gender selection
   const renderGenderItem = ({ item }: { item: string }) => (
     <TouchableOpacity
       style={[styles.modalItem, gender === item && styles.selectedModalItem]}
@@ -261,7 +258,6 @@ const validateInputs = () => {
     </TouchableOpacity>
   );
 
-  // Update length counters when input changes
   const handleUsernameChange = (text: string) => {
     setUsername(text);
     setUsernameLength(text.length);
@@ -272,25 +268,23 @@ const validateInputs = () => {
     setPasswordLength(text.length);
   };
 
-  // Helper functions to determine the color for the helper text
   const getUsernameLengthColor = () => {
-    if (usernameLength === 0) return "#999"; // Default gray
-    if (usernameLength > 20) return "#FF8C00"; // Warning orange
-    if (usernameLength === 25) return "#FF0000"; // Error red
-    return "#4CAF50"; // Success green
+    if (usernameLength === 0) return "#999";
+    if (usernameLength > 20) return "#FF8C00";
+    if (usernameLength === 25) return "#FF0000";
+    return "#4CAF50";
   };
 
   const getPasswordLengthColor = () => {
-    if (passwordLength === 0) return "#999"; // Default gray
-    if (passwordLength < 6) return "#FF0000"; // Error red
-    if (passwordLength > 12) return "#FF8C00"; // Warning orange
-    return "#4CAF50"; // Success green
+    if (passwordLength === 0) return "#999";
+    if (passwordLength < 6) return "#FF0000";
+    if (passwordLength > 12) return "#FF8C00";
+    return "#4CAF50";
   };
 
   return (
     <ScrollView style={styles.overlay}>
       <View style={styles.container}>
-        {/* App Name with enhanced styling */}
         <View style={styles.appNameContainer}>
           <Text style={styles.appName}>Safina </Text>
           <Text style={styles.appTagline}>A Vessel of Knowledge</Text>
@@ -318,11 +312,10 @@ const validateInputs = () => {
               />
             </View>
             <Text style={[styles.helperText, { color: getUsernameLengthColor() }]}>
-              {usernameLength}/25 characters
+              {usernameLength}/25 characters (letters, numbers, spaces only)
             </Text>
           </View>
 
-          {/* Email Input with Icon */}
           <View style={styles.inputContainer}>
             <FontAwesome
               name="envelope"
@@ -341,7 +334,6 @@ const validateInputs = () => {
           </View>
           <Text style={styles.helperText}>Only Gmail.com accounts are accepted</Text>
 
-          {/* Password Input with Icon */}
           <View style={styles.inputWrapperContainer}>
             <View style={styles.inputContainer}>
               <FontAwesome
@@ -375,7 +367,6 @@ const validateInputs = () => {
             </Text>
           </View>
 
-          {/* Age Selector with Modal */}
           <TouchableOpacity
             style={styles.selectorContainer}
             onPress={() => setAgeModalVisible(true)}
@@ -397,7 +388,6 @@ const validateInputs = () => {
             />
           </TouchableOpacity>
 
-          {/* Gender Selector with Modal */}
           <TouchableOpacity
             style={styles.selectorContainer}
             onPress={() => setGenderModalVisible(true)}
@@ -450,7 +440,6 @@ const validateInputs = () => {
           </Text>
         </View>
 
-        {/* Age Selection Modal */}
         <Modal
           visible={ageModalVisible}
           transparent={true}
@@ -479,7 +468,6 @@ const validateInputs = () => {
           </TouchableOpacity>
         </Modal>
 
-        {/* Gender Selection Modal */}
         <Modal
           visible={genderModalVisible}
           transparent={true}
@@ -508,7 +496,6 @@ const validateInputs = () => {
           </TouchableOpacity>
         </Modal>
 
-        {/* Loading Modal */}
         <Modal
           visible={loadingModalVisible}
           transparent={true}
@@ -525,7 +512,6 @@ const validateInputs = () => {
           </View>
         </Modal>
 
-        {/* Error Modal with proper heading */}
         <Modal
           visible={errorModalVisible}
           transparent={true}
@@ -618,7 +604,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   inputWrapperContainer: {
-    marginBottom: 5, // Reduced margin to account for helper text
+    marginBottom: 5,
   },
   inputContainer: {
     flexDirection: "row",
@@ -629,7 +615,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderWidth: 1,
     borderColor: "#FFB6C1",
-    position: "relative", // Ensures proper alignment
+    position: "relative",
   },
   inputIcon: {
     marginRight: 10,
@@ -643,14 +629,14 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   passwordInput: {
-    paddingRight: 40, // Adds space for the eye icon
+    paddingRight: 40,
   },
   eyeIcon: {
     position: "absolute",
-    right: 15, // Positions it inside the inputContainer at the right
+    right: 15,
     padding: 10,
   },
-   helperText: {
+  helperText: {
     fontSize: 12,
     color: "#999",
     marginLeft: 5,
@@ -777,7 +763,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
   },
-  // Error modal styles
   errorModalContent: {
     backgroundColor: "#fff",
     borderRadius: 10,

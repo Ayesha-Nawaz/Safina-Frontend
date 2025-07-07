@@ -19,7 +19,7 @@ import {
   eventSignificance,
   eventTranslations,
   eventDescriptionsUrdu,
-  getKidsGuidance
+  getKidsGuidance,
 } from "@/assets/data/Events"; // Adjust the path if needed
 
 const EventsComponent = () => {
@@ -46,180 +46,188 @@ const EventsComponent = () => {
     } catch (err) {
       console.error("Error fetching data:", err);
       setError("Failed to load data. Using offline data.");
-      
+
       // Use fallback events if API fails
       const fallbackEvents = {
         "1447-1-1": {
           name: "Islamic New Year",
-          description: "The beginning of the Islamic (Hijri) calendar, marking the migration (Hijrah) of Prophet Muhammad (SAW) from Makkah to Madinah.",
+          description:
+            "The beginning of the Islamic (Hijri) calendar, marking the migration (Hijrah) of Prophet Muhammad (SAW) from Makkah to Madinah.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "1",
               month: {
                 number: "1",
-                en: "Muharram"
+                en: "Muharram",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "07-07-2025",
               day: "07",
               month: {
                 number: "07",
-                en: "July"
+                en: "July",
               },
-              year: "2025"
-            }
-          }
+              year: "2025",
+            },
+          },
         },
         "1447-1-9": {
           name: "Ashura",
-          description: "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
+          description:
+            "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "9",
               month: {
                 number: "1",
-                en: "Muharram"
+                en: "Muharram",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "05-07-2025",
               day: "05",
               month: {
                 number: "07",
-                en: "July"
+                en: "July",
               },
-              year: "2025"
-            }
-          }
+              year: "2025",
+            },
+          },
         },
         "1447-1-10": {
           name: "Ashura",
-          description: "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
+          description:
+            "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "10",
               month: {
                 number: "1",
-                en: "Muharram"
+                en: "Muharram",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "06-07-2025",
               day: "06",
               month: {
                 number: "07",
-                en: "July"
+                en: "July",
               },
-              year: "2025"
-            }
-          }
+              year: "2025",
+            },
+          },
         },
         "1447-3-12": {
           name: "Mawlid al-Nabi",
-          description: "The observance of the birth of Prophet Muhammad (SAW), celebrated by many Muslims worldwide.",
+          description:
+            "The observance of the birth of Prophet Muhammad (SAW), celebrated by many Muslims worldwide.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "12",
               month: {
                 number: "3",
-                en: "Rabi al-Awwal"
+                en: "Rabi al-Awwal",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "11-09-2025",
               day: "11",
               month: {
                 number: "09",
-                en: "September"
+                en: "September",
               },
-              year: "2025"
-            }
-          }
+              year: "2025",
+            },
+          },
         },
         "1447-7-27": {
           name: "Lailat-ul-Miraj",
-          description: "The night journey and ascension of Prophet Muhammad (SAW) to the heavens, where he was granted the command of five daily prayers.",
+          description:
+            "The night journey and ascension of Prophet Muhammad (SAW) to the heavens, where he was granted the command of five daily prayers.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "27",
               month: {
                 number: "7",
-                en: "Rajab"
+                en: "Rajab",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "23-01-2026",
               day: "23",
               month: {
                 number: "01",
-                en: "January"
+                en: "January",
               },
-              year: "2026"
-            }
-          }
+              year: "2026",
+            },
+          },
         },
         "1447-9-1": {
           name: "Ramadan",
-          description: "The holy month of fasting, prayer, and reflection for Muslims, during which the Quran was revealed.",
+          description:
+            "The holy month of fasting, prayer, and reflection for Muslims, during which the Quran was revealed.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "1",
               month: {
                 number: "9",
-                en: "Ramadan"
+                en: "Ramadan",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "28-02-2026",
               day: "28",
               month: {
                 number: "02",
-                en: "February"
+                en: "February",
               },
-              year: "2026"
-            }
-          }
+              year: "2026",
+            },
+          },
         },
         "1447-10-1": {
           name: "Eid-ul-Fitr",
-          description: "A festival marking the end of Ramadan, celebrated with prayers, charity, and feasts.",
+          description:
+            "A festival marking the end of Ramadan, celebrated with prayers, charity, and feasts.",
           color: "#4CAF50",
           date: {
             hijri: {
               day: "1",
               month: {
                 number: "10",
-                en: "Shawwal"
+                en: "Shawwal",
               },
-              year: "1447"
+              year: "1447",
             },
             gregorian: {
               date: "30-03-2026",
               day: "30",
               month: {
                 number: "03",
-                en: "March"
+                en: "March",
               },
-              year: "2026"
-            }
-          }
+              year: "2026",
+            },
+          },
         },
         "1447-12-10": {
           name: "Eid-ul-Adha",
-          description: "The 'Festival of Sacrifice,' commemorating Prophet Ibrahim's (AS) willingness to sacrifice his son in obedience to Allah.",
+          description:
+            "The 'Festival of Sacrifice,' commemorating Prophet Ibrahim's (AS) willingness to sacrifice his son in obedience to Allah.",
           color: "#4CAF50",
           date: {
             higregorian: {
@@ -227,12 +235,12 @@ const EventsComponent = () => {
               day: "26",
               month: {
                 number: "05",
-                en: "May"
+                en: "May",
               },
-              year: "2026"
-            }
-          }
-        }
+              year: "2026",
+            },
+          },
+        },
       };
 
       setUpcomingEvents(fallbackEvents);
@@ -243,59 +251,142 @@ const EventsComponent = () => {
       setRefreshing(false);
     }
   };
-
   const fetchIslamicDate = async () => {
     try {
       // Use Pakistan's coordinates (Islamabad) and method 1 for University of Islamic Sciences, Karachi
+      // Changed adjustment from 1 to 0 to get correct Islamic date
       const response = await fetch(
-        "http://api.aladhan.com/v1/gToH/2025-07-04?latitude=33.6844&longitude=73.0479&method=1&adjustment=1"
+        "http://api.aladhan.com/v1/gToH?latitude=33.6844&longitude=73.0479&method=1&adjustment=0"
       );
       const data = await response.json();
 
       if (data.data && data.data.hijri) {
-        setIslamicDate(data.data.hijri);
+        // Adjust the Islamic date by subtracting one day
+        let adjustedDay = parseInt(data.data.hijri.day) - 1;
+        let adjustedMonth = data.data.hijri.month;
+        let adjustedYear = data.data.hijri.year;
+
+        // Handle month rollover when day becomes 0
+        if (adjustedDay === 0) {
+          let newMonth = parseInt(adjustedMonth.number) - 1;
+          let newYear = parseInt(adjustedYear);
+
+          if (newMonth === 0) {
+            newMonth = 12;
+            newYear = newYear - 1;
+          }
+
+          // Get the last day of the previous month (approximate)
+          const daysInMonth = {
+            1: 30,
+            2: 29,
+            3: 30,
+            4: 29,
+            5: 30,
+            6: 29,
+            7: 30,
+            8: 29,
+            9: 30,
+            10: 29,
+            11: 30,
+            12: 29,
+          };
+          adjustedDay = daysInMonth[newMonth];
+
+          const monthNames = {
+            1: "Muharram",
+            2: "Safar",
+            3: "Rabi al-Awwal",
+            4: "Rabi al-Thani",
+            5: "Jumada al-Awwal",
+            6: "Jumada al-Thani",
+            7: "Rajab",
+            8: "Sha'ban",
+            9: "Ramadan",
+            10: "Shawwal",
+            11: "Dhu al-Qi'dah",
+            12: "Dhu al-Hijjah",
+          };
+
+          adjustedMonth = {
+            number: newMonth.toString(),
+            en: monthNames[newMonth],
+          };
+          adjustedYear = newYear.toString();
+        }
+
+        setIslamicDate({
+          day: adjustedDay.toString(),
+          month: adjustedMonth,
+          year: adjustedYear,
+        });
       } else {
         throw new Error("Invalid API response");
       }
     } catch (error) {
       console.error("Error fetching Islamic date:", error);
-      // Set fallback Islamic date for July 4, 2025, as 8th Muharram 1447
+      // Set fallback Islamic date based on current date
       const today = moment().format("YYYY-MM-DD");
-      if (today === "2025-07-04") {
+
+      // Calculate proper Islamic date based on current Gregorian date (adjusted)
+      if (today === "2025-07-05") {
+        setIslamicDate({
+          day: "9",
+          month: {
+            number: "1",
+            en: "Muharram",
+          },
+          year: "1447",
+        });
+      } else if (today === "2025-07-04") {
         setIslamicDate({
           day: "8",
           month: {
             number: "1",
-            en: "Muharram"
+            en: "Muharram",
           },
-          year: "1447"
+          year: "1447",
+        });
+      } else if (today === "2025-07-06") {
+        setIslamicDate({
+          day: "10",
+          month: {
+            number: "1",
+            en: "Muharram",
+          },
+          year: "1447",
         });
       } else {
+        // For other dates, use a more dynamic calculation or default
         setIslamicDate({
           day: "1",
           month: {
             number: "1",
-            en: "Muharram"
+            en: "Muharram",
           },
-          year: "1447"
+          year: "1447",
         });
       }
     }
   };
-
   const filterFutureEvents = (events) => {
     try {
       const today = moment().format("YYYY-MM-DD");
-      const oneMonthFromToday = moment().add(30, 'days').format("YYYY-MM-DD");
+      const oneMonthFromToday = moment().add(30, "days").format("YYYY-MM-DD");
       const futureEventsList = [];
 
       Object.entries(events).forEach(([hijriDate, event]) => {
         if (event.date && event.date.gregorian) {
-          const gregorianDate = `${event.date.gregorian.year}-${String(event.date.gregorian.month.number).padStart(2, '0')}-${String(event.date.gregorian.day).padStart(2, '0')}`;
+          const gregorianDate = `${event.date.gregorian.year}-${String(
+            event.date.gregorian.month.number
+          ).padStart(2, "0")}-${String(event.date.gregorian.day).padStart(
+            2,
+            "0"
+          )}`;
 
           // Only include events that are between today and 30 days from today
           if (gregorianDate >= today && gregorianDate <= oneMonthFromToday) {
-            const daysAway = moment(gregorianDate).diff(moment(today), 'days');
+            const daysAway = moment(gregorianDate).diff(moment(today), "days");
             let timeLabel;
 
             if (daysAway === 0) {
@@ -306,14 +397,14 @@ const EventsComponent = () => {
               timeLabel = `${daysAway} days away`;
             } else {
               const weeks = Math.floor(daysAway / 7);
-              timeLabel = `${weeks} week${weeks > 1 ? 's' : ''} away`;
+              timeLabel = `${weeks} week${weeks > 1 ? "s" : ""} away`;
             }
 
             futureEventsList.push({
               ...event,
               gregorianDateStr: gregorianDate,
               daysAway: daysAway,
-              timeLabel: timeLabel
+              timeLabel: timeLabel,
             });
           }
         }
@@ -330,14 +421,22 @@ const EventsComponent = () => {
     try {
       let allEvents = {};
       const importantEvents = {
-        "Islamic New Year": "The beginning of the Islamic (Hijri) calendar, marking the migration (Hijrah) of Prophet Muhammad (SAW) from Makkah to Madinah.",
-        "Ashura": "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
-        "Mawlid al-Nabi": "The observance of the birth of Prophet Muhammad (SAW), celebrated by many Muslims worldwide.",
-        "Lailat-ul-Miraj": "The night journey and ascension of Prophet Muhammad (SAW) to the heavens, where he was granted the command of five daily prayers.",
-        "Ramadan": "The holy month of fasting, prayer, and reflection for Muslims, during which the Quran was revealed.",
-        "Eid-ul-Fitr": "A festival marking the end of Ramadan, celebrated with prayers, charity, and feasts.",
-        "Eid-ul-Adha": "The 'Festival of Sacrifice,' commemorating Prophet Ibrahim's (AS) willingness to sacrifice his son in obedience to Allah.",
-        "Lailat-ul-Qadr": "The 'Night of Power,' one of the last ten nights of Ramadan, believed to be when the first verses of the Quran were revealed to Prophet Muhammad (SAW)."
+        "Islamic New Year":
+          "The beginning of the Islamic (Hijri) calendar, marking the migration (Hijrah) of Prophet Muhammad (SAW) from Makkah to Madinah.",
+        Ashura:
+          "The 9th and 10th days of Muharram, observed for various reasons, including the day Prophet Musa (AS) and the Israelites were saved from Pharaoh, and the martyrdom of Imam Hussain (RA) in Karbala.",
+        "Mawlid al-Nabi":
+          "The observance of the birth of Prophet Muhammad (SAW), celebrated by many Muslims worldwide.",
+        "Lailat-ul-Miraj":
+          "The night journey and ascension of Prophet Muhammad (SAW) to the heavens, where he was granted the command of five daily prayers.",
+        Ramadan:
+          "The holy month of fasting, prayer, and reflection for Muslims, during which the Quran was revealed.",
+        "Eid-ul-Fitr":
+          "A festival marking the end of Ramadan, celebrated with prayers, charity, and feasts.",
+        "Eid-ul-Adha":
+          "The 'Festival of Sacrifice,' commemorating Prophet Ibrahim's (AS) willingness to sacrifice his son in obedience to Allah.",
+        "Lailat-ul-Qadr":
+          "The 'Night of Power,' one of the last ten nights of Ramadan, believed to be when the first verses of the Quran were revealed to Prophet Muhammad (SAW).",
       };
 
       // Fetch events for the new Hijri year 1447, using Pakistan's method
@@ -364,7 +463,7 @@ const EventsComponent = () => {
                     color: "#4CAF50",
                     date: {
                       hijri: hijriDate,
-                      gregorian: gregorianDate
+                      gregorian: gregorianDate,
                     },
                   };
                 }
@@ -384,20 +483,20 @@ const EventsComponent = () => {
             day: "9",
             month: {
               number: "1",
-              en: "Muharram"
+              en: "Muharram",
             },
-            year: "1447"
+            year: "1447",
           },
           gregorian: {
             date: "05-07-2025",
             day: "05",
             month: {
               number: "07",
-              en: "July"
+              en: "July",
             },
-            year: "2025"
-          }
-        }
+            year: "2025",
+          },
+        },
       };
       allEvents["1447-1-10"] = {
         name: "Ashura",
@@ -408,20 +507,20 @@ const EventsComponent = () => {
             day: "10",
             month: {
               number: "1",
-              en: "Muharram"
+              en: "Muharram",
             },
-            year: "1447"
+            year: "1447",
           },
           gregorian: {
             date: "06-07-2025",
             day: "06",
             month: {
               number: "07",
-              en: "July"
+              en: "July",
             },
-            year: "2025"
-          }
-        }
+            year: "2025",
+          },
+        },
       };
 
       setUpcomingEvents(allEvents);
@@ -439,7 +538,12 @@ const EventsComponent = () => {
 
       Object.entries(events).forEach(([hijriDate, event]) => {
         if (event.date && event.date.gregorian) {
-          const gregorianDate = `${event.date.gregorian.year}-${String(event.date.gregorian.month.number).padStart(2, '0')}-${String(event.date.gregorian.day).padStart(2, '0')}`;
+          const gregorianDate = `${event.date.gregorian.year}-${String(
+            event.date.gregorian.month.number
+          ).padStart(2, "0")}-${String(event.date.gregorian.day).padStart(
+            2,
+            "0"
+          )}`;
 
           marked[gregorianDate] = {
             selected: true,
@@ -462,8 +566,17 @@ const EventsComponent = () => {
       if (markedDates[day.dateString]) {
         const selectedHijriDate = Object.keys(upcomingEvents).find(
           (hijriDate) => {
-            if (upcomingEvents[hijriDate].date && upcomingEvents[hijriDate].date.gregorian) {
-              const gregorianDate = `${upcomingEvents[hijriDate].date.gregorian.year}-${String(upcomingEvents[hijriDate].date.gregorian.month.number).padStart(2, '0')}-${String(upcomingEvents[hijriDate].date.gregorian.day).padStart(2, '0')}`;
+            if (
+              upcomingEvents[hijriDate].date &&
+              upcomingEvents[hijriDate].date.gregorian
+            ) {
+              const gregorianDate = `${
+                upcomingEvents[hijriDate].date.gregorian.year
+              }-${String(
+                upcomingEvents[hijriDate].date.gregorian.month.number
+              ).padStart(2, "0")}-${String(
+                upcomingEvents[hijriDate].date.gregorian.day
+              ).padStart(2, "0")}`;
               return gregorianDate === day.dateString;
             }
             return false;
@@ -471,7 +584,10 @@ const EventsComponent = () => {
         );
 
         // Ensure both Ashura dates point to the same event details
-        if (selectedHijriDate === "1447-1-9" || selectedHijriDate === "1447-1-10") {
+        if (
+          selectedHijriDate === "1447-1-9" ||
+          selectedHijriDate === "1447-1-10"
+        ) {
           setSelectedEvent(upcomingEvents["1447-1-10"]);
         } else {
           setSelectedEvent(upcomingEvents[selectedHijriDate]);
@@ -488,7 +604,7 @@ const EventsComponent = () => {
   const highlightDateInCalendar = (dateString) => {
     const updatedMarkedDates = { ...markedDates };
 
-    Object.keys(updatedMarkedDates).forEach(date => {
+    Object.keys(updatedMarkedDates).forEach((date) => {
       if (updatedMarkedDates[date]) {
         updatedMarkedDates[date] = {
           ...updatedMarkedDates[date],
@@ -511,7 +627,9 @@ const EventsComponent = () => {
     setSelectedEvent(event);
 
     if (event.date && event.date.gregorian) {
-      const gregorianDate = `${event.date.gregorian.year}-${String(event.date.gregorian.month.number).padStart(2, '0')}-${String(event.date.gregorian.day).padStart(2, '0')}`;
+      const gregorianDate = `${event.date.gregorian.year}-${String(
+        event.date.gregorian.month.number
+      ).padStart(2, "0")}-${String(event.date.gregorian.day).padStart(2, "0")}`;
       highlightDateInCalendar(gregorianDate);
     }
   };
@@ -570,60 +688,103 @@ const EventsComponent = () => {
             <TouchableOpacity
               style={[
                 styles.dateCard,
-                selectedDateFormat === "gregorian" ? styles.selectedDateCard : null
+                selectedDateFormat === "gregorian"
+                  ? styles.selectedDateCard
+                  : null,
               ]}
               onPress={() => setSelectedDateFormat("gregorian")}
             >
-              <View style={[
-                styles.dateCardIcon,
-                selectedDateFormat === "gregorian" ? { backgroundColor: '#FDF2F8' } : null
-              ]}>
-                <MaterialCommunityIcons
-                  name="calendar-month"
-                  size={24}
-                  color={selectedDateFormat === "gregorian" ? "#EC4899" : "#6B7280"}
-                />
-              </View>
               <View style={styles.dateCardContent}>
-                <Text style={[
-                  styles.dateCardTitle,
-                  selectedDateFormat === "gregorian" ? { color: '#EC4899' } : null
-                ]}>Gregorian</Text>
-                <Text style={[
-                  styles.dateCardDate,
-                  selectedDateFormat === "gregorian" ? { color: '#EC4899' } : null
-                ]}>{gregorianDateStr}</Text>
+                <View style={styles.dateCardHeader}>
+                  <View
+                    style={[
+                      styles.dateCardIcon,
+                      selectedDateFormat === "gregorian"
+                        ? { backgroundColor: "#FDF2F8" }
+                        : null,
+                    ]}
+                  >
+                    <MaterialCommunityIcons
+                      name="calendar-month"
+                      size={24}
+                      color={
+                        selectedDateFormat === "gregorian"
+                          ? "#EC4899"
+                          : "#6B7280"
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={[
+                      styles.dateCardTitle,
+                      selectedDateFormat === "gregorian"
+                        ? { color: "#EC4899" }
+                        : null,
+                    ]}
+                  >
+                    Gregorian
+                  </Text>
+                </View>
+                <Text
+                  style={[
+                    styles.dateCardDate,
+                    selectedDateFormat === "gregorian"
+                      ? { color: "#EC4899" }
+                      : null,
+                  ]}
+                >
+                  {gregorianDateStr}
+                </Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[
                 styles.dateCard,
-                selectedDateFormat === "hijri" ? styles.selectedDateCard : null
+                selectedDateFormat === "hijri" ? styles.selectedDateCard : null,
               ]}
               onPress={() => setSelectedDateFormat("hijri")}
             >
-              <View style={[
-                styles.dateCardIcon,
-                selectedDateFormat === "hijri" ? { backgroundColor: '#F5F3FF' } : null
-              ]}>
-                <MaterialCommunityIcons
-                  name="star-crescent"
-                  size={24}
-                  color={selectedDateFormat === "hijri" ? "#8B5CF6" : "#6B7280"}
-                />
-              </View>
               <View style={styles.dateCardContent}>
-                <Text style={[
-                  styles.dateCardTitle,
-                  selectedDateFormat === "hijri" ? { color: '#8B5CF6' } : null
-                ]}>Hijri</Text>
+                <View style={styles.dateCardHeader}>
+                  <View
+                    style={[
+                      styles.dateCardIcon,
+                      selectedDateFormat === "hijri"
+                        ? { backgroundColor: "#F5F3FF" }
+                        : null,
+                    ]}
+                  >
+                    <MaterialCommunityIcons
+                      name="star-crescent"
+                      size={24}
+                      color={
+                        selectedDateFormat === "hijri" ? "#8B5CF6" : "#6B7280"
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={[
+                      styles.dateCardTitle,
+                      selectedDateFormat === "hijri"
+                        ? { color: "#8B5CF6" }
+                        : null,
+                    ]}
+                  >
+                    Hijri
+                  </Text>
+                </View>
                 {islamicDate ? (
-                  <Text style={[
-                    styles.dateCardDate,
-                    selectedDateFormat === "hijri" ? { color: '#8B5CF6' } : null
-                  ]}>
-                    {islamicDate.day} {islamicDate.month.en}, {islamicDate.year} AH
+                  <Text
+                    style={[
+                      styles.dateCardDate,
+                      selectedDateFormat === "hijri"
+                        ? { color: "#8B5CF6" }
+                        : null,
+                    ]}
+                  >
+                    {islamicDate.day} {islamicDate.month.en}, {islamicDate.year}{" "}
+                    AH
                   </Text>
                 ) : (
                   <Text style={styles.dateCardDate}>Loading...</Text>
@@ -631,7 +792,6 @@ const EventsComponent = () => {
               </View>
             </TouchableOpacity>
           </View>
-
           {error && (
             <View style={styles.errorContainer}>
               <MaterialCommunityIcons
@@ -679,17 +839,22 @@ const EventsComponent = () => {
                       <Text style={styles.upcomingEventName}>{event.name}</Text>
                       {selectedDateFormat === "hijri" ? (
                         <Text style={styles.upcomingEventDate}>
-                          {event.date.hijri.day} {event.date.hijri.month.en} {event.date.hijri.year}
+                          {event.date.hijri.day} {event.date.hijri.month.en}{" "}
+                          {event.date.hijri.year}
                         </Text>
                       ) : selectedDateFormat === "gregorian" ? (
                         <Text style={styles.upcomingEventDate}>
-                          {event.date.gregorian.day} {event.date.gregorian.month.en} {event.date.gregorian.year}
+                          {event.date.gregorian.day}{" "}
+                          {event.date.gregorian.month.en}{" "}
+                          {event.date.gregorian.year}
                         </Text>
                       ) : null}
                     </View>
 
                     <View style={styles.upcomingEventTimeContainer}>
-                      <Text style={styles.upcomingEventTime}>{event.timeLabel}</Text>
+                      <Text style={styles.upcomingEventTime}>
+                        {event.timeLabel}
+                      </Text>
                       <MaterialCommunityIcons
                         name="chevron-right"
                         size={16}
@@ -840,10 +1005,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   headerGradient: {
-    height: 220,
-    paddingTop: 40,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    height: 190,
+    paddingTop: 30,
+    borderBottomLeftRadius: 35,
+    borderBottomRightRadius: 35,
   },
   header: {
     paddingHorizontal: 20,
@@ -875,7 +1040,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
-  dateCard: {
+ dateCard: {
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 12,
@@ -888,36 +1053,39 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.07,
     shadowRadius: 8,
     elevation: 3,
-    flexDirection: "row",
-    alignItems: "center",
   },
   selectedDateCard: {
     borderWidth: 2,
     borderColor: "#FF61D2",
     backgroundColor: "#FDFAFF",
   },
-  dateCardIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    backgroundColor: "#F5F3FF",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 10,
-  },
   dateCardContent: {
     flex: 1,
   },
+  dateCardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  dateCardIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    backgroundColor: "#F5F3FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 8,
+  },
   dateCardTitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: "Poppins-SemiBold",
     color: "#6B7280",
-    marginBottom: 2,
   },
   dateCardDate: {
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: "Poppins-Medium",
     color: "#1F2937",
+    lineHeight: 18,
   },
   errorContainer: {
     flexDirection: "row",

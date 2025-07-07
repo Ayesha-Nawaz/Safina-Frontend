@@ -65,7 +65,7 @@ export default function QuizScreen() {
               style={styles.languageButton}
               onPress={() => handleLanguageSelect("ur")}
             >
-              <Text style={styles.languageButtonText}>اردو</Text>
+              <Text style={styles.languageButtonText}>Urdu</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -358,9 +358,7 @@ const QuizQuestionsScreen = ({ language }) => {
       setShowFeedback(true);
       setFeedback({
         title: "Score Saved Successfully! 🎉",
-        message: `Your score of ${scoreToSubmit} out of ${maxPossibleScore} points (${scorePercentage.toFixed(
-          1
-        )}%) has been saved to your profile.`,
+        message: `Your score has been saved to your profile.`,
         type: "success",
         confirmText: "Awesome!",
       });

@@ -227,7 +227,7 @@ const WuzuComponent = () => {
     setIsEnglish(!isEnglish);
   };
 
-  const backgroundImage = require("@/assets/images/wudu.png");
+  const backgroundImage = require("@/assets/images/wuduback.jpeg");
 
   if (loading) {
     return (
@@ -422,12 +422,7 @@ const WuzuComponent = () => {
                         style={styles.toggleButton}
                         onPress={toggleLanguage}
                       >
-                        <FontAwesome5
-                          name="language"
-                          size={18}
-                          color="white"
-                          style={{ marginRight: 8 }}
-                        />
+                        
                         <Text style={styles.toggleButtonText}>
                           {isEnglish ? "Switch to Urdu" : "Switch to English"}
                         </Text>
@@ -661,8 +656,8 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Medium",
   },
   stepNumberBadge: {
-    width: 48,
-    height: 48,
+    width: 45,
+    height: 45,
     borderRadius: 24,
     backgroundColor: "rgba(255, 255, 255, 0.9)",
     justifyContent: "center",
@@ -678,8 +673,7 @@ const styles = StyleSheet.create({
   },
   stepNumberText: {
     color: accentColors.primary,
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: 20,
     fontFamily: "Poppins-Bold",
   },
   contentWrapper: {
@@ -750,8 +744,8 @@ const styles = StyleSheet.create({
   },
   urduTitle: {
     fontFamily: "NotoNastaliqUrdu-Bold",
-    fontSize: 22,
-    lineHeight: 42,
+    fontSize: 18,
+    lineHeight: 45,
   },
   description: {
     fontSize: 16,
@@ -762,9 +756,9 @@ const styles = StyleSheet.create({
   },
   urduDescription: {
     fontFamily: "NotoNastaliqUrdu-Regular",
-    fontSize: 17,
+    fontSize: 15,
     lineHeight: 38,
-    textAlign: "right",
+    textAlign: "center",
     paddingRight: 5,
   },
   // Fixed bottom container to prevent overlapping

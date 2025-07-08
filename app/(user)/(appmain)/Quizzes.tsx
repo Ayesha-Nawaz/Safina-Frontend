@@ -231,7 +231,7 @@ const Quizzes = () => {
           </Animated.View>
 
           {/* Enhanced Language Toggle Button */}
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={toggleLanguage}
             style={styles.languageButton}
           >
@@ -245,10 +245,10 @@ const Quizzes = () => {
                 styles.languageButtonText,
                 language === "ur" ? styles.urduLanguageButtonText : null
               ]}>
-                {language === "en" ? "Switch to Urdu" : "انگریزی میں تبدیل کریں"}
+                {language === "en" ? "Switch to Urdu" : "Switch to English"}
               </Text>
             </LinearGradient>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <FlatList
             data={quizCategories}
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   quizTitle: {
-    fontSize: 18,
+    fontSize: 17,
     fontFamily: "Poppins-Bold",
     color: "white",
     textAlign: "center",
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-SemiBold",
   },
   urduButtonText: {
-    fontFamily: "NotoNastaliqUrdu-Medium",
+    fontFamily: "Poppins-SemiBold",
     fontSize: 12,
   },
   arrowIcon: {

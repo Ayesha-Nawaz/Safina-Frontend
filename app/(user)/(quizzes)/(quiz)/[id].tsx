@@ -10,6 +10,7 @@ import {
   Animated,
   Dimensions,
   ImageBackground,
+  Image,
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -55,6 +56,9 @@ export default function QuizScreen() {
         <SafeAreaView style={styles.container}>
           <View style={styles.languageSelectionContainer}>
             <Text style={styles.languageSelectionTitle}>Select Language</Text>
+            <Text style={styles.languageSelectionSubtitle}>
+              Choose the language in which you will solve questions
+            </Text>
             <TouchableOpacity
               style={styles.languageButton}
               onPress={() => handleLanguageSelect("en")}
@@ -107,6 +111,7 @@ const QuizQuestionsScreen = ({ language }) => {
   ).current;
   const resultScaleAnim = useRef(new Animated.Value(0.3)).current;
   const resultOpacityAnim = useRef(new Animated.Value(0)).current;
+  const trophyScaleAnim = useRef(new Animated.Value(0.5)).current;
 
   useEffect(() => {
     if (language !== null) {
@@ -133,8 +138,11 @@ const QuizQuestionsScreen = ({ language }) => {
   useEffect(() => {
     if (showResult) {
       animateResults();
+      if (score >= 8) {
+        animateTrophy();
+      }
     }
-  }, [showResult]);
+  }, [showResult, score]);
 
   const animateQuestionEntrance = () => {
     // Reset animations
@@ -182,6 +190,29 @@ const QuizQuestionsScreen = ({ language }) => {
       Animated.timing(confettiAnim, {
         toValue: 1,
         duration: 2000,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const animateTrophy = () => {
+    Animated.sequence([
+      Animated.spring(trophyScaleAnim, {
+        toValue: 1,
+        friction: 3,
+        tension: 50,
+        useNativeDriver: true,
+      }),
+      Animated.spring(trophyScaleAnim, {
+        toValue: 0.9,
+        friction: 3,
+        tension: 50,
+        useNativeDriver: true,
+      }),
+      Animated.spring(trophyScaleAnim, {
+        toValue: 1,
+        friction: 3,
+        tension: 50,
         useNativeDriver: true,
       }),
     ]).start();
@@ -252,7 +283,8 @@ const QuizQuestionsScreen = ({ language }) => {
     console.log("🔄 Starting quiz score submission...");
 
     // Use the passed finalScore or the current score from ref
-    const scoreToSubmit = finalScore !== null ? finalScore : currentScoreRef.current;
+    const scoreToSubmit =
+      finalScore !== null ? finalScore : currentScoreRef.current;
 
     try {
       // Validate user data
@@ -295,14 +327,17 @@ const QuizQuestionsScreen = ({ language }) => {
         ],
       };
 
-      console.log("📤 Submitting score data:", JSON.stringify(scoreData, null, 2));
+      console.log(
+        "📤 Submitting score data:",
+        JSON.stringify(scoreData, null, 2)
+      );
 
       // Submit to server
       const response = await fetch(`${BASE_URL}/quiz/submitscore`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(scoreData),
       });
@@ -369,7 +404,8 @@ const QuizQuestionsScreen = ({ language }) => {
       let errorMessage = "Failed to save your score. ";
 
       if (error.message.includes("HTML error page")) {
-        errorMessage += "The server is not properly configured. Please contact support.";
+        errorMessage +=
+          "The server is not properly configured. Please contact support.";
       } else if (error.message.includes("User ID is missing")) {
         errorMessage += "Please log in again and try again.";
       } else if (error.message.includes("Network")) {
@@ -394,6 +430,8 @@ const QuizQuestionsScreen = ({ language }) => {
   };
 
   const handleAnswerSelection = (option) => {
+    if (selectedOption !== null) return; // Prevent multiple selections
+
     const currentQuestion = quizData.questions[currentQuestionIndex];
     const isCorrect =
       option[language] === currentQuestion.correctAnswer[language];
@@ -496,7 +534,8 @@ const QuizQuestionsScreen = ({ language }) => {
     setShowFeedback(true);
     setFeedback({
       title: "Quit Quiz",
-      message: "Are you sure you want to quit the quiz? Your progress will not be saved.",
+      message:
+        "Are you sure you want to quit the quiz? Your progress will not be saved.",
       type: "warning",
       confirmText: "Quit",
       showCancel: true,
@@ -675,7 +714,9 @@ const QuizQuestionsScreen = ({ language }) => {
               color="#614385"
             />
           </Animated.View>
-          <Text style={styles.loadingText}>Getting your adventure ready...</Text>
+          <Text style={styles.loadingText}>
+            Getting your adventure ready...
+          </Text>
         </View>
       </ImageBackground>
     );
@@ -689,7 +730,11 @@ const QuizQuestionsScreen = ({ language }) => {
         resizeMode="cover"
       >
         <View style={styles.errorContainer}>
-          <MaterialCommunityIcons name="alert-circle" size={64} color="#FF5252" />
+          <MaterialCommunityIcons
+            name="alert-circle"
+            size={64}
+            color="#FF5252"
+          />
           <Text style={styles.errorText}>Oops! No questions found!</Text>
           <TouchableOpacity
             style={styles.backButton}
@@ -726,19 +771,22 @@ const QuizQuestionsScreen = ({ language }) => {
           >
             <Animated.View
               style={{
-                transform: [
-                  {
-                    rotate: spinAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: ["0deg", "360deg"],
-                    }),
-                  },
-                ],
+                transform: [{ scale: isHighScore ? trophyScaleAnim : 1 }],
               }}
             >
-              <Text style={styles.resultEmoji}>
-                {isHighScore ? "🏆" : "📚"}
-              </Text>
+              {isHighScore ? (
+                <MaterialCommunityIcons
+                  name="trophy"
+                  size={80}
+                  color="#FFD700" // gold color for trophy
+                />
+              ) : (
+                <MaterialCommunityIcons
+                  name="book-open-variant"
+                  size={80}
+                  color="#614385"
+                />
+              )}
             </Animated.View>
             <Text style={styles.resultText}>
               {isHighScore ? "Outstanding Achievement!" : "Keep Learning!"}
@@ -754,7 +802,10 @@ const QuizQuestionsScreen = ({ language }) => {
             </Text>
             {submitting && (
               <View style={styles.submitContainer}>
-                <ActivityIndicator style={styles.submitSpinner} color="#614385" />
+                <ActivityIndicator
+                  style={styles.submitSpinner}
+                  color="#614385"
+                />
                 <Text style={styles.submitText}>Saving your score...</Text>
               </View>
             )}
@@ -849,6 +900,7 @@ const QuizQuestionsScreen = ({ language }) => {
     </ImageBackground>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -951,9 +1003,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 20,
+    margin: 20,
   },
-  resultEmoji: {
-    fontSize: 80,
+  trophyImage: {
+    width: 120,
+    height: 120,
     marginBottom: 24,
   },
   resultText: {
@@ -1023,12 +1079,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    margin: 20,
+    borderRadius: 20,
+    padding: 20,
   },
   languageSelectionTitle: {
     fontSize: 24,
     fontFamily: "Poppins-Bold",
     color: "#333",
+    marginBottom: 10,
+  },
+  languageSelectionSubtitle: {
+    fontSize: 16,
+    fontFamily: "Poppins-Regular",
+    color: "#666",
     marginBottom: 20,
+    textAlign: "center",
   },
   languageButton: {
     marginVertical: 10,
@@ -1079,5 +1145,14 @@ const styles = StyleSheet.create({
   },
   submitSpinner: {
     marginVertical: 20,
+  },
+  submitText: {
+    fontSize: 16,
+    fontFamily: "Poppins-Regular",
+    color: "#333",
+    textAlign: "center",
+  },
+  submitContainer: {
+    alignItems: "center",
   },
 });

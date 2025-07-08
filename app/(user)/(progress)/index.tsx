@@ -63,8 +63,8 @@ const ProgressCard = ({ title, current, total, percentage, items, type }) => {
         return "book-outline";
       case "Kalma":
         return "text-outline";
-     case "Dua":
-    return "heart-outline";
+      case "Dua":
+        return "heart-outline";
       case "Namaz":
         return "moon-outline";
       default:
@@ -200,6 +200,25 @@ const Progress_Details = () => {
   const { user } = useContext(UserContext);
   const navigation = useNavigation();
 
+  // Helper function to flatten Namaz progress data
+  const flattenNamazProgress = (namazProgressData) => {
+    if (!Array.isArray(namazProgressData)) return [];
+    
+    const flattened = [];
+    namazProgressData.forEach(categoryData => {
+      if (categoryData.learnedItems && Array.isArray(categoryData.learnedItems)) {
+        categoryData.learnedItems.forEach(item => {
+          flattened.push({
+            category: categoryData.category,
+            namazId: item.namazId,
+            dua: item.dua
+          });
+        });
+      }
+    });
+    return flattened;
+  };
+
   // Fetch progress data
   const fetchProgress = async () => {
     try {
@@ -241,7 +260,14 @@ const Progress_Details = () => {
       setReadStories(storyProgressResponse.data || []);
       setLearnedKalmas(kalmaProgressResponse.data || []);
       setLearnedDuas(duaProgressResponse.data || []);
-      setCompletedNamazs(namazProgressResponse.data || []);
+      
+      // Flatten Namaz progress data
+      const flattenedNamazProgress = flattenNamazProgress(namazProgressResponse.data || []);
+      setCompletedNamazs(flattenedNamazProgress);
+      
+      console.log("Namaz Progress Raw:", namazProgressResponse.data);
+      console.log("Namaz Progress Flattened:", flattenedNamazProgress);
+      
     } catch (error) {
       console.error("Error fetching progress:", error);
       Alert.alert(

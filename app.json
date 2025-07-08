@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "SafinaApp",
-    "slug": "safinaapp",
-    "owner": "ayesha_nawaz",
-    "projectId": "c41a8215-6a4d-47cd-a395-6385351411a0",
+    "name": "Safina",
+    "slug": "safina",
+    "owner": "triple_a",
+    "projectId": "4734986f-3a0e-484b-8b34-690b1d4c7479",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/appicon.png",
@@ -74,7 +74,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "c41a8215-6a4d-47cd-a395-6385351411a0"
+        "projectId": "4734986f-3a0e-484b-8b34-690b1d4c7479"
       }
     }
   }

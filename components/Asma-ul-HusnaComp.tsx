@@ -24,8 +24,10 @@ const AsmaUlHusnaComp: React.FC = () => {
         if (!response.data || response.data.length === 0) {
           throw new Error("No data received from API"); // Handle empty response
         }
-  
-        setData(response.data);
+
+        // Sort data by the 'number' field in ascending order
+        const sortedData = response.data.sort((a: Names, b: Names) => a.number - b.number);
+        setData(sortedData);
       } catch (err) {
         console.error("Error fetching data:", err);
         if (axios.isAxiosError(err)) {
@@ -99,7 +101,7 @@ const AsmaUlHusnaComp: React.FC = () => {
     <View style={styles.container}>
       <Text style={styles.headerText}>✨Beautiful Names of Allah✨</Text>
       <FlatList
-        data={data} // Using fetched data instead of static data
+        data={data} // Using sorted data
         renderItem={renderItem}
         keyExtractor={(item) => item.number.toString()}
         numColumns={2}

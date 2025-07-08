@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
@@ -20,7 +20,7 @@ interface UserContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
-  fetchUser: () => Promise<void>;
+  fetchUser: (userId?: string) => Promise<void>;
   login: (userData: User, token: string) => Promise<void>;
   logout: () => Promise<void>;
   showAlert: (config: {
@@ -39,7 +39,7 @@ export const UserContext = createContext<UserContextType>({} as UserContextType)
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertConfig, setAlertConfig] = useState({
     title: "",
@@ -65,21 +65,27 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const clearUserData = async () => {
     console.log("Clearing user data completely");
     setUser(null);
-    await AsyncStorage.multiRemove(["userToken", "userId", "userRole"]);
+    try {
+      await AsyncStorage.multiRemove(["userToken", "userId", "userRole"]);
+      console.log("AsyncStorage cleared");
+    } catch (error) {
+      console.error("Error clearing AsyncStorage:", error);
+    }
   };
 
-  const fetchUser = useCallback(async () => {
+  const fetchUser = useCallback(async (userId?: string) => {
     try {
+      setLoading(true);
       const token = await AsyncStorage.getItem("userToken");
-      const storedUserId = await AsyncStorage.getItem("userId");
+      const storedUserId = userId || await AsyncStorage.getItem("userId");
 
       if (!token || !storedUserId) {
         console.log("No token or userId found, clearing user data");
         await clearUserData();
-        setLoading(false);
         return;
       }
 
+      console.log("Fetching user data for userId:", storedUserId);
       const response = await axios.get(`${BASE_URL}/user/auser/${storedUserId}`, {
         headers: { Authorization: `Bearer ${token}` },
         timeout: 10000,
@@ -89,15 +95,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.log("Fresh user data fetched for userId:", storedUserId);
         setUser(response.data);
       } else {
+        console.log("No user data returned, clearing user data");
         await clearUserData();
       }
     } catch (error) {
       console.error("Error fetching user:", error);
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 401 || error.response?.status === 404) {
+          console.log("Unauthorized or user not found, clearing user data");
           await clearUserData();
         }
       }
+      showAlert({
+        title: "Error",
+        message: "Failed to fetch user data. Please try logging in again.",
+        type: "error",
+      });
     } finally {
       setLoading(false);
     }
@@ -110,12 +123,17 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await clearUserData();
 
       // Store new credentials
+      console.log("LOGIN: Storing new credentials for userId:", userData._id);
       await AsyncStorage.setItem("userToken", token);
       await AsyncStorage.setItem("userId", userData._id);
 
-      // Fetch fresh user data
+      // Set user data immediately from login response
+      console.log("LOGIN: Setting user data immediately");
+      setUser(userData);
+
+      // Fetch fresh user data in background for any updates
       console.log("LOGIN: Fetching fresh user data for:", userData._id);
-      await fetchUser();
+      await fetchUser(userData._id);
     } catch (error) {
       console.error("Login failed:", error);
       showAlert({
@@ -150,31 +168,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const initialize = async () => {
-      try {
-        console.log("INIT: Checking stored credentials");
-        const token = await AsyncStorage.getItem("userToken");
-        const storedUserId = await AsyncStorage.getItem("userId");
-
-        if (token && storedUserId) {
-          console.log("INIT: Found credentials, fetching user data");
-          await fetchUser();
-        } else {
-          console.log("INIT: No credentials found");
-          await clearUserData();
-        }
-      } catch (error) {
-        console.error("Initialization error:", error);
-        await clearUserData();
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    initialize();
-  }, [fetchUser]);
 
   return (
     <UserContext.Provider

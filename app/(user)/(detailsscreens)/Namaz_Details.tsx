@@ -180,58 +180,58 @@ const NamazDetailScreen = () => {
   }, [currentIndex]);
 
   const markAsLearned = async (namazId: string, dua: string) => {
-    try {
-      if (!user?.user?._id) {
-        setAlert({
-          visible: true,
-          title: "Login Required",
-          message: "Please log in to mark content as learned.",
-          type: "warning",
-          showCancel: false,
-          onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
-        });
-        return;
-      }
-
-      const token = await AsyncStorage.getItem("userToken");
-      if (!token) throw new Error("Authentication token not found");
-
-      const response = await axios.post(
-        `${BASE_URL}/progress/namazprogress`,
-        {
-          userId: user.user._id,
-          category: category,
-          dua: dua,
-          namazId: namazId,
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      if (response.data.message === "Namaz item already marked as read") {
-        setAlert({
-          visible: true,
-          title: "Info",
-          message: "This item is already marked as learned.",
-          type: "info",
-          showCancel: false,
-          onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
-        });
-      } else {
-        setLearnedItems((prev) => ({ ...prev, [namazId]: true }));
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      }
-    } catch (error) {
-      console.error("Error marking as learned:", error);
+  try {
+    if (!user?.user?._id) {
       setAlert({
         visible: true,
-        title: "Error",
-        message: error.response?.data?.message || "An error occurred",
-        type: "error",
+        title: "Login Required",
+        message: "Please log in to mark content as learned.",
+        type: "warning",
         showCancel: false,
         onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
       });
+      return;
     }
-  };
+
+    const token = await AsyncStorage.getItem("userToken");
+    if (!token) throw new Error("Authentication token not found");
+
+    const response = await axios.post(
+      `${BASE_URL}/progress/namazprogress`,
+      {
+        userId: user.user._id,
+        category: category,
+        dua: dua,
+        namazId: namazId,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    if (response.data.message === "Namaz item already marked as read") {
+      setAlert({
+        visible: true,
+        title: "Info",
+        message: "This item is already marked as learned.",
+        type: "info",
+        showCancel: false,
+        onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
+      });
+    } else {
+      setLearnedItems((prev) => ({ ...prev, [namazId]: true }));
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+  } catch (error) {
+    console.error("Error marking as learned:", error);
+    setAlert({
+      visible: true,
+      title: "Error",
+      message: error.response?.data?.message || "An error occurred",
+      type: "error",
+      showCancel: false,
+      onConfirm: () => setAlert((prev) => ({ ...prev, visible: false })),
+    });
+  }
+};
 
   const handlePlayPress = async () => {
     try {
@@ -650,7 +650,7 @@ const NamazDetailScreen = () => {
                 onPress={() => markAsLearned(item._id, item.dua)}
               >
                 <Text style={styles.learnButtonText}>
-                  {learnedItems[item._id] ? "✓ Learned!" : "Mark as Learned"}
+                  {learnedItems[item._id] ? "✓ Learned!" : "Mark as Learn"}
                 </Text>
                 {learnedItems[item._id] && (
                   <MaterialCommunityIcons

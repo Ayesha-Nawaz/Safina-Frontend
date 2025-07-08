@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   kalmaItem: {
     flex: 1,
     borderRadius: 20,
-    padding: 20,
+    padding: 25,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -160,18 +160,20 @@ const styles = StyleSheet.create({
     left: 15,
   },
   kalmaTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: "Poppins-Bold",
     color: "#333",
+    maxWidth: '90%', // Prevent text from touching edges
     textShadowColor: 'rgb(242, 178, 178)',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5, 
   },
   kalmaText: {
-    fontSize: 20,
+    fontSize: 17,
     fontFamily: "NotoNastaliqUrdu-Bold",
     color: "#333",
     textAlign: 'center',
+    maxWidth: '90%', // Prevent text from touching edges
     textShadowColor: 'rgb(242, 178, 178)',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,

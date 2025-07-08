@@ -54,7 +54,7 @@ const SignInComponent: React.FC = () => {
   };
 
   const validatePassword = (password: string) => {
-    return password.length >= 8;
+    return password.length >= 6;
   };
 
   const signIn = async () => {
@@ -83,7 +83,7 @@ const SignInComponent: React.FC = () => {
     }
 
     if (!validatePassword(password)) {
-      showError("Invalid Password", "Password must be at least 8 characters long.");
+      showError("Invalid Password");
       return;
     }
 

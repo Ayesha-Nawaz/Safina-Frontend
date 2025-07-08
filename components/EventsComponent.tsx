@@ -256,7 +256,7 @@ const EventsComponent = () => {
       // Use Pakistan's coordinates (Islamabad) and method 1 for University of Islamic Sciences, Karachi
       // Changed adjustment from 1 to 0 to get correct Islamic date
       const response = await fetch(
-        "http://api.aladhan.com/v1/gToH?latitude=33.6844&longitude=73.0479&method=1&adjustment=0"
+        "https://api.aladhan.com/v1/gToH?latitude=33.6844&longitude=73.0479&method=1&adjustment=0"
       );
       const data = await response.json();
 

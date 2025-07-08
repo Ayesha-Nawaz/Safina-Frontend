@@ -26,7 +26,8 @@ const AsmaUlHusnaComp: React.FC = () => {
           throw new Error("No data received from API"); // Handle empty response
         }
   
-        setData(response.data);
+         const sortedData = response.data.sort((a: Names, b: Names) => a.number - b.number);
+                setData(sortedData);
       } catch (err) {
         console.error("Error fetching data:", err);
         if (axios.isAxiosError(err)) {

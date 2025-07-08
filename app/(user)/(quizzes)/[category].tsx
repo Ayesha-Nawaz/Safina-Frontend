@@ -19,24 +19,13 @@ import { BASE_URL } from "@/Ipconfig/ipconfig";
 const { width } = Dimensions.get("window");
 const CARD_WIDTH = width * 0.9;
 
-// Mapping of English category names to Urdu category names
-const categoryNameMapping = {
-  Kalmas: "کلمے",
-  Dua: "دعائیں",
-  "Prophet Stories": "انبیا کے قصے",
-  Namaz: "نماز",
-  Wudu: "وضو",
-};
-
 const QuizListScreen = () => {
-  const { category, language: routeLanguage } = useLocalSearchParams();
+  const { category } = useLocalSearchParams();
   const router = useRouter();
   const [quizData, setQuizData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [bounceAnim] = useState(new Animated.Value(1));
   const [floatAnim] = useState(new Animated.Value(0));
-  // Use the language from route params if available
-  const [language, setLanguage] = useState(routeLanguage || "en");
 
   useEffect(() => {
     fetch(`${BASE_URL}/quiz/quizzes`)
@@ -65,7 +54,7 @@ const QuizListScreen = () => {
         }),
       ])
     ).start();
-  }, [language]); // Re-fetch data when language changes
+  }, []);
 
   const startBounceAnimation = () => {
     Animated.sequence([
@@ -84,21 +73,13 @@ const QuizListScreen = () => {
     ]).start();
   };
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "ur" : "en"));
-  };
-
   if (loading) {
     return (
       <ImageBackground
         source={require("@/assets/images/profile2.jpeg")}
         style={styles.container}
       >
-        <Loader
-          text={
-            language === "en" ? "Getting ready for fun!" : "تیار ہو رہے ہیں!"
-          }
-        />
+        <Loader text="Getting ready for fun" />
       </ImageBackground>
     );
   }
@@ -107,36 +88,17 @@ const QuizListScreen = () => {
     return (
       <View style={styles.errorContainer}>
         <MaterialCommunityIcons name="emoticon-sad" size={84} color="#FFA07A" />
-        <Text style={[styles.errorText, language === "ur" && styles.urduText]}>
-          {language === "en" ? "Oopsie! We got lost!" : "اوہ! ہم کھو گئے!"}
-        </Text>
-        <Text
-          style={[styles.errorSubText, language === "ur" && styles.urduText]}
-        >
-          {language === "en"
-            ? "Let's go on a different adventure!"
-            : "آئیے ایک مختلف مہم جوئی پر چلیں!"}
+        <Text style={styles.errorText}>Oopsie! We got lost!</Text>
+        <Text style={styles.errorSubText}>
+          Let's go on a different adventure!
         </Text>
       </View>
     );
   }
 
-  // Find the category data based on the current language
-  const categoryData = quizData.find((quiz) => {
-    // First try to match by current language
-    if (quiz.name[language]?.toLowerCase() === category?.toLowerCase()) {
-      return true;
-    }
-    // If that fails, try to match by English name (fallback)
-    if (quiz.name.en.toLowerCase() === category?.toLowerCase()) {
-      return true;
-    }
-    // If that fails, try to match by Urdu name (another fallback)
-    if (quiz.name.ur?.toLowerCase() === category?.toLowerCase()) {
-      return true;
-    }
-    return false;
-  });
+  const categoryData = quizData.find(
+    (quiz) => quiz.name.en.toLowerCase() === category?.toLowerCase()
+  );
 
   const gradients = [
     ["#FF7F9F", "#4A90E2"], // Vibrant Pink to Deeper Sky Blue
@@ -174,7 +136,7 @@ const QuizListScreen = () => {
         <TouchableOpacity
           onPress={() => {
             startBounceAnimation();
-            router.push(`/(quizzes)/(quiz)/${item._id}?language=${language}`);
+            router.push(`/(quizzes)/(quiz)/${item._id}`);
           }}
           activeOpacity={0.9}
         >
@@ -185,71 +147,28 @@ const QuizListScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <View style={styles.cardContent}>
-              {language === "en" ? (
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcons
-                    name={icons[index % icons.length]}
-                    size={40}
-                    color="#FFF"
-                  />
-                </View>
-              ) : (
-                <View style={styles.iconContainerUrdu}>
-                  <MaterialCommunityIcons
-                    name={icons[index % icons.length]}
-                    size={40}
-                    color="#FFF"
-                  />
-                </View>
-              )}
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcons
+                  name={icons[index % icons.length]}
+                  size={40}
+                  color="#FFF"
+                />
+              </View>
 
               <View style={styles.titleContainer}>
-                <Text
-                  style={[
-                    styles.quizTitle,
-                    language === "ur" && styles.urduText,
-                  ]}
-                >
-                  {language === "en"
-                    ? `Quiz ${index + 1}`
-                    : `کوئز ${index + 1}`}
-                </Text>
-                {/* <Text
-                  style={[
-                    styles.quizSubtitle,
-                    language === "ur" && styles.urduText,
-                  ]}
-                >
-                  {item.title[language]}
-                </Text> */}
+                <Text style={styles.quizTitle}>Quiz {index + 1}</Text>
               </View>
 
               <View style={styles.syllabusContainer}>
-                {item.syllabus[language].map((topic, idx) => (
+                {item.syllabus.en.map((topic, idx) => (
                   <View key={idx} style={styles.topicBubble}>
-                    <Text
-                      style={[
-                        styles.topicText,
-                        language === "ur" && styles.urduText,
-                      ]}
-                    >
-                      {topic}
-                    </Text>
+                    <Text style={styles.topicText}>{topic}</Text>
                   </View>
                 ))}
               </View>
 
               <View style={styles.startButton}>
-                <Text
-                  style={[
-                    styles.startButtonText,
-                    language === "ur" && styles.urduText,
-                  ]}
-                >
-                  {language === "en"
-                    ? "Start Adventure!"
-                    : "مہم جوئی شروع کریں!"}
-                </Text>
+                <Text style={styles.startButtonText}>Start Adventure!</Text>
                 <MaterialCommunityIcons
                   name="rocket-launch"
                   size={24}
@@ -272,22 +191,8 @@ const QuizListScreen = () => {
 
       <View style={styles.headerContainer}>
         <View style={styles.headingWrapper}>
-          <Text
-            style={[styles.heading, language === "ur" && styles.urduHeading]}
-          >
-            {categoryData?.name[language]} {language === "en" ? "Quiz" : "کوئز"}
-          </Text>
+          <Text style={styles.heading}>{categoryData?.name.en} Quiz</Text>
         </View>
-      </View>
-      <View style={styles.languageToggleContainer}>
-        <TouchableOpacity
-          onPress={toggleLanguage}
-          style={styles.languageButton}
-        >
-          <Text style={styles.languageButtonText}>
-            {language === "en" ? "Switch to Urdu" : "انگریزی میں تبدیل کریں"}
-          </Text>
-        </TouchableOpacity>
       </View>
 
       {categoryData ? (
@@ -305,17 +210,9 @@ const QuizListScreen = () => {
             size={84}
             color="#FFA07A"
           />
-          <Text
-            style={[styles.noDataText, language === "ur" && styles.urduText]}
-          >
-            {language === "en" ? "No quizzes yet!" : "ابھی تک کوئی کوئز نہیں!"}
-          </Text>
-          <Text
-            style={[styles.noDataSubText, language === "ur" && styles.urduText]}
-          >
-            {language === "en"
-              ? "New adventures coming soon!"
-              : "نئی مہم جوئی جلد آرہی ہے!"}
+          <Text style={styles.noDataText}>No quizzes yet!</Text>
+          <Text style={styles.noDataSubText}>
+            New adventures coming soon!
           </Text>
         </View>
       )}
@@ -345,19 +242,9 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     color: "#551184",
     textAlign: "center",
-    textShadowColor: "white", // Shadow color (black)
-    textShadowOffset: { width: 2, height: 2 }, // Horizontal and vertical shadow offset
+    textShadowColor: "white",
+    textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 3,
-  },
-  urduHeading: {
-    fontFamily: "NotoNastaliqUrdu-Bold",
-    fontSize: 22,
-    lineHeight: 45,
-  },
-  urduText: {
-    fontFamily: "NotoNastaliqUrdu-Medium",
-    textAlign: "right",
-    lineHeight: 45,
   },
   listContainer: {
     padding: 10,
@@ -387,18 +274,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 12,
   },
-  iconContainerUrdu: {
-    position: "absolute",
-    top: 10,
-    left: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
-    borderRadius: 20,
-    padding: 12,
-    width: 64, // Match the width of the English version
-    height: 64, // Match the height of the English version
-    justifyContent: "center",
-    alignItems: "center",
-  },
   titleContainer: {
     marginTop: 10,
     marginBottom: 15,
@@ -408,14 +283,6 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     color: "#FFF",
     textShadowColor: "rgba(0, 0, 0, 0.78)",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 3,
-  },
-  quizSubtitle: {
-    fontSize: 18,
-    fontFamily: "Poppins-SemiBold",
-    color: "#FFF",
-    textShadowColor: "rgba(0, 0, 0, 0.63)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
   },
@@ -492,39 +359,6 @@ const styles = StyleSheet.create({
     color: "#666",
     fontFamily: "Poppins-Medium",
     marginTop: 8,
-  },
-  // Enhanced language toggle styling
-  languageToggleContainer: {
-    alignSelf: "center",
-    marginBottom: 15,
-    borderRadius: 25,
-    shadowColor: "#8E54E9",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.6,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  languageButton: {
-    backgroundColor: "#7209b7",
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 25,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
-  },
-  buttonIcon: {
-    marginRight: 6,
-  },
-  languageButtonText: {
-    fontSize: 16,
-    color: "white",
-    fontFamily: "Poppins-SemiBold",
   },
 });
 

@@ -13,7 +13,7 @@ interface User {
   role?: string;
   username?: string;
   createdAt?: string;
-  updatedAt?: string;
+  updatedA4t?: string;
 }
 
 interface UserContextType {

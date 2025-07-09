@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, ActivityIndicator, Animated, Text, StyleSheet, Dimensions } from "react-native";
-import { Stack } from "expo-router";
+import { View, StyleSheet, Dimensions } from "react-native";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { useColorScheme } from "@/components/useColorScheme";
 import { fonts } from "@/assets/data/fonts";
 import { UserContext, UserProvider } from "@/context/UserContext";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { LinearGradient } from "expo-linear-gradient";
 import AppLoader from "@/components/AppLoader";
 
 export { ErrorBoundary } from "expo-router";
@@ -29,32 +27,54 @@ function AppContent() {
   const { user, loading, fetchUser } = useContext(UserContext);
   const [fontsLoaded] = useFonts(fonts);
   const colorScheme = useColorScheme();
+  const [initializing, setInitializing] = useState(true);
+  const router = useRouter();
 
   // Fetch user data on mount to check login status
   useEffect(() => {
     const loadUser = async () => {
       try {
-        await fetchUser();
+        console.log("Starting user fetch in AppContent...");
+        const fetchedUser = await fetchUser();
+        console.log("Fetched user in AppContent:", fetchedUser);
       } catch (error) {
-        console.error("Error fetching user on mount:", error);
+        console.error("Error fetching user in AppContent:", error);
+      } finally {
+        setInitializing(false);
       }
     };
     loadUser();
   }, [fetchUser]);
 
-  // Hide splash screen when fonts and user data are loaded
+  // Navigate when user state changes
   useEffect(() => {
-    if (fontsLoaded && !loading) {
+    console.log("User state in AppContent:", user);
+    if (!loading && !initializing && fontsLoaded) {
+      if (user && user.user) {
+        console.log("Navigating to (user) due to user state update, userId:", user.user._id);
+        router.replace("/(user)");
+      } else {
+        console.log("Navigating to (authentication) due to no user");
+        router.replace("/(authentication)");
+      }
+    }
+  }, [user, loading, initializing, fontsLoaded, router]);
+
+  // Hide splash screen when fonts are loaded and user data is initialized
+  useEffect(() => {
+    if (fontsLoaded && !loading && !initializing) {
+      console.log("Hiding splash screen, user:", user);
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, loading]);
+  }, [fontsLoaded, loading, initializing, user]);
 
-  if (!fontsLoaded || loading) {
+  if (!fontsLoaded || loading || initializing) {
+    console.log("Showing AppLoader, fontsLoaded:", fontsLoaded, "loading:", loading, "initializing:", initializing);
     return <AppLoader />;
   }
 
-  // Navigate to user layout (home screen) if user exists, otherwise auth layout
-  return user ? (
+  console.log("Rendering navigation, user:", user);
+  return user && user.user ? (
     <UserLayoutNav colorScheme={colorScheme} initialRouteName="(user)" />
   ) : (
     <AuthLayoutNav colorScheme={colorScheme} />

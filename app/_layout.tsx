@@ -32,49 +32,68 @@ function AppContent() {
 
   // Fetch user data on mount to check login status
   useEffect(() => {
+    console.log("AppContent useEffect: Initial user check, user:", user);
     const loadUser = async () => {
       try {
-        console.log("Starting user fetch in AppContent...");
+        if (user) {
+          console.log("User already exists, skipping fetchUser, user:", user);
+          setInitializing(false);
+          return;
+        }
+        console.log("No user, fetching user data");
         const fetchedUser = await fetchUser();
-        console.log("Fetched user in AppContent:", fetchedUser);
+        console.log("Fetched user:", fetchedUser);
       } catch (error) {
         console.error("Error fetching user in AppContent:", error);
       } finally {
+        console.log("Setting initializing to false, user:", user);
         setInitializing(false);
       }
     };
+
     loadUser();
-  }, [fetchUser]);
+  }, [fetchUser]); // Only depend on fetchUser
 
   // Navigate when user state changes
   useEffect(() => {
-    console.log("User state in AppContent:", user);
+    console.log(
+      "Navigation useEffect triggered, user:",
+      user,
+      "loading:",
+      loading,
+      "initializing:",
+      initializing,
+      "fontsLoaded:",
+      fontsLoaded
+    );
     if (!loading && !initializing && fontsLoaded) {
-      if (user && user.user) {
-        console.log("Navigating to (user) due to user state update, userId:", user.user._id);
+      if (user) {
+        console.log("User exists, navigating to (user), userId:", user._id);
         router.replace("/(user)");
       } else {
-        console.log("Navigating to (authentication) due to no user");
+        console.log("No user, navigating to (authentication)");
         router.replace("/(authentication)");
       }
+    } else {
+      console.log("Navigation skipped: loading=", loading, "initializing=", initializing, "fontsLoaded=", fontsLoaded);
     }
   }, [user, loading, initializing, fontsLoaded, router]);
 
-  // Hide splash screen when fonts are loaded and user data is initialized
+  // Hide splash screen when ready
   useEffect(() => {
     if (fontsLoaded && !loading && !initializing) {
       console.log("Hiding splash screen, user:", user);
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, loading, initializing, user]);
+  }, [fontsLoaded, loading, initializing]);
 
   if (!fontsLoaded || loading || initializing) {
-    console.log("Showing AppLoader, fontsLoaded:", fontsLoaded, "loading:", loading, "initializing:", initializing);
+    console.log("Rendering AppLoader, fontsLoaded:", fontsLoaded, "loading:", loading, "initializing:", initializing);
     return <AppLoader />;
   }
 
   console.log("Rendering navigation, user:", user);
-  return user && user.user ? (
+  return user ? (
     <UserLayoutNav colorScheme={colorScheme} initialRouteName="(user)" />
   ) : (
     <AuthLayoutNav colorScheme={colorScheme} />
@@ -82,6 +101,7 @@ function AppContent() {
 }
 
 function AuthLayoutNav({ colorScheme }) {
+  console.log("Rendering AuthLayoutNav");
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack
@@ -103,6 +123,7 @@ function AuthLayoutNav({ colorScheme }) {
 }
 
 function UserLayoutNav({ colorScheme, initialRouteName }) {
+  console.log("Rendering UserLayoutNav, initialRouteName:", initialRouteName);
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack

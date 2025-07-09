@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   View,
   ScrollView,
@@ -17,8 +17,11 @@ import CustomAlert from "@/components/CustomAlert";
 import { useNavigation } from "expo-router";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
 
+import { UserContext } from "@/context/UserContext";
+
 const ProfileScreen = () => {
   const navigation = useNavigation();
+  const { logout, showAlert } = useContext(UserContext);
   const [user, setUser] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -63,12 +66,7 @@ const ProfileScreen = () => {
       console.log("User data fetched successfully:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
-      showAlert({
-        title: "Error",
-        message: "Failed to fetch user data. Please try again later.",
-        type: "error",
-        onConfirm: () => setAlertVisible(false),
-      });
+      
     } finally {
       setIsLoading(false);
     }
@@ -91,7 +89,7 @@ const ProfileScreen = () => {
   };
 
   const handleSignOut = () => {
-    showAlert({
+    localShowAlert({
       title: "Confirm Sign Out",
       message: "Are you sure you want to sign out?",
       type: "info",
@@ -100,25 +98,18 @@ const ProfileScreen = () => {
       cancelText: "Cancel",
       onConfirm: async () => {
         try {
-          await AsyncStorage.removeItem("userToken");
-          await AsyncStorage.removeItem("userId");
+          await logout();
           setAlertVisible(false);
           navigation.navigate("(authentication)");
         } catch (error) {
           console.error("Error signing out:", error);
-          showAlert({
-            title: "Error",
-            message: "Failed to sign out. Please try again.",
-            type: "error",
-            onConfirm: () => setAlertVisible(false),
-          });
+         
         }
       },
       onCancel: () => setAlertVisible(false),
     });
   };
-
-  const showAlert = (config) => {
+   const localShowAlert = (config) => {
     setAlertConfig({
       ...alertConfig,
       ...config,
@@ -127,6 +118,7 @@ const ProfileScreen = () => {
     });
     setAlertVisible(true);
   };
+
 
   const handleDeleteAccount = async () => {
     showAlert({

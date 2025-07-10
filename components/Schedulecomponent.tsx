@@ -78,7 +78,7 @@ const Schedule = () => {
       }
 
       const token = await AsyncStorage.getItem("userToken");
-      const userId = user.user._id;
+      const userId = user._id;
 
       if (!token || !userId) {
         if (!isRefresh) setIsLoading(false);

@@ -29,7 +29,7 @@ const Quiz_Progress = () => {
   const fetchQuizProgress = async () => {
     try {
       setLoading(true);
-      const userId = user?.user?._id || (await AsyncStorage.getItem("userId"));
+      const userId = user?._id || (await AsyncStorage.getItem("userId"));
       if (!userId) {
         console.error("No user ID found");
         return;
@@ -89,7 +89,7 @@ const Quiz_Progress = () => {
   // Handle navigation to ScoreScreen with proper error handling
   const handleCategoryPress = (category) => {
     try {
-      const userId = user?.user?._id || null;
+      const userId = user?._id || null;
       
       console.log("Quiz_Progress - Navigating with params:", {
         category,

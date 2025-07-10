@@ -118,9 +118,9 @@ const NamazDetailScreen = () => {
               `Namaz API error: ${error.response?.status || error.message}`
             );
           }),
-          user?.user?._id
+          user?._id
             ? axios
-                .get(`${BASE_URL}/progress/namazprogress/${user.user._id}`, {
+                .get(`${BASE_URL}/progress/namazprogress/${user._id}`, {
                   headers,
                 })
                 .catch((error) => {
@@ -199,7 +199,7 @@ const NamazDetailScreen = () => {
     const response = await axios.post(
       `${BASE_URL}/progress/namazprogress`,
       {
-        userId: user.user._id,
+        userId: user._id,
         category: category,
         dua: dua,
         namazId: namazId,

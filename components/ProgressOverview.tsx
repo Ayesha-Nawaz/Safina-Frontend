@@ -29,7 +29,7 @@ const ProgressOverview = ({ onViewDetails }) => {
 
   const fetchProgress = async () => {
     try {
-      if (!user?.user?._id) {
+      if (!user?._id) {
         // Alert.alert("Error", "User not found or not logged in.");
         return;
       }
@@ -40,7 +40,7 @@ const ProgressOverview = ({ onViewDetails }) => {
         return;
       }
 
-      const currentUserId = user.user._id;
+      const currentUserId = user._id;
 
       const [
         storyProgressResponse,

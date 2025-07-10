@@ -144,7 +144,7 @@ const StoryDetail = () => {
   // Enhanced checkBookmarkStatus function
   useEffect(() => {
     const checkBookmarkStatus = async () => {
-      if (!user?.user?._id) {
+      if (!user?._id) {
         console.warn("Cannot check bookmark: No user ID available");
         return;
       }
@@ -162,7 +162,7 @@ const StoryDetail = () => {
         }
 
         const params = {
-          userId: user.user._id,
+          userId: user._id,
           contentId: id,
           contentType: "Story",
         };
@@ -345,7 +345,7 @@ const StoryDetail = () => {
       return;
     }
 
-    if (!user?.user?._id) {
+    if (!user?._id) {
       showAlert({
         title: "Login Required",
         message: "Please log in to bookmark stories.",
@@ -372,7 +372,7 @@ const StoryDetail = () => {
       console.log("Bookmark Request:", {
         url: `${BASE_URL}/bookmarks/add`,
         payload: {
-          userId: user.user._id,
+          userId: user._id,
           contentId: id,
           contentType: "Story",
         },
@@ -382,7 +382,7 @@ const StoryDetail = () => {
       const response = await axios.post(
         `${BASE_URL}/bookmarks/add`,
         {
-          userId: user.user._id,
+          userId: user._id,
           contentId: id,
           contentType: "Story",
         },
@@ -435,7 +435,7 @@ const StoryDetail = () => {
 
   const markAsRead = async () => {
     try {
-      if (!user?.user?._id) {
+      if (!user?._id) {
         showAlert({
           title: "Login Required",
           message: "User not logged in.",
@@ -456,7 +456,7 @@ const StoryDetail = () => {
       const storyResponse = await axios.post(
         `${BASE_URL}/progress/storyprogress`,
         {
-          userId: user.user._id,
+          userId: user._id,
           storyId: id,
         },
         {

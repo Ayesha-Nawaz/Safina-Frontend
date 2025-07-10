@@ -90,7 +90,7 @@ const DuaDetails = () => {
   // Check if the category is bookmarked
   useEffect(() => {
     const checkCategoryBookmarkStatus = async () => {
-      if (!user?.user?._id || !duaData) return;
+      if (!user?._id || !duaData) return;
 
       try {
         const token = await AsyncStorage.getItem("userToken");
@@ -98,7 +98,7 @@ const DuaDetails = () => {
 
         const response = await axios.get(`${BASE_URL}/bookmarks/check`, {
           params: {
-            userId: user.user._id,
+            userId: user._id,
             contentId: params.id, // Using the category ID
             contentType: "DuaCategory", // Change content type to DuaCategory
           },
@@ -121,7 +121,7 @@ const DuaDetails = () => {
   // Check bookmark status for individual duas in the category (keeping this for reference)
   useEffect(() => {
     const checkDuaBookmarkStatus = async () => {
-      if (!user?.user?._id || duas.length === 0) return;
+      if (!user?._id || duas.length === 0) return;
 
       try {
         const token = await AsyncStorage.getItem("userToken");
@@ -131,7 +131,7 @@ const DuaDetails = () => {
         const promises = duas.map(async (dua) => {
           const response = await axios.get(`${BASE_URL}/bookmarks/check`, {
             params: {
-              userId: user.user._id,
+              userId: user._id,
               contentId: params.id,
               contentType: "Dua",
             },
@@ -415,7 +415,7 @@ const DuaDetails = () => {
   };
 
   const handleAddBookmark = async () => {
-    if (!user?.user?._id) {
+    if (!user?._id) {
       showCustomAlert(
         "Login Required",
         "Please log in to bookmark.",
@@ -443,7 +443,7 @@ const DuaDetails = () => {
       const response = await axios.post(
         `${BASE_URL}/bookmarks/add`,
         {
-          userId: user.user._id,
+          userId: user._id,
           contentId: params.id, // This should be the MongoDB ObjectID
           contentType: "Dua", // Use explicit DuaCategory type
         },
@@ -492,7 +492,7 @@ const DuaDetails = () => {
 
   // Update checkCategoryBookmarkStatus function
   const checkCategoryBookmarkStatus = async () => {
-    if (!user?.user?._id || !duaData) return;
+    if (!user?._id || !duaData) return;
 
     try {
       const token = await AsyncStorage.getItem("userToken");
@@ -500,7 +500,7 @@ const DuaDetails = () => {
 
       const response = await axios.get(`${BASE_URL}/bookmarks/check`, {
         params: {
-          userId: user.user._id,
+          userId: user._id,
           contentId: params.id, // MongoDB ObjectID
           contentType: "Dua", // Match this with what we use in handleAddBookmark
         },
@@ -532,7 +532,7 @@ const DuaDetails = () => {
 
   const markAsLearn = async () => {
     try {
-      if (!user.user || !user.user._id) {
+      if (!user.user || !user._id) {
         showCustomAlert("Login Required", "User not logged in.", "warning");
         return;
       }
@@ -555,7 +555,7 @@ const DuaDetails = () => {
       const duaResponse = await axios.post(
         `${BASE_URL}/progress/duaprogress`,
         {
-          userId: user.user._id,
+          userId: user._id,
           duaId: params.id,
         },
         {

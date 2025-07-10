@@ -4,7 +4,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const ProfileHead = ({ user, onEditProfile, onSignOut, onOpenSettings }) => {
   const getAvatar = () => {
-    const gender = user?.user?.gender?.toLowerCase();
+    const gender = user?.gender?.toLowerCase();
     if (gender === "male") {
       return require("@/assets/images/boy.png");
     } else if (gender === "female") {
@@ -18,9 +18,9 @@ const ProfileHead = ({ user, onEditProfile, onSignOut, onOpenSettings }) => {
     <View style={styles.profileHeader}>
       <View style={styles.profileInfo}>
         <Image source={getAvatar()} style={styles.avatar} />
-        <Text style={styles.name}>{user?.user?.username || "Username"}</Text>
-        <Text style={styles.subtitle}>{user?.user?.email || "user@gmail.com"}</Text>
-        <Text style={styles.subtitle}>Age: {user?.user?.age || " "}</Text>
+        <Text style={styles.name}>{user?.username || "Username"}</Text>
+        <Text style={styles.subtitle}>{user?.email || "user@gmail.com"}</Text>
+        <Text style={styles.subtitle}>Age: {user?.age || " "}</Text>
       </View>
 
       <View style={styles.headerIcons}>

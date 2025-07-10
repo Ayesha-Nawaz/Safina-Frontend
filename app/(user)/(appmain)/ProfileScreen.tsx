@@ -16,13 +16,11 @@ import SettingsModal from "@/components/SettingModal";
 import CustomAlert from "@/components/CustomAlert";
 import { useNavigation } from "expo-router";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
-
 import { UserContext } from "@/context/UserContext";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
-  const { logout, showAlert } = useContext(UserContext);
-  const [user, setUser] = useState(null);
+  const { user, logout, showAlert } = useContext(UserContext); // Get user from context
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,19 +36,21 @@ const ProfileScreen = () => {
     onCancel: null,
   });
 
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     setIsLoading(true);
     try {
       const token = await AsyncStorage.getItem("userToken");
       const storedUserId = await AsyncStorage.getItem("userId");
       if (!token || !storedUserId) {
         showAlert({
-          title: "Error",
-          message: "No token or user ID found. Please log in.",
+          title: "Session Expired",
+          message: "Please log in to continue.",
           type: "error",
           onConfirm: () => {
             setAlertVisible(false);
-            navigation.navigate("(authentication)");
+            if (navigation.getState().routes[0].name !== "(authentication)") {
+              navigation.navigate("(authentication)");
+            }
           },
         });
         return;
@@ -62,25 +62,30 @@ const ProfileScreen = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setUser(response.data);
+      // Assuming UserContext has a method to update user (if not, you may need to manage this differently)
       console.log("User data fetched successfully:", response.data);
+      // If UserContext doesn't update user, you might need to set it in context or handle locally
     } catch (error) {
       console.error("Error fetching user data:", error);
-      // showAlert({
-      //   title: "Error",
-      //   message: "Failed to fetch user data. Please try again later.",
-      //   type: "error",
-      //   onConfirm: () => setAlertVisible(false),
-      // });
+      showAlert({
+        title: "Error",
+        message: "Failed to fetch user data. Please try again later.",
+        type: "error",
+        onConfirm: () => setAlertVisible(false),
+      });
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [navigation, showAlert]);
 
   useFocusEffect(
     useCallback(() => {
-      fetchUserData();
-    }, [])
+      if (!user) {
+        fetchUserData();
+      } else {
+        setIsLoading(false); // User exists in context, no need to fetch
+      }
+    }, [user, fetchUserData])
   );
 
   const onRefresh = async () => {
@@ -105,16 +110,24 @@ const ProfileScreen = () => {
         try {
           await logout();
           setAlertVisible(false);
-          navigation.navigate("(authentication)");
+          if (navigation.getState().routes[0].name !== "(authentication)") {
+            navigation.navigate("(authentication)");
+          }
         } catch (error) {
           console.error("Error signing out:", error);
-         
+          showAlert({
+            title: "Error",
+            message: "Failed to sign out. Please try again.",
+            type: "error",
+            onConfirm: () => setAlertVisible(false),
+          });
         }
       },
       onCancel: () => setAlertVisible(false),
     });
   };
-   const localShowAlert = (config) => {
+
+  const localShowAlert = (config) => {
     setAlertConfig({
       ...alertConfig,
       ...config,
@@ -123,7 +136,6 @@ const ProfileScreen = () => {
     });
     setAlertVisible(true);
   };
-
 
   const handleDeleteAccount = async () => {
     showAlert({
@@ -146,7 +158,9 @@ const ProfileScreen = () => {
               type: "error",
               onConfirm: () => {
                 setAlertVisible(false);
-                navigation.navigate("(authentication)");
+                if (navigation.getState().routes[0].name !== "(authentication)") {
+                  navigation.navigate("(authentication)");
+                }
               },
             });
             return;
@@ -186,7 +200,7 @@ const ProfileScreen = () => {
     navigation.navigate("(notification)");
   };
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return (
       <ImageBackground
         source={require("@/assets/images/profile2.jpeg")}

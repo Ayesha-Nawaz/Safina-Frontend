@@ -66,7 +66,12 @@ const ProfileScreen = () => {
       console.log("User data fetched successfully:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
-      
+      // showAlert({
+      //   title: "Error",
+      //   message: "Failed to fetch user data. Please try again later.",
+      //   type: "error",
+      //   onConfirm: () => setAlertVisible(false),
+      // });
     } finally {
       setIsLoading(false);
     }

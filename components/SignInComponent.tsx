@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+// (authentication)/index.tsx or SignInComponent.tsx
+import React, { useState, useCallback, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -12,10 +13,11 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "expo-router";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UserContext } from "@/context/UserContext"; // Import UserContext
 import { BASE_URL } from "@/Ipconfig/ipconfig";
 
 const SignInComponent: React.FC = () => {
+  const { login } = useContext(UserContext); // Use login from UserContext
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -58,10 +60,8 @@ const SignInComponent: React.FC = () => {
   };
 
   const signIn = async () => {
-    // Clear any previous errors
     setErrorVisible(false);
-    
-    // Form validation with improved error messages
+
     if (!email && !password) {
       showError("Missing Information", "Please provide both email and password to sign in.");
       return;
@@ -83,7 +83,7 @@ const SignInComponent: React.FC = () => {
     }
 
     if (!validatePassword(password)) {
-      showError("Invalid Password");
+      showError("Invalid Password", "Password must be at least 6 characters long.");
       return;
     }
 
@@ -98,47 +98,47 @@ const SignInComponent: React.FC = () => {
           password,
         },
         {
-          timeout: 15000, // Increased timeout to 15 seconds
+          timeout: 15000,
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
 
       const { token, userId } = response.data;
-      
       const adminEmails = [
         "ayeshanawaz211288@gmail.com",
         "avae1856@gmail.com",
         "arhamaleem103@gmail.com",
       ];
-
       const isAdmin = adminEmails.includes(email.toLowerCase());
       const userRole = isAdmin ? "admin" : "user";
 
-      await AsyncStorage.setItem("userToken", token);
-      await AsyncStorage.setItem("userId", userId);
-      await AsyncStorage.setItem("userRole", userRole);
+      // Create a user object to pass to the login function
+      const userData = { _id: userId, role: userRole, email: email.trim().toLowerCase() };
 
-      navigation.navigate(isAdmin ? "(zadmin)" : "(user)");
+      console.log("Calling login with:", { userData, token });
 
+      // Call the login function from UserContext
+      await login(userData, token);
+
+      // Navigation is handled in UserProvider
     } catch (error) {
       console.error("Login error:", error);
 
       if (axios.isAxiosError(error)) {
         if (!error.response) {
-          // Network errors
-          if (error.code === 'ECONNABORTED') {
+          if (error.code === "ECONNABORTED") {
             showError(
               "Connection Timeout",
               "The request took too long to complete. Please check your internet connection and try again."
             );
-          } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+          } else if (error.code === "ENOTFOUND" || error.code === "ECONNREFUSED") {
             showError(
               "Network Error",
               "Cannot connect to the server. Please check your internet connection and try again."
             );
-          } else if (error.code === 'NETWORK_ERROR') {
+          } else if (error.code === "NETWORK_ERROR") {
             showError(
               "Network Error",
               "A network error occurred. Please check your internet connection and try again."
@@ -150,10 +150,9 @@ const SignInComponent: React.FC = () => {
             );
           }
         } else {
-          // Server response errors
           const status = error.response.status;
           const errorData = error.response.data;
-          
+
           switch (status) {
             case 400:
               showError(
@@ -217,7 +216,6 @@ const SignInComponent: React.FC = () => {
           }
         }
       } else {
-        // Non-axios errors
         showError(
           "Unexpected Error",
           "An unexpected error occurred during login. Please try again or contact support if the problem persists."
@@ -359,7 +357,7 @@ const SignInComponent: React.FC = () => {
               </View>
               <Text style={styles.errorTitle}>{errorTitle}</Text>
               <Text style={styles.errorMessage}>{errorMessage}</Text>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.errorButton}
                 onPress={() => setErrorVisible(false)}
               >

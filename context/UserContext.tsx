@@ -1,8 +1,10 @@
-import React, { createContext, useState, useCallback } from "react";
+// UserContext.tsx
+import React, { createContext, useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "@/Ipconfig/ipconfig";
 import CustomAlert from "@/components/CustomAlert";
+import { useNavigation } from "expo-router";
 
 interface User {
   _id: string;
@@ -38,6 +40,7 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const navigation = useNavigation();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
@@ -51,7 +54,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     onConfirm: null,
     onCancel: null,
   });
-  const [isLoggingIn, setIsLoggingIn] = useState(false); // New flag to prevent fetchUser during login
 
   const showAlert = (config) => {
     console.log("Showing alert:", config);
@@ -67,112 +69,88 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const clearUserData = async () => {
     console.log("Clearing user data");
     setUser(null);
-    try {
-      await AsyncStorage.multiRemove(["userToken", "userId", "userRole"]);
-      console.log("AsyncStorage cleared successfully");
-    } catch (error) {
-      console.error("Error clearing AsyncStorage:", error);
-      showAlert({
-        title: "Error",
-        message: "Failed to clear user data.",
-        type: "error",
-      });
-    }
+    await AsyncStorage.multiRemove(["userToken", "userId", "userRole"]);
+    console.log("User data cleared");
   };
 
   const fetchUser = useCallback(async (userId?: string): Promise<User | null> => {
-    if (isLoggingIn) {
-      console.log("fetchUser skipped: login in progress");
-      return user;
-    }
-    if (user) {
-      console.log("fetchUser skipped: user already exists in state", user);
-      return user;
-    }
-    console.log("fetchUser called with userId:", userId);
+    setLoading(true);
     try {
-      setLoading(true);
       const token = await AsyncStorage.getItem("userToken");
       const storedUserId = userId || (await AsyncStorage.getItem("userId"));
 
+      console.log("fetchUser called with:", { userId, token: !!token, storedUserId });
+
       if (!token || !storedUserId) {
-        console.log("No token or userId found");
-        await clearUserData();
+        console.log("No token or user ID found");
+        setUser(null);
         return null;
       }
 
-      console.log("Fetching user data from API for userId:", storedUserId);
       const response = await axios.get(`${BASE_URL}/user/auser/${storedUserId}`, {
         headers: { Authorization: `Bearer ${token}` },
-        timeout: 10000,
       });
 
-      if (response.data) {
-        console.log("User data fetched successfully:", response.data);
-        setUser(response.data);
-        return response.data;
-      } else {
-        console.log("No user data returned from API");
-        await clearUserData();
-        return null;
-      }
+      const userData = response.data.user;
+      setUser(userData);
+      console.log("User data fetched successfully in context:", userData);
+      return userData;
     } catch (error) {
-      console.error("Error fetching user:", error);
-      if (axios.isAxiosError(error)) {
-        console.log("Axios error status:", error.response?.status);
-        if (error.response?.status === 401 || error.response?.status === 404) {
-          console.log("Unauthorized or user not found, clearing user data");
-          await clearUserData();
-        }
-      }
+      console.error("Error fetching user data:", error);
+      await clearUserData();
       showAlert({
         title: "Error",
-        message: "Failed to fetch user data. Please try logging in again.",
+        message: "No token or user ID found. Please log in.",
         type: "error",
       });
       return null;
     } finally {
       setLoading(false);
-      console.log("fetchUser completed, loading set to false, user:", user);
     }
-  }, [isLoggingIn, user]);
+  }, []);
 
   const login = async (userData: User, token: string) => {
-    console.log("login called with userData:", userData, "token:", token);
     try {
+      console.log("Logging in user:", userData);
       setLoading(true);
-      setIsLoggingIn(true); // Set flag to prevent fetchUser
-      console.log("Clearing previous user data before login");
-      await clearUserData();
 
-      console.log("Storing new credentials");
+      // Store credentials in AsyncStorage
       await AsyncStorage.multiSet([
         ["userToken", token],
         ["userId", userData._id],
-        ["userRole", userData.role || ""],
+        ["userRole", userData.role || "user"],
       ]);
+
       console.log("Credentials stored successfully");
 
-      console.log("Setting user data:", userData);
-      setUser(userData); // Set user data immediately
-      console.log("User state set to:", userData);
+      // Fetch full user data from API
+      const fetchedUser = await fetchUser(userData._id);
+      if (!fetchedUser) {
+        throw new Error("Failed to fetch user data after login");
+      }
+
+      console.log("User logged in successfully:", fetchedUser);
+
+      // Navigate based on user role
+      navigation.reset({
+        index: 0,
+        routes: [{ name: userData.role === "admin" ? "(zadmin)" : "(user)" }],
+      });
     } catch (error) {
       console.error("Login failed:", error);
+      await clearUserData();
       showAlert({
         title: "Login Error",
         message: "Failed to log in. Please try again.",
         type: "error",
       });
-      await clearUserData();
     } finally {
       setLoading(false);
-      setIsLoggingIn(false);
-      console.log("login completed, loading set to false, isLoggingIn:", false, "user:", userData);
     }
   };
 
   const logout = async () => {
-    console.log("logout called");
+    console.log("Logout called");
     try {
       setLoading(true);
       await clearUserData();
@@ -180,6 +158,13 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         title: "Success",
         message: "Logged out successfully",
         type: "success",
+        onConfirm: () => {
+          setAlertVisible(false);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "(authentication)" }],
+          });
+        },
       });
     } catch (error) {
       console.error("Logout error:", error);
@@ -190,9 +175,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
     } finally {
       setLoading(false);
-      console.log("logout completed, loading set to false, user:", null);
     }
   };
+
+  useEffect(() => {
+    let isMounted = true;
+    const initializeUser = async () => {
+      console.log("Initializing user context");
+      if (isMounted) {
+        await fetchUser();
+      }
+    };
+    initializeUser();
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchUser]);
 
   return (
     <UserContext.Provider

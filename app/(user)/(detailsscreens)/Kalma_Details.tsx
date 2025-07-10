@@ -123,7 +123,7 @@ const KalmaDetail: React.FC = () => {
   // Check bookmark status on component mount
   useEffect(() => {
     const checkBookmarkStatus = async () => {
-      if (!user?.user?._id) {
+      if (!user?._id) {
         console.warn("Cannot check bookmark: No user ID available");
         return;
       }
@@ -141,7 +141,7 @@ const KalmaDetail: React.FC = () => {
         }
 
         const params = {
-          userId: user.user._id,
+          userId: user._id,
           contentId: id,
           contentType: "Kalma",
         };
@@ -376,7 +376,7 @@ const KalmaDetail: React.FC = () => {
       return;
     }
 
-    if (!user?.user?._id) {
+    if (!user?._id) {
       showAlert({
         title: "Login Required",
         message: "Please log in to bookmark content.",
@@ -401,7 +401,7 @@ const KalmaDetail: React.FC = () => {
       if (!token) throw new Error("Authentication token not found");
 
       console.log("Sending bookmark request with:", {
-        userId: user.user._id,
+        userId: user._id,
         contentId: id,
         contentType: "Kalma",
       });
@@ -409,7 +409,7 @@ const KalmaDetail: React.FC = () => {
       const response = await axios.post(
         `${BASE_URL}/bookmarks/add`,
         {
-          userId: user.user._id,
+          userId: user._id,
           contentId: id,
           contentType: "Kalma",
         },
@@ -452,7 +452,7 @@ const KalmaDetail: React.FC = () => {
   // Mark as learned functionality
  const markAsLearn = async () => {
   try {
-    if (!user?.user?._id) {
+    if (!user?._id) {
       showAlert({
         title: "Login Required",
         message: "Please log in to mark content as learned.",
@@ -472,14 +472,14 @@ const KalmaDetail: React.FC = () => {
     }
 
     console.log("Marking as learned:", {
-      userId: user.user._id,
+      userId: user._id,
       kalmaId: id,
     });
 
     const response = await axios.post(
       `${BASE_URL}/progress/kalmaprogress`,
       {
-        userId: user.user._id,
+        userId: user._id,
         kalmaId: id,
       },
       {

@@ -1,3 +1,4 @@
+// AppMain.tsx
 import React, { useContext, useEffect } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
@@ -30,16 +31,20 @@ function BackButton() {
 }
 
 function CustomHeaderTitle({ route }) {
-  const { user } = useContext(UserContext);
+  const { user, loading } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("user at home", user);
-  }, [user]);
+    console.log("user at home", user, "loading:", loading);
+  }, [user, loading]);
+
+  if (loading) {
+    return <Text style={styles.headerTitle}>Loading...</Text>;
+  }
 
   if (route.name === "index") {
     return (
-      <View style={styles.homeHeaderContainer} key={user?.user?._id || "no-user"}>
-        <Text style={styles.usernameText}>Welcome {user?.user?.username || ""}</Text>
+      <View style={styles.homeHeaderContainer} key={user?._id || "no-user"}>
+        <Text style={styles.usernameText}>Welcome {user?.username || "Guest"}</Text>
       </View>
     );
   }
@@ -87,8 +92,6 @@ function TabBar({ state, descriptors, navigation }) {
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
           }
-
-          // ❌ Removed fetchUser call from Home tab
         };
 
         return (
@@ -118,7 +121,6 @@ function TabBar({ state, descriptors, navigation }) {
     </LinearGradient>
   );
 }
-
 
 export default function AppMain() {
   const colorScheme = useColorScheme();
